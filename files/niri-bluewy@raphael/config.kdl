@@ -124,7 +124,7 @@ layout {
    }
 
    tab-indicator {
-      length total-proportion=1.0
+      length total-proportion=0.9
       place-within-column
       gap 0
       gaps-between-tabs 11
