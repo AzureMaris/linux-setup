@@ -108,9 +108,9 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "matugenSchemeType": "scheme-expressive",
-        "predefinedScheme": "Gruvbox",
+        "predefinedScheme": "Ayu",
         "schedulingMode": "off",
-        "useWallpaperColors": true
+        "useWallpaperColors": false
     },
     "controlCenter": {
         "cards": [
@@ -181,7 +181,7 @@
     },
     "general": {
         "animationDisabled": false,
-        "animationSpeed": 1,
+        "animationSpeed": 1.2,
         "avatarImage": "/home/bluewy/media/screenshots/2025-10-12_21-21-38.png",
         "compactLockScreen": false,
         "dimDesktop": true,
@@ -191,7 +191,7 @@
         "radiusRatio": 1,
         "scaleRatio": 1,
         "screenRadiusRatio": 1,
-        "showScreenCorners": false
+        "showScreenCorners": true
     },
     "hooks": {
         "darkModeChange": "",

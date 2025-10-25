@@ -1,5 +1,5 @@
-pkgname=sam-git
-_pkgname=sam
+pkgname=salm-git
+_pkgname=salm
 pkgver=r00.0000000
 pkgrel=1
 pkgdesc='A way to manage dots'
@@ -17,5 +17,5 @@ pkgver() {
 
 package() {
    cd "$srcdir/$_pkgname"
-   install -Dm755 sam -t "$pkgdir/usr/bin"
+   install -Dm755 salm -t "$pkgdir/usr/bin"
 }
