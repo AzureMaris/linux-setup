@@ -63,7 +63,7 @@
                     "labelMode": "none"
                 },
                 {
-                    "colorizeIcons": false,
+                    "colorizeIcons": true,
                     "hideMode": "hidden",
                     "id": "Taskbar",
                     "onlyActiveWorkspaces": true,
@@ -108,7 +108,7 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "matugenSchemeType": "scheme-expressive",
-        "predefinedScheme": "Ayu",
+        "predefinedScheme": "OneDark",
         "schedulingMode": "off",
         "useWallpaperColors": false
     },
@@ -189,7 +189,7 @@
         "language": "",
         "lockOnSuspend": true,
         "radiusRatio": 1,
-        "scaleRatio": 1,
+        "scaleRatio": 1.2,
         "screenRadiusRatio": 1,
         "showScreenCorners": true
     },
