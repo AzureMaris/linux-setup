@@ -100,7 +100,7 @@ window-rule {
 
 layout {
    // i wish i had an oled monitor
-   background-color "#000000"
+   background-color "#282c34"
    gaps 11
    center-focused-column "never"
 
