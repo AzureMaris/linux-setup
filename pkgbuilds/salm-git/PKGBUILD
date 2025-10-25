@@ -1,6 +1,6 @@
 pkgname=salm-git
 _pkgname=salm
-pkgver=r00.0000000
+pkgver=r2.7cbdee0
 pkgrel=1
 pkgdesc='A way to manage dots'
 url="https://github.com/BluewyDiamond/$_pkgname"
