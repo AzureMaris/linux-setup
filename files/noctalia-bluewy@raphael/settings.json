@@ -8,7 +8,7 @@
         ],
         "position": "center",
         "sortByMostUsed": true,
-        "terminalCommand": "",
+        "terminalCommand": "wezterm start --",
         "useApp2Unit": false
     },
     "audio": {
