@@ -101,7 +101,7 @@ window-rule {
 layout {
    // i wish i had an oled monitor
    background-color "#000000"
-   gaps 16
+   gaps 11
    center-focused-column "never"
 
    preset-column-widths {
@@ -127,8 +127,8 @@ layout {
       length total-proportion=1.0
       place-within-column
       gap 0
-      gaps-between-tabs 16
-      width 16
+      gaps-between-tabs 11
+      width 11
    }
 }
 

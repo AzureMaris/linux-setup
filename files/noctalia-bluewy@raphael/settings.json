@@ -63,7 +63,7 @@
                     "labelMode": "none"
                 },
                 {
-                    "colorizeIcons": true,
+                    "colorizeIcons": false,
                     "hideMode": "hidden",
                     "id": "Taskbar",
                     "onlyActiveWorkspaces": true,
