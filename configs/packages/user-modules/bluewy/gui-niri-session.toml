@@ -17,9 +17,11 @@ install = [
 
    { from = 'std', name = 'cliphist' },
    { from = 'std', name = 'cava' },
+   { from = 'aur', name = 'matugen-git' },
    { from = 'aur', name = 'noctalia-shell-git' },
    { from = 'std', name = 'satty' },
 
+   { from = 'std', name = 'fuzzel' },
    { from = 'std', name = 'keepassxc' },
 ]
 profiles = ['root@raphael', 'root@uriel']
