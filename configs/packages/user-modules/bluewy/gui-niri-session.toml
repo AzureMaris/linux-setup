@@ -17,7 +17,7 @@ install = [
 
    { from = 'std', name = 'cliphist' },
    { from = 'std', name = 'cava' },
-   { from = 'std', name = 'noctalia-shell' },
+   { from = 'aur', name = 'noctalia-shell-git' },
    { from = 'std', name = 'satty' },
 
    { from = 'std', name = 'keepassxc' },
