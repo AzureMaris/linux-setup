@@ -5,7 +5,10 @@ install = [
    # fails (unlikely)
    { from = 'std', name = 'nushell' },
    { from = 'std', name = 'terminus-font' },
+
+   { from = 'std', name = 'ddcutil' },
    { from = 'std', name = 'fastfetch' },
+
    { from = 'std', name = 'starship' },
 
    { from = 'std', name = 'zellij' },
