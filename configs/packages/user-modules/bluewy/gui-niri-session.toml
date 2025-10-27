@@ -1,6 +1,7 @@
 [[packages]]
 install = [
    { from = 'std', name = 'uwsm' },
+   { from = 'aur', name = 'runapp' },
 
    { from = 'std', name = 'niri' },
    { from = 'std', name = 'xwayland-satellite' },
