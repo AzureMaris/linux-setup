@@ -3,6 +3,11 @@ install = [
    { from = 'std', name = 'rustup' },
    { from = 'std', name = 'jdk21-openjdk' },
 
+   { from = 'std', name = 'typescript' },
+   { from = 'std', name = 'typescript-language-server' },
+
+   { from = 'std', name = 'bun-bin' },
+
    { from = 'std', name = 'git' },
    { from = 'std', name = 'less' },
 ]
