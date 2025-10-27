@@ -1,0 +1,12 @@
+pkgname=noctalia-shell-onedark
+_pkgname=$pkgname
+pkgver=1
+pkgrel=1
+pkgdesc='Adds OneDark theme to noctalia'
+depends=(noctalia-shell)
+provides=($_pkgname)
+conflicts=($_pkgname)
+
+package() {
+   install -Dm644 "$srcdir/../OneDark.json" "$pkgdir/etc/xdg/quickshell/noctalia-shell/Assets/ColorScheme/Onedark/OneDark.json"
+}
