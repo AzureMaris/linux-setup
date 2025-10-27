@@ -1,7 +1,7 @@
 {
     "appLauncher": {
         "backgroundOpacity": 1,
-        "customLaunchPrefix": "niri msg action spawn --",
+        "customLaunchPrefix": "runapp",
         "customLaunchPrefixEnabled": true,
         "enableClipboardHistory": true,
         "pinnedExecs": [
