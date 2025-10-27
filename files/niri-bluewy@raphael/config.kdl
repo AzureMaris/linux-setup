@@ -287,16 +287,20 @@ binds {
 // [ Environment ]
 
 environment {
-   // necessary for manual integration, it is here because setting it early
-   // will get overwritten by niri
+   // for sub niri processes
    DISPLAY ":0"
 }
 
 // [ Autostart ]
 
-// necessary for manual integration with uwsm
-spawn-at-startup "runapp" "systemctl" "--user" "import-environment" "DISPLAY"
+// because I can't set DISPLAY before niri startup as niri removes it so
+// so either import it as niri sub process (the env above)
+// or use runapp feature to stay consistent with the usage
+// Alternatively, enable xwayland-satellite integration in niri but
+// you won't be able to read the output
+spawn-at-startup "runapp" "-e" "DISPLAY=:0" "systemctl" "--user" "import-environment" "DISPLAY"
 
+// start it before other startups that might rely on this one
 spawn-at-startup "runapp" "systemctl" "--user" "start" "xwayland-satellite.service"
 
 // [[ Polkit ]]
