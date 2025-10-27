@@ -20,8 +20,9 @@ install = [
    { from = 'std', name = 'ddcutil' },
    { from = 'aur', name = 'matugen-git' },
    { from = 'aur', name = 'noctalia-shell-git' },
-   { from = 'std', name = 'satty' },
+   { from = 'lcl', name = 'noctalia-shell-onedark', path = '../../../../pkgbuilds/noctalia-shell-onedark' },
 
+   { from = 'std', name = 'satty' },
    { from = 'std', name = 'fuzzel' },
    { from = 'std', name = 'keepassxc' },
 ]
