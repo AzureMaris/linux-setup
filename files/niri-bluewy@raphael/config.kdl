@@ -40,11 +40,6 @@ overview {
    }
 }
 
-layer-rule {
-   match namespace="^quickshell-overview$"
-   place-within-backdrop true
-}
-
 window-rule {
    geometry-corner-radius 20
    clip-to-geometry true

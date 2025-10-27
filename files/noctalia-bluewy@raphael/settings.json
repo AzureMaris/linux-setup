@@ -100,7 +100,8 @@
         "chargingMode": 0
     },
     "brightness": {
-        "brightnessStep": 5
+        "brightnessStep": 5,
+        "enforceMinimum": true
     },
     "colorSchemes": {
         "darkMode": true,
@@ -280,15 +281,21 @@
     },
     "wallpaper": {
         "defaultWallpaper": "/etc/xdg/quickshell/noctalia-shell/Assets/Wallpaper/noctalia.png",
-        "directory": "",
+        "directory": "/home/bluewy/media/wallpapers",
         "enableMultiMonitorDirectories": false,
-        "enabled": false,
-        "fillColor": "#1e2127",
+        "enabled": true,
+        "fillColor": "#000000",
         "fillMode": "crop",
         "monitors": [
+            {
+                "directory": "/home/bluewy/media/wallpapers",
+                "name": "HDMI-A-2",
+                "wallpaper": "/home/bluewy/media/wallpapers/w.png"
+            }
         ],
-        "randomEnabled": false,
+        "randomEnabled": true,
         "randomIntervalSec": 300,
+        "recursiveSearch": false,
         "setWallpaperOnAllMonitors": true,
         "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0.05,
