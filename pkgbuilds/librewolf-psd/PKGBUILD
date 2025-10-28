@@ -3,6 +3,7 @@ _pkgname=$pkgname
 pkgver=1
 pkgrel=1
 pkgdesc='Adds librewolf profile for profile sync daemon'
+arch=(any)
 depends=(librewolf profile-sync-daemon)
 provides=($_pkgname)
 conflicts=($_pkgname)

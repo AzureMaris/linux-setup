@@ -3,6 +3,7 @@ _pkgname=salm
 pkgver=r2.7cbdee0
 pkgrel=1
 pkgdesc='A way to manage dots'
+arch=(any)
 url="https://github.com/BluewyDiamond/$_pkgname"
 depends=(nushell)
 provides=($_pkgname)

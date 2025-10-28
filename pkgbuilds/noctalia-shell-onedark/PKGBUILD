@@ -3,6 +3,7 @@ _pkgname=$pkgname
 pkgver=1
 pkgrel=1
 pkgdesc='Adds OneDark theme to noctalia'
+arch=(any)
 depends=(noctalia-shell)
 provides=($_pkgname)
 conflicts=($_pkgname)
