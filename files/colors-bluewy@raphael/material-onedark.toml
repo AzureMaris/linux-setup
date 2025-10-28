@@ -1,0 +1,34 @@
+primary = ''
+on_primary = ''
+primary_container = ''
+on_primary_container = ''
+
+secondary = ''
+on_secondary = ''
+secondary_container = ''
+on_secondary_container = ''
+
+tertiary = ''
+on_tertiary = ''
+tertiary_container = ''
+on_tertiary_container = ''
+
+error = ''
+on_error = ''
+error_container = ''
+on_error_container = ''
+
+surface = ''
+on_surface = ''
+surface_container = ''
+on_surface_container = ''
+
+outline = ''
+outline_variant = ''
+
+inverse_surface = ''
+inverse_on_surface = ''
+inverse_primary = ''
+
+scrim = ''
+shadow = ''
