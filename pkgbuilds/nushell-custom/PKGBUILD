@@ -7,7 +7,7 @@ arch=(any)
 depends=(nushell)
 provides=($_pkgname)
 conflicts=($_pkgname $_pkgname-bin $_pkgname-git)
-install=${pkgname}.install
+install=${_pkgname}.install
 
 package() {
    install -Dm755 /dev/null "$pkgdir/usr/bin/nu-custom"

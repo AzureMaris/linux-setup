@@ -1,0 +1,12 @@
+post_install() {
+  grep -Fqx /bin/nu /etc/shells || echo /bin/nu-custom >> /etc/shells
+  grep -Fqx /usr/bin/nu /etc/shells || echo /usr/bin/nu-custom >> /etc/shells
+}
+
+post_upgrade() {
+  post_install
+}
+
+pre_remove() {
+  sed -i -r '/^(\/usr)?\/bin\/nu-custom$/d' etc/shells
+}
