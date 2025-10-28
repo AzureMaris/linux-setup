@@ -105,7 +105,7 @@
     },
     "colorSchemes": {
         "darkMode": true,
-        "generateTemplatesForPredefined": false,
+        "generateTemplatesForPredefined": true,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "matugenSchemeType": "scheme-expressive",
@@ -221,6 +221,7 @@
         "nightTemp": "4000"
     },
     "notifications": {
+        "backgroundOpacity": 1,
         "criticalUrgencyDuration": 15,
         "doNotDisturb": false,
         "location": "top_right",
