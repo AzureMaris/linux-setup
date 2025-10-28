@@ -6,6 +6,7 @@ pkgdesc='A way to manage dots'
 arch=(any)
 url="https://github.com/BluewyDiamond/$_pkgname"
 depends=(nushell)
+makedepends=(git)
 provides=($_pkgname)
 conflicts=($_pkgname $_pkgname-bin $_pkgname-git)
 source=("git+$url.git")

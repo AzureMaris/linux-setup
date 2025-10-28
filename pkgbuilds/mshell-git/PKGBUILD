@@ -7,6 +7,7 @@ arch=(x86_64)
 url="https://github.com/BluewyDiamond/$_pkgname"
 depends=(nushell gjs gtk4-layer-shell)
 makedepends=(
+   git
    bun
    aylurs-gtk-shell-git
    libastal-4-git
