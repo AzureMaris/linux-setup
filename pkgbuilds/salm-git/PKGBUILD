@@ -1,6 +1,6 @@
 pkgname=salm-git
 _pkgname=salm
-pkgver=r2.7cbdee0
+pkgver=r8.a4526a3
 pkgrel=1
 pkgdesc='A way to manage dots'
 arch=(any)
