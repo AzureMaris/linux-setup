@@ -9,7 +9,7 @@ profiles = ['root@uriel']
 
 [[files]]
 source = '../../files/acer-battery-limit-service-root@uriel/acer-battery-limiter.service'
-target = '/etc/systemd/acer-battery-limiter.service'
+target = '/etc/systemd/system/acer-battery-limiter.service'
 action = 'copy'
 chmod = '644'
 owner = 'root'
