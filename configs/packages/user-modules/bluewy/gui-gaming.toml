@@ -14,7 +14,7 @@ install = [
    { from = 'std', name = 'mangohud' },
    { from = 'std', name = 'lib32-mangohud' },
 
-   { from = 'std', name = 'steam-native-runtime' },
+   { from = 'std', name = 'steam' },
    { from = 'std', name = 'heroic-games-launcher-bin' },
 ]
 profiles = ['root@raphael', 'root@uriel', 'root@sariel']
