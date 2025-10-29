@@ -8,7 +8,7 @@ install = [
    { from = 'std', name = 'umu-launcher' },
    { from = 'std', name = 'proton-cachyos' },
    { from = 'std', name = 'proton-cachyos-slr' },
-   { from = 'std', name = 'proton-ge-custom-bin' },
+   { from = 'aur', name = 'proton-ge-custom-bin' },
    { from = 'std', name = 'protontricks' },
    { from = 'std', name = 'gamescope' },
    { from = 'std', name = 'mangohud' },
