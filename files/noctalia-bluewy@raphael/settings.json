@@ -270,7 +270,8 @@
         "kitty": false,
         "pywalfox": false,
         "qt": false,
-        "vicinae": false
+        "vicinae": false,
+        "walker": false
     },
     "ui": {
         "fontDefault": "IosevkaTerm Nerd Font Mono",
