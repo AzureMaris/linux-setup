@@ -172,6 +172,7 @@
         "backgroundOpacity": 1,
         "colorizeIcons": false,
         "displayMode": "auto_hide",
+        "enabled": true,
         "floatingRatio": 1,
         "monitors": [
         ],
@@ -185,7 +186,6 @@
         "animationSpeed": 1.2,
         "avatarImage": "/home/bluewy/media/screenshots/2025-10-12_21-21-38.png",
         "compactLockScreen": false,
-        "dimDesktop": true,
         "forceBlackScreenCorners": false,
         "language": "",
         "lockOnSuspend": true,
@@ -201,8 +201,10 @@
     },
     "location": {
         "analogClockInCalendar": false,
+        "firstDayOfWeek": -1,
         "name": "L'Alfas del Pi",
         "showCalendarEvents": true,
+        "showCalendarWeather": true,
         "showWeekNumberInCalendar": false,
         "use12hourFormat": false,
         "useFahrenheit": false,
@@ -254,6 +256,7 @@
     "settingsVersion": 16,
     "setupCompleted": true,
     "templates": {
+        "code": false,
         "discord": false,
         "discord_armcord": false,
         "discord_dorion": false,
@@ -278,6 +281,7 @@
         "fontDefaultScale": 1.25,
         "fontFixed": "IosevkaTerm Nerd Font Mono",
         "fontFixedScale": 1.25,
+        "panelsAttachedToBar": true,
         "panelsOverlayLayer": true,
         "tooltipsEnabled": true
     },
