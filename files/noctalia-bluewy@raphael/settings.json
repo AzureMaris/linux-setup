@@ -183,7 +183,7 @@
     },
     "general": {
         "animationDisabled": false,
-        "animationSpeed": 1.2,
+        "animationSpeed": 2,
         "avatarImage": "/home/bluewy/media/screenshots/2025-10-12_21-21-38.png",
         "compactLockScreen": false,
         "forceBlackScreenCorners": false,
