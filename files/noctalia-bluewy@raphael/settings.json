@@ -297,6 +297,11 @@
                 "directory": "/home/bluewy/media/wallpapers",
                 "name": "HDMI-A-2",
                 "wallpaper": "/home/bluewy/media/wallpapers/w.png"
+            },
+            {
+                "directory": "/home/bluewy/media/wallpapers",
+                "name": "",
+                "wallpaper": "/home/bluewy/media/wallpapers/w.png"
             }
         ],
         "randomEnabled": true,
