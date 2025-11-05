@@ -33,6 +33,7 @@ output "HDMI-A-2" {
 prefer-no-csd
 
 overview {
+   zoom 0.25
    backdrop-color "#21252b"
 
    workspace-shadow {
