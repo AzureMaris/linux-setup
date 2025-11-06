@@ -113,8 +113,8 @@ def --wrapped aura [...arguments] {
 
 alias nu-ls = ls
 
-# This is an alias. More help available at the link below.
-# https://www.nushell.sh/commands/docs/ls.html
+# This is a custom ls function.
+# The original ls built-in command can be found as nu-ls.
 #
 # List the filenames, sizes, and modification times of items in a directory.
 def ls [
@@ -125,7 +125,6 @@ def ls [
    --hidden (-H) # Show hidden files
    --long (-l) # Get all available columns for each entry (slower; columns are platform-dependent)
    --mime-type (-m) # Show mime-type in type column instead of 'file' (based on filenames only; files' contents are not examined)
-   --pipe-mode (-P) # Do not apply things that might be unwanted with pipes
    --plain (-p) # Show plain files
    --short-names (-s) # Only print the file names, and not the path
    --threads (-t) # Use multiple threads to list contents. Output will be non-deterministic.
