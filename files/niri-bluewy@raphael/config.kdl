@@ -28,137 +28,7 @@ output "HDMI-A-2" {
    variable-refresh-rate
 }
 
-// [ Behaviours & Aesthetics ]
 
-prefer-no-csd
-
-overview {
-   zoom 0.25
-   backdrop-color "#21252b"
-
-   workspace-shadow {
-      off
-   }
-}
-
-window-rule {
-   geometry-corner-radius 20
-   clip-to-geometry true
-
-   open-fullscreen false
-   open-maximized true
-   // open-maximized-to-edges false
-   open-focused true
-}
-
-window-rule {
-   match is-floating=true
-
-   open-maximized false
-}
-
-window-rule {
-   match is-window-cast-target=true
-
-   border {
-      inactive-color "#5a2d32"
-   }
-
-   tab-indicator {
-      inactive-color "#5a2d32"
-   }
-}
-
-window-rule {
-   match is-active=true is-window-cast-target=true
-
-   border {
-      active-color "#E06C75"
-      inactive-color "#5a2d32"
-   }
-
-   tab-indicator {
-      active-color "#E06C75"
-      inactive-color "#5a2d32"
-   }
-}
-
-window-rule {
-   match at-startup=true app-id="org.keepassxc.KeePassXC"
-   open-on-workspace "scratchpad"
-   open-focused true
-}
-
-window-rule {
-   match app-id="org.keepassxc.KeePassXC"
-   block-out-from "screencast"
-}
-
-layout {
-   // i wish i had an oled monitor
-   background-color "#282c34"
-   gaps 11
-   center-focused-column "never"
-
-   preset-column-widths {
-      proportion 0.33333
-      proportion 0.5
-      proportion 0.66667
-   }
-
-   default-column-width { proportion 0.5; }
-
-   focus-ring {
-      off
-   }
-
-   border {
-      width 2
-      active-color "#61AFEF"
-      inactive-color "#27445a"
-      urgent-color "#E5C07B"
-   }
-
-   tab-indicator {
-      length total-proportion=0.9
-      place-within-column
-      gap 0
-      gaps-between-tabs 11
-      width 11
-   }
-}
-
-hotkey-overlay {
-   skip-at-startup
-}
-
-cursor {
-   xcursor-theme "Bibata-Modern-Classic"
-   xcursor-size 24
-}
-
-screenshot-path "~/media/screenshots/%Y-%m-%d_%H-%M-%S.png"
-
-// static workspaces, lets go!
-workspace "one"
-workspace "two"
-workspace "three"
-workspace "four"
-workspace "eight"
-workspace "nine"
-workspace "zero"
-
-// scratchpad workspaces
-workspace "scratchpad"
-
-// externally managed
-xwayland-satellite {
-   off
-}
-
-debug {
-   honor-xdg-activation-with-invalid-serial
-}
 
 // [ Binds ]
 
@@ -283,6 +153,140 @@ binds {
    XF86AudioLowerVolume allow-when-locked=true { spawn "runapp" "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
    XF86AudioMute        allow-when-locked=true { spawn "runapp" "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
    XF86AudioMicMute     allow-when-locked=true { spawn "runapp" "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+}
+
+// [ Behaviours & Aesthetics ]
+
+prefer-no-csd
+
+overview {
+   zoom 0.25
+   backdrop-color "#21252b"
+
+   workspace-shadow {
+      off
+   }
+}
+
+layout {
+   // i wish i had an oled monitor
+   background-color "#282c34"
+   gaps 11
+   center-focused-column "never"
+
+   preset-column-widths {
+      proportion 0.33333
+      proportion 0.5
+      proportion 0.66667
+   }
+
+   default-column-width { proportion 0.5; }
+
+   focus-ring {
+      off
+   }
+
+   border {
+      width 2
+      active-color "#61AFEF"
+      inactive-color "#27445a"
+      urgent-color "#E5C07B"
+   }
+
+   tab-indicator {
+      length total-proportion=0.9
+      place-within-column
+      gap 0
+      gaps-between-tabs 11
+      width 11
+   }
+}
+
+hotkey-overlay {
+   skip-at-startup
+}
+
+cursor {
+   xcursor-theme "Bibata-Modern-Classic"
+   xcursor-size 24
+}
+
+screenshot-path "~/media/screenshots/%Y-%m-%d_%H-%M-%S.png"
+
+// static workspaces, lets go!
+workspace "one"
+workspace "two"
+workspace "three"
+workspace "four"
+workspace "eight"
+workspace "nine"
+workspace "zero"
+
+// scratchpad workspaces
+workspace "scratchpad"
+
+// externally managed
+xwayland-satellite {
+   off
+}
+
+debug {
+   honor-xdg-activation-with-invalid-serial
+}
+
+// [ Window Rules ]
+
+window-rule {
+   geometry-corner-radius 20
+   clip-to-geometry true
+
+   open-fullscreen false
+   open-maximized true
+   // open-maximized-to-edges false
+   open-focused true
+}
+
+window-rule {
+   match is-floating=true
+
+   open-maximized false
+}
+
+window-rule {
+   match is-window-cast-target=true
+
+   border {
+      inactive-color "#5a2d32"
+   }
+
+   tab-indicator {
+      inactive-color "#5a2d32"
+   }
+}
+
+window-rule {
+   match is-active=true is-window-cast-target=true
+
+   border {
+      active-color "#E06C75"
+      inactive-color "#5a2d32"
+   }
+
+   tab-indicator {
+      active-color "#E06C75"
+      inactive-color "#5a2d32"
+   }
+}
+
+window-rule {
+   match at-startup=true app-id="org.keepassxc.KeePassXC"
+   open-on-workspace "scratchpad"
+   open-focused true
+}
+
+window-rule {
+   match app-id="org.keepassxc.KeePassXC"
+   block-out-from "screencast"
 }
 
 // [ Environment ]
