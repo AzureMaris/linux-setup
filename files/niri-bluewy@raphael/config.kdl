@@ -47,7 +47,7 @@ binds {
    // [[ WM ]]
 
    Mod+Slash { show-hotkey-overlay; }
-   Mod+O { toggle-overview; }
+   Mod+O repeat=false { toggle-overview; }
 
    // [[ Keyboard ]]
  
