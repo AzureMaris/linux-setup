@@ -1,8 +1,5 @@
 [[packages]]
 install = [
-   { from = "std", name = "plasma-meta" },
-   { from = "std", name = "kde-applications-meta" },
-
    { from = "std", name = "cosmic-session" },
 
    { from = "std", name = "octopi" },
