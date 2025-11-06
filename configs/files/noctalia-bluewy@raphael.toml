@@ -5,4 +5,4 @@ action = 'link'
 chmod = '755'
 owner = 'bluewy'
 group = 'bluewy'
-profiles = ['bluewy@raphael', 'uriel@raphael']
+profiles = ['bluewy@raphael', 'bluewy@uriel']
