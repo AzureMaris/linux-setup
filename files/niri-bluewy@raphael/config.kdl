@@ -1,3 +1,10 @@
+// [ Info ]
+
+// this config requires uwsm and runapp to work properly
+
+// if built with systemd feature then niri will wrap spawn calls in a scope
+// but can be superseded by another wrapper
+
 // [ Inputs & Outputs ]
 
 input {
@@ -41,9 +48,6 @@ binds {
 
    Mod+Slash { show-hotkey-overlay; }
    Mod+O { toggle-overview; }
-
-   Mod+Shift+Escape { spawn "runapp" "-i" "user.slice" "systemctl" "--user" "stop" "wayland-wm@niri.service"; }
-   Mod+Alt+Shift+Escape { quit; }
 
    // [[ Keyboard ]]
  
@@ -136,9 +140,6 @@ binds {
 
    // [[ Other ]]
 
-   // if built with systemd feature then niri will wrap it in a scope
-   // but can be overwritten with another wrapper
-
    Mod+T hotkey-overlay-title="Open a Terminal" { spawn "runapp" "wezterm"; }
    Mod+D hotkey-overlay-title="Open App Launcher" { spawn "runapp" "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
    Mod+B allow-when-locked=true { spawn "runapp" "qs" "-c" "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
@@ -150,6 +151,11 @@ binds {
    XF86AudioLowerVolume allow-when-locked=true { spawn "runapp" "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
    XF86AudioMute allow-when-locked=true { spawn "runapp" "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
    XF86AudioMicMute allow-when-locked=true { spawn "runapp" "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+   XF86MonBrightnessUp allow-when-locked=true { spawn "runapp" "brightnessctl" "--class=backlight" "set" "+10%"; }
+   XF86MonBrightnessDown allow-when-locked=true { spawn "runapp" "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+   Mod+Shift+Escape { spawn "runapp" "-i" "user.slice" "systemctl" "--user" "stop" "wayland-wm@niri.service"; }
 }
 
 // [ Behaviours & Aesthetics ]
@@ -224,6 +230,7 @@ xwayland-satellite {
 }
 
 debug {
+   // this is wanted by noctalia
    honor-xdg-activation-with-invalid-serial
 }
 
@@ -235,7 +242,6 @@ window-rule {
 
    open-fullscreen false
    open-maximized true
-   // open-maximized-to-edges false
    open-focused true
 }
 
@@ -308,15 +314,15 @@ spawn-at-startup "runapp" "systemctl" "--user" "start" "xwayland-satellite.servi
 
 spawn-at-startup "runapp" "nu" "-c" "try { pidof io.elementary.desktop.agent-polkit } catch { exec /usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit }"
 
+// [[ Widget ]]
+
+// noctalia additionally manages cliphist and lockscreen
+spawn-at-startup "runapp" "-i" "session-graphical.slice" "nu" "-c" "try { pidof qs } catch { exec qs -c noctalia-shell }"
+
 // [[ Idle Listener ]]
 
 spawn-at-startup "runapp" "nu" "-c" "try { pidof hypridle } catch { exec hypridle }"
 spawn-at-startup "runapp" "nu" "-c" "try { pidof wayland-pipewire-idle-inhibit } catch { exec wayland-pipewire-idle-inhibit }"
-
-// [[ Widget ]]
-
-// note: this also starts cliphist and stuff it needs
-spawn-at-startup "runapp" "-i" "session-graphical.slice" "nu" "-c" "try { pidof qs } catch { exec qs -c noctalia-shell }"
 
 // [[ Other ]]
 
