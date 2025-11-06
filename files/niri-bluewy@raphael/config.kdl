@@ -288,6 +288,11 @@ window-rule {
    block-out-from "screencast"
 }
 
+window-rule {
+   match app-id=r#"librewolf$"# title="^Picture-in-Picture$"
+   open-floating true
+}
+
 // [ Environment ]
 // managed by uwsm
 
