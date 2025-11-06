@@ -216,15 +216,6 @@ do {||
    $starship_init_file | save -f $starship_init_file_abs_path
 }
 
-# [[ Misc ]]
-
-# keeps my shell in sync with systemd and dbus
-try {
-   dbus-update-activation-environment --all --systemd
-} catch {|error|
-   $error | print
-}
-
 # [[ Visuals ]]
 
 # wait for window animations (usually lasts around 0.15sec)
