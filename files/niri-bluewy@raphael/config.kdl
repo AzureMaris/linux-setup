@@ -5,7 +5,6 @@ input {
       xkb {
          layout "bluewy,bluewy"
          variant "colemak_dh_wide_custom_eu_iso,vanilla_iso"
-         // options "grp:win_space_toggle" // or through binds
       }
 
       numlock
@@ -28,71 +27,68 @@ output "HDMI-A-2" {
    variable-refresh-rate
 }
 
-
-
 // [ Binds ]
+
+// Mod is 1st layer
+// Mod + Alt is 2nd layer
+// combined with
+// KEY for the action
+// CTRl for alternative 1 and preferably for move actions
+// Shift for alternative 2
 
 binds {
    // [[ WM ]]
 
    Mod+Slash { show-hotkey-overlay; }
-   Mod+O repeat=false { toggle-overview; }
-   Mod+Shift+P { power-off-monitors; }
+   Mod+O { toggle-overview; }
 
-   // preserve the shift in case of accidental press
-   // note: portal, wireplumber and pipewire are still active as their are not
-   //    tied to the defined lifetime
    Mod+Shift+Escape { spawn "runapp" "-i" "user.slice" "systemctl" "--user" "stop" "wayland-wm@niri.service"; }
-   Mod+Shift+Alt+Escape { quit; }
+   Mod+Alt+Shift+Escape { quit; }
 
    // [[ Keyboard ]]
  
-   Mod+Space { switch-layout "next"; }
-   Mod+Shift+Space { switch-layout "prev"; }
+   Mod+Shift+Space { switch-layout "next"; }
 
    // [[ Screenshot ]]
 
-   Print { screenshot; }
-   Ctrl+Print { screenshot-screen; }
-   Alt+Print { screenshot-window; }
+   Mod+Print { screenshot; }
 
    // [[ Window ]]
 
-   Mod+U     { focus-window-up; }
-   Mod+I     { focus-column-right; }
-   Mod+E     { focus-window-down; }
-   Mod+N     { focus-column-left; }
+   Mod+U { focus-window-up; }
+   Mod+I { focus-column-right; }
+   Mod+E { focus-window-down; }
+   Mod+N { focus-column-left; }
 
    Mod+Ctrl+U { move-window-up; }
    Mod+Ctrl+I { consume-or-expel-window-right; }
    Mod+Ctrl+E { move-window-down; }
    Mod+Ctrl+N { consume-or-expel-window-left; }
 
+   Mod+Shift+U { set-window-height "+10%"; }
+   Mod+Shift+I { set-column-width "+10%"; }
+   Mod+Shift+E { set-window-height "-10%"; }
+   Mod+Shift+N { set-column-width "-10%"; }
+
    Mod+Home { focus-column-first; }
-   Mod+End  { focus-column-last; }
+   Mod+End { focus-column-last; }
 
    Mod+Ctrl+Home { move-column-to-first; }
-   Mod+Ctrl+End  { move-column-to-last; }
+   Mod+Ctrl+End { move-column-to-last; }
 
    Mod+C { center-column; }
    Mod+Shift+C { center-visible-columns; }
-
-   Mod+Alt+U { set-window-height "+10%"; }
-   Mod+Alt+I { set-column-width "+10%"; }
-   Mod+Alt+E { set-window-height "-10%"; }
-   Mod+Alt+N { set-column-width "-10%"; }
 
    Mod+R { switch-preset-column-width; }
    Mod+Shift+R { switch-preset-window-height; }
    Mod+Ctrl+R { reset-window-height; }
 
-   Mod+Ctrl+F { expand-column-to-available-width; }
    Mod+M { maximize-column; }
 
    Mod+F { toggle-windowed-fullscreen; }
    Mod+Shift+F { fullscreen-window; }
 
-   Mod+V       { toggle-window-floating; }
+   Mod+V { toggle-window-floating; }
    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
    Mod+W { toggle-column-tabbed-display; }
@@ -117,26 +113,26 @@ binds {
    Mod+Ctrl+9 { move-window-to-workspace "nine"; }
    Mod+Ctrl+0 { move-window-to-workspace "zero"; }
 
-   Mod+Y              { focus-workspace-down; }
-   Mod+L              { focus-workspace-up; }
+   Mod+Y { focus-workspace-down; }
+   Mod+L { focus-workspace-up; }
 
-   Mod+Shift+Y         { move-workspace-down; }
-   Mod+Shift+L         { move-workspace-up; }
+   Mod+Shift+Y { move-workspace-down; }
+   Mod+Shift+L { move-workspace-up; }
 
-   Mod+Ctrl+Alt+U         { move-window-to-workspace-up; }
-   Mod+Ctrl+Alt+E         { move-window-to-workspace-down; }
+   Mod+Ctrl+Shift+L { move-window-to-workspace-up; }
+   Mod+Ctrl+Shift+Y { move-window-to-workspace-down; }
 
    // [[ Monitor Binds ]]
 
-   Mod+Shift+U     { focus-monitor-up; }
-   Mod+Shift+I     { focus-monitor-right; }
-   Mod+Shift+E     { focus-monitor-down; }
-   Mod+Shift+N     { focus-monitor-left; }
+   Mod+Alt+U { focus-monitor-up; }
+   Mod+Alt+I { focus-monitor-right; }
+   Mod+Alt+E { focus-monitor-down; }
+   Mod+Alt+N { focus-monitor-left; }
 
-   Mod+Shift+Ctrl+U     { move-window-to-monitor-up; }
-   Mod+Shift+Ctrl+I     { move-window-to-monitor-right; }
-   Mod+Shift+Ctrl+E     { move-window-to-monitor-down; }
-   Mod+Shift+Ctrl+N     { move-window-to-monitor-left; }
+   Mod+Alt+Ctrl+U { move-window-to-monitor-up; }
+   Mod+Alt+Ctrl+I { move-window-to-monitor-right; }
+   Mod+Alt+Ctrl+E { move-window-to-monitor-down; }
+   Mod+Alt+Ctrl+N { move-window-to-monitor-left; }
 
    // [[ Other ]]
    // note: keep in mind niri will wrap it in a scope if systemd feature is
@@ -151,8 +147,8 @@ binds {
 
    XF86AudioRaiseVolume allow-when-locked=true { spawn "runapp" "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
    XF86AudioLowerVolume allow-when-locked=true { spawn "runapp" "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
-   XF86AudioMute        allow-when-locked=true { spawn "runapp" "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-   XF86AudioMicMute     allow-when-locked=true { spawn "runapp" "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+   XF86AudioMute allow-when-locked=true { spawn "runapp" "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+   XF86AudioMicMute allow-when-locked=true { spawn "runapp" "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 }
 
 // [ Behaviours & Aesthetics ]
@@ -169,7 +165,6 @@ overview {
 }
 
 layout {
-   // i wish i had an oled monitor
    background-color "#282c34"
    gaps 11
    center-focused-column "never"
