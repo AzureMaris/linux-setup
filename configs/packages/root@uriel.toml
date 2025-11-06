@@ -21,5 +21,8 @@ install = [
    { from = 'std', name = 'switcheroo-control' },
    { from = 'std', name = 'nvidia-prime' },
    { from = 'std', name = 'nvidia-settings' },
+
+   { from = 'std', name = 'gst-plugin-va' },
+   { from = 'std', name = 'vpl-gpu-rt' },
 ]
 profiles = ['root@uriel']
