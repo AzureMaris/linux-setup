@@ -48,6 +48,7 @@ binds {
 
    Mod+Slash { show-hotkey-overlay; }
    Mod+O repeat=false { toggle-overview; }
+   Mod+K { toggle-keyboard-shortcuts-inhibit; }
 
    // [[ Keyboard ]]
  
