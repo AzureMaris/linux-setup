@@ -33,10 +33,7 @@ def 'compact column' [
 # [ Env ]
 
 $env.config.show_banner = false
-
-$env.config.hooks.display_output = {
-   table --theme psql
-}
+$env.config.table.mode = 'compact'
 
 # [[ XDG ]]
 
@@ -70,6 +67,7 @@ $env.PATH = $env.PATH | append [
 
 # [[ Other ]]
 
+$env.LS_COLORS = "di=01;34:ln=01;36:ex=01;31:or=01;31"
 $env.EDITOR = "nvim"
 
 # [ Alias ]
@@ -184,48 +182,7 @@ def ls [
       }
    }
 
-   if not $pipe_mode {
-      $ls_output = $ls_output | paint-ls-output
-   }
-
-   $ls_output
-}
-
-def paint-ls-output []: table -> table {
-   $in
-   | par-each {|row|
-      let name = if $row.type == dir {
-         $"(ansi blue_bold)($row.name)(ansi reset)"
-      } else if $row.type == symlink {
-         $"(ansi cyan_bold)($row.name)(ansi reset)"
-      } else if ($row.mode | str contains 'x') {
-         $"(ansi red_bold)($row.name)(ansi reset)"
-      } else {
-         null
-      }
-
-      let target = if $row.target? != null {
-         if not ($row.target | path exists) {
-            $"(ansi red_bold)($row.target)(ansi reset)"
-         } else {
-            $row.target
-         }
-      } else {
-         null
-      }
-
-      mut row = $row
-
-      if $name != null {
-         $row = $row | upsert name $name
-      }
-
-      if $target != null {
-         $row = $row | upsert target $target
-      }
-
-      $row
-   }
+   $ls_output | metadata set --datasource-ls
 }
 
 def 'git plog' [] {
