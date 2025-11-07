@@ -127,16 +127,16 @@ for i = 1, 9 do
 end
 
 config.mouse_bindings = {
-  {
-    event = { Down = { streak = 1, button = { WheelUp = 1 } } },
-    mods = 'NONE',
-    action = act.ScrollByLine(-1),
-  },
-  {
-    event = { Down = { streak = 1, button = { WheelDown = 1 } } },
-    mods = 'NONE',
-    action = act.ScrollByLine(1),
-  },
+   {
+      event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+      mods = "NONE",
+      action = act.ScrollByLine(-1),
+   },
+   {
+      event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+      mods = "NONE",
+      action = act.ScrollByLine(1),
+   },
 }
 
 -- [ Tab ]
