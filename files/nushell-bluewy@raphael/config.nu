@@ -149,22 +149,26 @@ def ls [
       ...$patterns
    )
 
-   if (not $long) {
+   if not $long {
       $ls_output = $ls_output
       | select -o name type target mode user group size modified
       | compact column
    }
 
-   if $hidden and not $plain {
-      $ls_output = $ls_output | par-each {|item|
-         if ($item.name | str starts-with '.') { $item }
+   if $plain and $hidden {
+      error make {msg: '--plain (-p) and --hidden (-H) can not be used together'}
+   } else {
+      if $plain {
+         $ls_output = $ls_output | par-each {|item|
+            if not ($item.name | str starts-with '.') { $item }
+         }
       }
-   } else if $plain and not $hidden {
-      $ls_output = $ls_output | par-each {|item|
-         if not ($item.name | str starts-with '.') { $item }
+
+      if $hidden {
+         $ls_output = $ls_output | par-each {|item|
+            if ($item.name | str starts-with '.') { $item }
+         }
       }
-   } else if $plain and $hidden {
-      error make {msg: 'hidden and plain flags can not coexist'}
    }
 
    if $group_dir {
