@@ -2,18 +2,18 @@
 
 def 'compact column' [
    --empty (-e) # Also compact empty items like "", {}, and []
-   ...rest: string # The columns to compact from the table
+   ...column_names_to_drop: string # The columns to compact from the table
 ] {
-   let input = $in
+   let columns = $in
 
-   let column_names = if ($rest | length) > 0 {
-      $rest
+   let column_names_to_drop = if ($column_names_to_drop | length) > 0 {
+      $column_names_to_drop
    } else {
-      $input | columns
+      $columns | columns
    }
 
-   let column_names_to_drop = $column_names | par-each {|column_name|
-      let column = $input | get $column_name
+   let column_names_to_drop = $column_names_to_drop | par-each {|column_name|
+      let column = $columns | get $column_name
       let column_length = $column | compact --empty=$empty | length
 
       if ($column_length) != 0 {
@@ -24,10 +24,10 @@ def 'compact column' [
    }
 
    if ($column_names_to_drop | is-empty) {
-      return $input
+      return $columns
    }
 
-   $input | reject ...$column_names_to_drop
+   $columns | reject ...$column_names_to_drop
 }
 
 # [ Env ]
