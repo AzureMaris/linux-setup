@@ -201,7 +201,11 @@ try {
 
    # [[ Prompt (Starship) ]]
    try {
-      if (which starship | is-not-empty) {
+      do {||
+         if (which starship | is-empty) {
+            return
+         }
+
          let starship_init_file_abs_path = (
             $nu_autoload_dir_abs_path | path join 'starship.nu'
          )
