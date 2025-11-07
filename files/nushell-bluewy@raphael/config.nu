@@ -207,7 +207,16 @@ let nu_autoload_dir_abs_path = ($nu.data-dir | path join 'vendor' 'autoload')
 try {
    mkdir $nu_autoload_dir_abs_path
 
+   # [[ Systemd & Dbus ]]
+
+   try {
+      dbus-update-activation-environment --all --systemd
+   } catch {|error|
+      $error.rendered | print
+   }
+
    # [[ Prompt (Starship) ]]
+
    try {
       do {||
          if (which starship | is-empty) {
