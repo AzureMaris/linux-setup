@@ -71,13 +71,14 @@ $env.LS_COLORS = "di=01;34:ln=01;36:ex=01;31:or=01;31"
 $env.EDITOR = "nvim"
 
 # [ Alias ]
-# note: for some reason, the rename of the original built-in command will have
+
+# for some reason, the rename of the original built-in command will have
 # its help info replaced by the new one
 
 alias nu-clear = clear
 
-# This is an alias. More help available at the link below.
-# https://www.nushell.sh/commands/docs/clear.html
+# This is a custom 'clear' function.
+# The original 'clear' built-in command can be found as 'nu-clear'.
 #
 # Clear the terminal.
 def clear [
@@ -87,6 +88,13 @@ def clear [
    tput cup (term size | get rows)
 }
 
+# Uses 'paru' under the hood. Makes a stronger distinction between 'std' and 'aur'.
+#
+# Manage system packages.
+#
+# -S for 'std'
+# -A for 'aur'
+# -W for 'std' and 'aur'
 def --wrapped aura [...arguments] {
    let command = $arguments | reduce --fold ['paru'] {|argument command|
       if not ($argument =~ '^-[a-zA-Z]+$') {
@@ -113,8 +121,8 @@ def --wrapped aura [...arguments] {
 
 alias nu-ls = ls
 
-# This is a custom ls function.
-# The original ls built-in command can be found as nu-ls.
+# This is a custom 'ls' function.
+# The original ls built-in command can be found as 'nu-ls'.
 #
 # List the filenames, sizes, and modification times of items in a directory.
 def ls [
