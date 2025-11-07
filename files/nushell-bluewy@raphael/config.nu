@@ -195,29 +195,33 @@ def 'git plog' [] {
 # [ Autostart ]
 
 let nu_autoload_dir_abs_path = ($nu.data-dir | path join 'vendor' 'autoload')
-mkdir $nu_autoload_dir_abs_path
 
-# [[ Prompt (Starship) ]]
+try {
+   mkdir $nu_autoload_dir_abs_path
 
-do {||
-   if (which starship | is-empty) {
-      return
+   # [[ Prompt (Starship) ]]
+   try {
+      if (which starship | is-not-empty) {
+         let starship_init_file_abs_path = (
+            $nu_autoload_dir_abs_path | path join 'starship.nu'
+         )
+
+         let starship_init_file = starship init nu
+
+         if (
+            ($starship_init_file_abs_path | path exists) and
+            ($starship_init_file == (open --raw $starship_init_file_abs_path))
+         ) {
+            return
+         }
+
+         $starship_init_file | save -f $starship_init_file_abs_path
+      }
+   } catch {|error|
+      $error.rendered | print
    }
-
-   let starship_init_file_abs_path = (
-      $nu_autoload_dir_abs_path | path join 'starship.nu'
-   )
-
-   let starship_init_file = starship init nu
-
-   if (
-      ($starship_init_file_abs_path | path exists) and
-      ($starship_init_file == (open --raw $starship_init_file_abs_path))
-   ) {
-      return
-   }
-
-   $starship_init_file | save -f $starship_init_file_abs_path
+} catch {|error|
+   $error.rendered
 }
 
 # [[ Visuals ]]
@@ -225,5 +229,10 @@ do {||
 # wait for window animations (usually lasts around 0.15sec)
 # + consider the time it takes to reach here
 sleep 0.15sec
-tput cup (term size | get rows)
-fastfetch -c ($env.HOME | path join '.config' 'fastfetch' 'wezterm.jsonc')
+
+try {
+   tput cup (term size | get rows)
+   fastfetch -c ($env.HOME | path join '.config' 'fastfetch' 'wezterm.jsonc')
+} catch {|error|
+   $error.rendered | print
+}
