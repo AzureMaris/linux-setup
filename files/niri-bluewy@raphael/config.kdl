@@ -318,18 +318,18 @@ spawn-at-startup "runapp" "systemctl" "--user" "start" "xwayland-satellite.servi
 
 // [[ Polkit ]]
 
-spawn-at-startup "runapp" "nu" "-c" "try { pidof io.elementary.desktop.agent-polkit } catch { exec /usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit }"
+spawn-at-startup "runapp" "nu" "-c" "try { pidof io.elementary.desktop.agent-polkit } catch { runapp /usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit }"
 
 // [[ Widget ]]
 
 // noctalia additionally manages cliphist and lockscreen
-spawn-at-startup "runapp" "-i" "session-graphical.slice" "nu" "-c" "try { pidof qs } catch { exec qs -c noctalia-shell }"
+spawn-at-startup "runapp" "-i" "session-graphical.slice" "nu" "-c" "try { pidof qs } catch { runapp qs -c noctalia-shell }"
 
 // [[ Idle Listener ]]
 
-spawn-at-startup "runapp" "nu" "-c" "try { pidof hypridle } catch { exec hypridle }"
-spawn-at-startup "runapp" "nu" "-c" "try { pidof wayland-pipewire-idle-inhibit } catch { exec wayland-pipewire-idle-inhibit }"
+spawn-at-startup "runapp" "nu" "-c" "try { pidof hypridle } catch { runapp hypridle }"
+spawn-at-startup "runapp" "nu" "-c" "try { pidof wayland-pipewire-idle-inhibit } catch { runapp wayland-pipewire-idle-inhibit }"
 
 // [[ Other ]]
 
-spawn-at-startup "runapp" "nu" "-c" "try { pidof keepassxc } catch { exec keepassxc }"
+spawn-at-startup "runapp" "nu" "-c" "try { pidof keepassxc } catch { runapp keepassxc }"
