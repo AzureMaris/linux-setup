@@ -130,11 +130,11 @@ def ls [
    --du (-d) # Display the apparent directory size ("disk usage") in place of the directory metadata size
    --full-paths (-f) # Display paths as absolute paths
    --group-dir (-g) # Group directories together
-   --hidden (-H) = true # Show hidden files
+   --hide-hidden (-p) # Hide hidden files.
    --long (-l) # Get all available columns for each entry (slower; columns are platform-dependent)
    --mime-type (-m) # Show mime-type in type column instead of 'file' (based on filenames only; files' contents are not examined)
-   --plain (-p) = true # Show plain files
-   --short-names (-s) # Only print the file names, and not the path
+   --hide-plain (-H) # Hide plain files.
+   --short-names (-s) # Only print the file names, and not the path.
    --threads (-t) # Use multiple threads to list contents. Output will be non-deterministic.
    ...patterns: oneof<glob, string> # The glob pattern to use.
 ]: [nothing -> table] {
@@ -157,27 +157,67 @@ def ls [
    }
    | uniq
 
-   let patterns = if ($patterns | is-empty) {
-      match [$plain $hidden] {
-         [false true] => {
-            [('.*' | into glob)]
+   let patterns_and_all = match [($patterns | is-empty) $hide_plain $hide_hidden] {
+      [true true true] => [[] false]
+      [true true false] => [[('.*' | into glob)] false]
+      [true false true] => [[.] false]
+      [true false false] => [[.] true]
+
+      [false true true] => [[] false]
+
+      [false true false] => {
+         let patterns = $patterns | each {|pattern|
+            mut pattern = $pattern
+            let pattern_type = $pattern | describe
+
+            mut pattern = if $pattern_type == glob {
+               $pattern | into string
+            } else {
+               $pattern
+            }
+
+            if ($pattern | str contains '*') and not ($pattern | str contains '.*') {
+               error make {msg: $"was told to hide plain file but pattern says otherwise, ($pattern)"}
+            } else if not ($pattern | str contains '.*') {
+               $pattern = $pattern | path join '.*'
+            }
+
+            $pattern | into glob
          }
 
-         [_ _] => {
-            [.]
-         }
+         [$patterns false]
       }
-   } else {
-      $patterns
+
+      [false false true] => {
+         let patterns = $patterns | each {|pattern|
+            mut pattern = $pattern
+            let pattern_type = $pattern | describe
+
+            mut pattern = if $pattern_type == glob {
+               $pattern | into string
+            } else {
+               $pattern
+            }
+
+            if ($pattern | str contains '.*') {
+               error make {msg: $"was told to hide hidden file but pattern says otherwise, ($pattern)"}
+            }
+
+            if $pattern_type == glob {
+               $pattern = $pattern | into glob
+            }
+
+            $pattern
+         }
+
+         [$patterns false]
+      }
+
+      [false false false] => [$patterns true]
    }
 
-   let hasGlob = 'glob' in $pattern_types
-
-   let all = match [$plain $hidden $hasGlob] {
-      [_ _ true] => false
-      [_ false false] => false
-      [_ _ _] => true
-   }
+   let patterns = $patterns_and_all.0
+   let all = $patterns_and_all.1
 
    mut ls_output = (
       nu-ls
@@ -210,6 +250,19 @@ def ls [
       if $grouped_ls_output.dir? != null and $grouped_ls_output.other? != null {
          $ls_output = $grouped_ls_output.dir | append $grouped_ls_output.other
       }
+   }
+
+   $ls_output = $ls_output
+   | where {|row|
+      if 'glob' in $pattern_types {
+         true
+      } else {
+         not ($row.name == '.' or $row.name == '..')
+      }
+   }
+
+   if 'glob' in $pattern_types {
+      $ls_output = $ls_output | sort-by name
    }
 
    $ls_output | metadata set --datasource-ls
