@@ -176,8 +176,16 @@ def ls [
                $pattern
             }
 
-            if ($pattern | str contains '*') and not ($pattern | str contains '.*') {
-               error make {msg: $"was told to hide plain file but pattern says otherwise, ($pattern)"}
+            if (
+               ($pattern | str contains '*') and
+               not ($pattern | str contains '.*')
+            ) {
+               error make {
+                  msg: (
+                     "was told to hide plain file" +
+                     $" but pattern says otherwise, ($pattern)"
+                  )
+               }
             } else if not ($pattern | str contains '.*') {
                $pattern = $pattern | path join '.*'
             }
@@ -200,7 +208,12 @@ def ls [
             }
 
             if ($pattern | str contains '.*') {
-               error make {msg: $"was told to hide hidden file but pattern says otherwise, ($pattern)"}
+               error make {
+                  msg: (
+                     "was told to hide hidden file"
+                     + $"but pattern says otherwise, ($pattern)"
+                  )
+               }
             }
 
             if $pattern_type == glob {
