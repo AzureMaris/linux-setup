@@ -252,16 +252,28 @@ def ls [
       }
    }
 
+   let has_glob = 'glob' in $pattern_types
+
    $ls_output = $ls_output
+   | par-each {|row|
+      if $row.name == '' {
+         return ($row | upsert name '.')
+      }
+
+      $row
+   }
    | where {|row|
-      if 'glob' in $pattern_types {
+      if $has_glob {
          true
       } else {
-         not ($row.name == '.' or $row.name == '..')
+         not (
+            $row.name == '.' or
+            $row.name == '..'
+         )
       }
    }
 
-   if 'glob' in $pattern_types {
+   if $has_glob {
       $ls_output = $ls_output | sort-by name
    }
 
