@@ -130,14 +130,33 @@ def ls [
    --du (-d) # Display the apparent directory size ("disk usage") in place of the directory metadata size
    --full-paths (-f) # Display paths as absolute paths
    --group-dir (-g) # Group directories together
-   --hidden (-H) # Show hidden files
+   --hidden (-H) = true # Show hidden files
    --long (-l) # Get all available columns for each entry (slower; columns are platform-dependent)
    --mime-type (-m) # Show mime-type in type column instead of 'file' (based on filenames only; files' contents are not examined)
-   --plain (-p) # Show plain files
+   --plain (-p) = true # Show plain files
    --short-names (-s) # Only print the file names, and not the path
    --threads (-t) # Use multiple threads to list contents. Output will be non-deterministic.
    ...patterns: oneof<glob, string> # The glob pattern to use.
 ]: [nothing -> table] {
+   let pattern_types: list<string> = $patterns | par-each {|pattern|
+      let pattern_type = $pattern | describe
+
+      match $pattern_type {
+         glob => {
+            return 'glob'
+         }
+
+         string => {
+            return 'string'
+         }
+
+         _ => {
+            error make {msg: $"expected glob or string, found ($pattern_type)"}
+         }
+      }
+   }
+   | uniq
+
    let patterns = if ($patterns | is-empty) {
       match [$plain $hidden] {
          [false true] => {
@@ -152,12 +171,12 @@ def ls [
       $patterns
    }
 
-   let all = if ($patterns | describe) == list<glob> {
-      false
-   } else if $plain and $hidden {
-      true
-   } else {
-      true
+   let hasGlob = 'glob' in $pattern_types
+
+   let all = match [$plain $hidden $hasGlob] {
+      [_ _ true] => false
+      [_ false false] => false
+      [_ _ _] => true
    }
 
    mut ls_output = (
