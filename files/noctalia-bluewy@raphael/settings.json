@@ -23,17 +23,20 @@
     "bar": {
         "backgroundOpacity": 1,
         "density": "comfortable",
+        "exclusive": true,
         "floating": false,
         "marginHorizontal": 0.25,
         "marginVertical": 0.25,
         "monitors": [
         ],
+        "outerCorners": true,
         "position": "left",
         "showCapsule": true,
         "widgets": {
             "center": [
                 {
                     "hideMode": "visible",
+                    "hideWhenIdle": false,
                     "id": "MediaMini",
                     "maxWidth": 145,
                     "scrollingMode": "hover",
@@ -75,6 +78,9 @@
                     "blacklist": [
                     ],
                     "colorizeIcons": false,
+                    "drawerEnabled": true,
+                    "favorites": [
+                    ],
                     "id": "Tray"
                 },
                 {
@@ -101,11 +107,12 @@
     },
     "brightness": {
         "brightnessStep": 5,
+        "enableDdcSupport": true,
         "enforceMinimum": true
     },
     "colorSchemes": {
         "darkMode": true,
-        "generateTemplatesForPredefined": true,
+        "generateTemplatesForPredefined": false,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "matugenSchemeType": "scheme-expressive",
@@ -186,12 +193,17 @@
         "animationSpeed": 2,
         "avatarImage": "/home/bluewy/media/screenshots/2025-10-12_21-21-38.png",
         "compactLockScreen": false,
-        "forceBlackScreenCorners": false,
+        "dimDesktop": true,
+        "enableShadows": false,
+        "forceBlackScreenCorners": true,
         "language": "",
         "lockOnSuspend": true,
         "radiusRatio": 1,
         "scaleRatio": 1.2,
         "screenRadiusRatio": 1,
+        "shadowDirection": "bottom_right",
+        "shadowOffsetX": 2,
+        "shadowOffsetY": 3,
         "showScreenCorners": true
     },
     "hooks": {
@@ -216,7 +228,7 @@
     "nightLight": {
         "autoSchedule": true,
         "dayTemp": "6500",
-        "enabled": false,
+        "enabled": true,
         "forced": false,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
@@ -226,6 +238,7 @@
         "backgroundOpacity": 1,
         "criticalUrgencyDuration": 15,
         "doNotDisturb": false,
+        "enabled": true,
         "location": "top_right",
         "lowUrgencyDuration": 3,
         "monitors": [
@@ -253,9 +266,10 @@
         "videoCodec": "h264",
         "videoSource": "portal"
     },
-    "settingsVersion": 16,
+    "settingsVersion": 20,
     "setupCompleted": true,
     "templates": {
+        "alacritty": false,
         "code": false,
         "discord": false,
         "discord_armcord": false,
@@ -274,7 +288,8 @@
         "pywalfox": false,
         "qt": false,
         "vicinae": false,
-        "walker": false
+        "walker": false,
+        "wezterm": false
     },
     "ui": {
         "fontDefault": "IosevkaTerm Nerd Font Mono",
@@ -282,7 +297,7 @@
         "fontFixed": "IosevkaTerm Nerd Font Mono",
         "fontFixedScale": 1.25,
         "panelsAttachedToBar": true,
-        "panelsOverlayLayer": true,
+        "settingsPanelAttachToBar": false,
         "tooltipsEnabled": true
     },
     "wallpaper": {
@@ -304,6 +319,8 @@
                 "wallpaper": "/home/bluewy/media/wallpapers/w.png"
             }
         ],
+        "overviewEnabled": false,
+        "panelPosition": "follow_bar",
         "randomEnabled": true,
         "randomIntervalSec": 300,
         "recursiveSearch": false,
