@@ -256,20 +256,18 @@ def ls [
 
    $ls_output = $ls_output
    | par-each {|row|
+      mut row = $row
+
       if $row.name == '' {
-         return ($row | upsert name '.')
+         $row = $row | upsert name '.'
       }
 
-      $row
-   }
-   | where {|row|
       if $has_glob {
-         true
-      } else {
-         not (
-            $row.name == '.' or
-            $row.name == '..'
-         )
+         return $row
+      }
+
+      if $row.name != '.' and $row.name != '..' {
+         return $row
       }
    }
 
