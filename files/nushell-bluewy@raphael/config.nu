@@ -139,14 +139,30 @@ def ls [
    ...patterns: oneof<glob, string> # The glob pattern to use.
 ]: [nothing -> table] {
    let patterns = if ($patterns | is-empty) {
-      [.]
+      match [$plain $hidden] {
+         [false true] => {
+            [('.*' | into glob)]
+         }
+
+         [_ _] => {
+            [.]
+         }
+      }
    } else {
       $patterns
    }
 
+   let all = if ($patterns | describe) == list<glob> {
+      false
+   } else if $plain and $hidden {
+      true
+   } else {
+      true
+   }
+
    mut ls_output = (
       nu-ls
-      --all=true
+      --all=$all
       --long=true
       --short-names=$short_names
       --full-paths=$full_paths
@@ -161,22 +177,6 @@ def ls [
       $ls_output = $ls_output
       | select -o name type target mode user group size modified
       | compact column
-   }
-
-   if $plain and $hidden {
-      error make {msg: '--plain (-p) and --hidden (-H) can not be used together'}
-   } else {
-      if $plain {
-         $ls_output = $ls_output | par-each {|item|
-            if not ($item.name | str starts-with '.') { $item }
-         }
-      }
-
-      if $hidden {
-         $ls_output = $ls_output | par-each {|item|
-            if ($item.name | str starts-with '.') { $item }
-         }
-      }
    }
 
    if $group_dir {
