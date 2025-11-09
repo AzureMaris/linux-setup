@@ -4,8 +4,11 @@ install = [
    { from = 'std', name = 'amd-ucode' },
 
    { from = 'std', name = 'linux-cachyos' },
+   { from = 'std', name = 'linux-cachyos-headers' },
    { from = 'std', name = 'linux-cachyos-lts' },
+   { from = 'std', name = 'linux-cachyos-lts-headers' },
    { from = 'std', name = 'linux-cachyos-rc' },
+   { from = 'std', name = 'linux-cachyos-rc-headers' },
 
    { from = 'std', name = 'iwd' },
    { from = 'std', name = 'lact' },
