@@ -6,7 +6,7 @@
         "enableClipboardHistory": true,
         "pinnedExecs": [
         ],
-        "position": "center",
+        "position": "bottom_center",
         "sortByMostUsed": true,
         "terminalCommand": "wezterm start --",
         "useApp2Unit": false
