@@ -143,6 +143,7 @@ binds {
 
    Mod+T hotkey-overlay-title="Open a Terminal" { spawn "runapp" "wezterm"; }
    Mod+D hotkey-overlay-title="Open App Launcher" { spawn "runapp" "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+   Mod+Alt+D hotkey-overlay-title="Open App Launcher (Alternative)" { spawn "runapp" "fuzzel" "--launch-prefix=runapp"; }
    Mod+B allow-when-locked=true { spawn "runapp" "qs" "-c" "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
 
    Mod+A { spawn "runapp" "/home/bluewy/.config/niri/dmenu/do-dmenu.nu"; }
