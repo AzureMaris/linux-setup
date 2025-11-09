@@ -323,7 +323,7 @@ spawn-at-startup "runapp" "nu" "-c" "try { pidof io.elementary.desktop.agent-pol
 // [[ Widget ]]
 
 // noctalia additionally manages cliphist and lockscreen
-spawn-at-startup "runapp" "-i" "session-graphical.slice" "nu" "-c" "try { pidof qs } catch { runapp qs -c noctalia-shell }"
+spawn-at-startup "runapp" "nu" "-c" "try { pidof qs } catch { runapp -i session-graphical.slice qs -c noctalia-shell }"
 
 // [[ Idle Listener ]]
 
