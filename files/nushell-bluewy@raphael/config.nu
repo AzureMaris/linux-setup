@@ -72,8 +72,8 @@ $env.EDITOR = "nvim"
 
 # [ Alias ]
 
-# for some reason, the rename of the original built-in command will have
-# its help info replaced by the new one
+# for some reason, the alias of the original built-in command will have
+# its help info replaced by custom function
 
 alias nu-clear = clear
 
