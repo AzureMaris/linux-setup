@@ -10,11 +10,14 @@ install = [
    { from = 'std', name = 'proton-cachyos-slr' },
    { from = 'aur', name = 'proton-ge-custom-bin' },
    { from = 'std', name = 'protontricks' },
+
    { from = 'std', name = 'gamescope' },
+
    { from = 'std', name = 'mangohud' },
    { from = 'std', name = 'lib32-mangohud' },
 
    { from = 'std', name = 'steam' },
+   { from = 'std', name = 'faugus-launcher' },
    { from = 'std', name = 'heroic-games-launcher-bin' },
 ]
 profiles = ['root@raphael', 'root@uriel', 'root@sariel']
