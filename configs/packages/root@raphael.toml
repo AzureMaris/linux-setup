@@ -10,7 +10,7 @@ install = [
    { from = 'std', name = 'linux-cachyos-rc' },
    { from = 'std', name = 'linux-cachyos-rc-headers' },
 
-   { from = 'aur', name = 'zenpower-dkms' },
+   { from = 'aur', name = 'zenergy-dkms-git' },
 
    { from = 'std', name = 'iwd' },
    { from = 'std', name = 'lact' },
