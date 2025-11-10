@@ -1,13 +1,14 @@
 [[packages]]
 install = [
-   { from = 'std', name = 'vscodium', ignore = true },
+   { from = 'aur', name = 'vscodium-bin-marketplace' },
+
    { from = 'aur', name = 'obs-pipewire-audio-capture-bin' },
    { from = 'std', name = 'obs-studio' },
+
    { from = 'std', name = 'audacity' },
    { from = 'std', name = 'krita' },
    { from = 'std', name = 'kdenlive' },
 
-   { from = 'std', name = 'libreoffice-fresh' },
-   { from = 'std', name = 'hunspell-es_es' },
+   { from = 'std', name = 'onlyoffice-bin' },
 ]
 profiles = ['root@raphael', 'root@uriel']
