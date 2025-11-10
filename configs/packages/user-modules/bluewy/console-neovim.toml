@@ -7,6 +7,9 @@ install = [
 
    { from = 'std', name = 'rust-analyzer' },
 
+   { from = 'std', name = 'typescript' },
+   { from = 'std', name = 'typescript-language-server' },
+
    { from = 'std', name = 'eslint_d' },
 
    { from = 'std', name = 'prettier' },
