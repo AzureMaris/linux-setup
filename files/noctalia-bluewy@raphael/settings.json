@@ -214,13 +214,13 @@
     "location": {
         "analogClockInCalendar": false,
         "firstDayOfWeek": -1,
-        "name": "L'Alfas del Pi",
-        "showCalendarEvents": true,
+        "name": "Tokyo",
+        "showCalendarEvents": false,
         "showCalendarWeather": true,
         "showWeekNumberInCalendar": false,
         "use12hourFormat": false,
         "useFahrenheit": false,
-        "weatherEnabled": true
+        "weatherEnabled": false
     },
     "network": {
         "wifiEnabled": false
