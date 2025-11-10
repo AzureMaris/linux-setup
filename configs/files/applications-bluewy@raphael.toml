@@ -15,3 +15,12 @@ chmod = '644'
 owner = 'bluewy'
 group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
+
+[[files]]
+source = '../../files/applications-bluewy@raphael/osu-lazer.desktop'
+target = '/home/bluewy/.local/share/applications/osu-lazer.desktop'
+action = 'link'
+chmod = '644'
+owner = 'bluewy'
+group = 'bluewy'
+profiles = ['bluewy@raphael', 'bluewy@uriel']
