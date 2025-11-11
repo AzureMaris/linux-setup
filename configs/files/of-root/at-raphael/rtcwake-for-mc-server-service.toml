@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/of-root/at-raphael/rtcwake-for-mc-server-service/do-rtcwake-for-mc-server'
+source = '../../../files/of-root/at-raphael/rtcwake-for-mc-server-service/do-rtcwake-for-mc-server'
 target = '/usr/local/bin/do-rtcwake-for-mc-server'
 action = 'copy'
 chmod = '744'
@@ -8,7 +8,7 @@ group = 'root'
 profiles = []
 
 [[files]]
-source = '../../files/of-root/at-raphael/rtcwake-for-mc-server-service/rtcwake-for-mc-server.timer'
+source = '../../../files/of-root/at-raphael/rtcwake-for-mc-server-service/rtcwake-for-mc-server.timer'
 target = '/etc/systemd/user/rtcwake-for-mc-server.timer'
 action = 'copy'
 chmod = '644'
@@ -17,7 +17,7 @@ group = 'root'
 profiles = []
 
 [[files]]
-source = '../../files/of-root/at-raphael/rtcwake-for-mc-server-service/rtcwake-for-mc-server.service'
+source = '../../../files/of-root/at-raphael/rtcwake-for-mc-server-service/rtcwake-for-mc-server.service'
 target = '/etc/systemd/user/rtcwake-for-mc-server.service'
 action = 'copy'
 chmod = '644'

@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/of-bluewy/at-raphael/libinput/local-overrides.quirks'
+source = '../../../files/of-bluewy/at-raphael/libinput/local-overrides.quirks'
 target = '/etc/libinput/local-overrides.quirks'
 action = 'copy'
 chmod = '644'

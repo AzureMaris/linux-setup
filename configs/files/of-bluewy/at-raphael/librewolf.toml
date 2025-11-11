@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/of-bluewy/at-raphael/librewolf/librewolf.overrides.cfg'
+source = '../../../files/of-bluewy/at-raphael/librewolf/librewolf.overrides.cfg'
 target = '/home/bluewy/.librewolf/librewolf.overrides.cfg'
 action = 'link'
 chmod = '644'
@@ -8,7 +8,7 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
 [[files]]
-source = '../../files/of-bluewy/at-raphael/librewolf/librewolf.overrides.cfg'
+source = '../../../files/of-bluewy/at-raphael/librewolf/librewolf.overrides.cfg'
 target = '/home/kuroka/.librewolf/librewolf.overrides.cfg'
 action = 'link'
 chmod = '644'

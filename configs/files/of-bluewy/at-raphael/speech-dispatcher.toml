@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/of-bluewy/at-raphael/speech-dispatcher'
+source = '../../../files/of-bluewy/at-raphael/speech-dispatcher'
 target = '/home/bluewy/.config/speech-dispatcher'
 action = 'link'
 chmod = '755'

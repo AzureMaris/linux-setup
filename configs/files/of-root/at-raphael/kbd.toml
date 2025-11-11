@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/of-root/at-raphael/kbd/colemak-dh-wide-custom-eu-iso.map'
+source = '../../../files/of-root/at-raphael/kbd/colemak-dh-wide-custom-eu-iso.map'
 target = '/usr/share/kbd/keymaps/colemak-dh-wide-custom-eu-iso.map'
 action = 'copy'
 chmod = '744'
@@ -8,7 +8,7 @@ group = 'root'
 profiles = ['root@raphael', 'root@uriel', 'root@sariel', 'root@belphegor']
 
 [[files]]
-source = '../../files/of-root/at-raphael/kbd/colemak-dh-wide-custom-eu-ansi.map'
+source = '../../../files/of-root/at-raphael/kbd/colemak-dh-wide-custom-eu-ansi.map'
 target = '/usr/share/kbd/keymaps/colemak-dh-wide-custom-eu-ansi.map'
 action = 'copy'
 chmod = '744'

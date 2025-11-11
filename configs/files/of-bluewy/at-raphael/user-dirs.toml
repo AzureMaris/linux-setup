@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/of-bluewy/at-raphael/user-dirs/user-dirs.dirs'
+source = '../../../files/of-bluewy/at-raphael/user-dirs/user-dirs.dirs'
 target = '/home/bluewy/.config/user-dirs.dirs'
 action = 'link'
 chmod = '644'
@@ -8,7 +8,7 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel', 'bluewy@sariel']
 
 [[files]]
-source = '../../files/of-bluewy/at-raphael/user-dirs/user-dirs.dirs'
+source = '../../../files/of-bluewy/at-raphael/user-dirs/user-dirs.dirs'
 target = '/home/yellowy/.config/user-dirs.dirs'
 action = 'link'
 chmod = '644'
@@ -17,7 +17,7 @@ group = 'bluewy'
 profiles = ['yellowy@uriel']
 
 [[files]]
-source = '../../files/of-bluewy/at-raphael/user-dirs/user-dirs.dirs'
+source = '../../../files/of-bluewy/at-raphael/user-dirs/user-dirs.dirs'
 target = '/home/kuroka/.config/user-dirs.dirs'
 action = 'link'
 chmod = '644'

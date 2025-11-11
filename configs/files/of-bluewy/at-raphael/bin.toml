@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/of-bluewy/at-raphael/bin/gamescope-stuff'
+source = '../../../files/of-bluewy/at-raphael/bin/gamescope-stuff'
 target = '/home/bluewy/.local/bin/gamescope-stuff'
 action = 'link'
 chmod = '744'
@@ -8,7 +8,7 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
 [[files]]
-source = '../../files/of-bluewy/at-raphael/bin/proton-stuff'
+source = '../../../files/of-bluewy/at-raphael/bin/proton-stuff'
 target = '/home/bluewy/.local/bin/proton-stuff'
 action = 'link'
 chmod = '744'
@@ -17,7 +17,7 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
 [[files]]
-source = '../../files/of-bluewy/at-raphael/bin/steam-stuff'
+source = '../../../files/of-bluewy/at-raphael/bin/steam-stuff'
 target = '/home/bluewy/.local/bin/steam-stuff'
 action = 'link'
 chmod = '744'

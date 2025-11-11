@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/of-root/at-belphegor/locale/vconsole.conf'
+source = '../../../files/of-root/at-belphegor/locale/vconsole.conf'
 target = '/etc/vconsole.conf'
 action = 'copy'
 chmod = '655'

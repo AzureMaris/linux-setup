@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/of-bluewy/at-raphael/wezterm'
+source = '../../../files/of-bluewy/at-raphael/wezterm'
 target = '/home/bluewy/.config/wezterm'
 action = 'link'
 chmod = '755'
@@ -8,7 +8,7 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
 [[files]]
-source = '../../files/of-bluewy/at-raphael/wezterm'
+source = '../../../files/of-bluewy/at-raphael/wezterm'
 target = '/home/kuroka/.config/wezterm'
 action = 'link'
 chmod = '755'
