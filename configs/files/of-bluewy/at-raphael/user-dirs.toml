@@ -15,3 +15,12 @@ chmod = '644'
 owner = 'bluewy'
 group = 'bluewy'
 profiles = ['yellowy@uriel']
+
+[[files]]
+source = '../../files/of-bluewy/at-raphael/user-dirs/user-dirs.dirs'
+target = '/home/kuroka/.config/user-dirs.dirs'
+action = 'link'
+chmod = '644'
+owner = 'kuroka'
+group = 'kuroka'
+profiles = ['kuroka@raphael']

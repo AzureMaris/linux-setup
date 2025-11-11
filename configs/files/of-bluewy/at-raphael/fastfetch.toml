@@ -15,3 +15,12 @@ chmod = '755'
 owner = 'yellowy'
 group = 'yellowy'
 profiles = ['yellowy@uriel']
+
+[[files]]
+source = '../../files/of-bluewy/at-raphael/fastfetch'
+target = '/home/kuroka/.config/fastfetch'
+action = 'link'
+chmod = '755'
+owner = 'kuroka'
+group = 'kuroka'
+profiles = ['kuroka@raphael']

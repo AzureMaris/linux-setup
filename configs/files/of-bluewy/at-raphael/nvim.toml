@@ -15,3 +15,12 @@ chmod = '755'
 owner = 'yellowy'
 group = 'yellowy'
 profiles = ['yellowy@uriel']
+
+[[files]]
+source = '../../files/of-bluewy/at-raphael/nvim'
+target = '/home/kuroka/.config/nvim'
+action = 'link'
+chmod = '755'
+owner = 'kuroka'
+group = 'kuroka'
+profiles = ['kuroka@raphael']

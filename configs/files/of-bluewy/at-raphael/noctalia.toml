@@ -6,3 +6,12 @@ chmod = '755'
 owner = 'bluewy'
 group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
+
+[[files]]
+source = '../../files/of-bluewy/at-raphael/noctalia'
+target = '/home/kuroka/.config/noctalia'
+action = 'link'
+chmod = '755'
+owner = 'kuroka'
+group = 'kuroka'
+profiles = ['kuroka@raphael']

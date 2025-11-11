@@ -15,3 +15,12 @@ chmod = '644'
 owner = 'yellowy'
 group = 'yellowy'
 profiles = ['yellowy@uriel']
+
+[[files]]
+source = '../../files/of-bluewy/at-raphael/starship/starship.toml'
+target = '/home/kuroka/.config/starship.toml'
+action = 'link'
+chmod = '644'
+owner = 'kuroka'
+group = 'kuroka'
+profiles = ['kuroka@raphael']

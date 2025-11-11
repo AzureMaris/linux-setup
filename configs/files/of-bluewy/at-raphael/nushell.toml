@@ -15,3 +15,12 @@ chmod = '755'
 owner = 'yellowy'
 group = 'yellowy'
 profiles = ['yellowy@uriel']
+
+[[files]]
+source = '../../files/of-bluewy/at-raphael/nushell'
+target = '/home/kuroka/.config/nushell'
+action = 'link'
+chmod = '755'
+owner = 'kuroka'
+group = 'kuroka'
+profiles = ['kuroka@raphael']
