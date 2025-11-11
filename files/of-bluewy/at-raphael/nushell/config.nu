@@ -166,15 +166,15 @@ def ls [
    $files = $files | par-each {|file|
       mut file: oneof<record, nothing> = $file
 
-      if $file.name == '' or $file.name == '..' {
+      if $file != null and ($file.name == '' or $file.name == '..') {
          $file = null
       }
 
-      if $plain and ($file.name | str starts-with '.') {
+      if $file != null and $plain and ($file.name | str starts-with '.') {
          $file = null
       }
 
-      if $hidden and not ($file.name | str starts-with '.') {
+      if $file != null and $hidden and not ($file.name | str starts-with '.') {
          $file = null
       }
 
