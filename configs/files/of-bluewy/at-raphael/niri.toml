@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/niri-bluewy@raphael'
+source = '../../files/of-bluewy/at-raphael/niri'
 target = '/home/bluewy/.config/niri'
 action = 'link'
 chmod = '755'

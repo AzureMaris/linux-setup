@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/pipewire-bluewy@raphael'
+source = '../../files/of-bluewy/at-raphael/pipewire'
 target = '/home/bluewy/.config/pipewire'
 action = 'link'
 chmod = '755'

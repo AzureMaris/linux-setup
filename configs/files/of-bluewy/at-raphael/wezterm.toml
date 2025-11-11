@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/wezterm-bluewy@raphael'
+source = '../../files/of-bluewy/at-raphael/wezterm'
 target = '/home/bluewy/.config/wezterm'
 action = 'link'
 chmod = '755'

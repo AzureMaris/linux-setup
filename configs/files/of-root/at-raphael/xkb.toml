@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/xkb-root@raphael'
+source = '../../files/of-root/at-raphael/xkb'
 target = '/etc/xkb'
 action = 'copy'
 chmod = '755'
@@ -8,7 +8,7 @@ group = 'root'
 profiles = ['root@raphael', 'root@uriel']
 
 [[files]]
-source = '../../files/xkb-root@raphael'
+source = '../../files/of-root/at-raphael/xkb'
 target = '/home/bluewy/.config/xkb'
 action = 'link'
 chmod = '755'

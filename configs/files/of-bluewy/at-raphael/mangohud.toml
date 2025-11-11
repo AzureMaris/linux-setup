@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/mangohud-bluewy@raphael'
+source = '../../files/of-bluewy/at-raphael/mangohud'
 target = '/home/bluewy/.config/MangoHud'
 action = 'link'
 chmod = '755'
