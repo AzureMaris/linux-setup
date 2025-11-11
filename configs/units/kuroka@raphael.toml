@@ -1,0 +1,6 @@
+[[units]]
+user = 'kuroka'
+path = '/home/kuroka/.config/systemd/user'
+mask = ['xdg-user-dirs.service', 'at-spi-dbus-bus.service']
+enable = ['wireplumber.service', 'pipewire.service', 'psd.service']
+profiles = ['kuroka@raphael']
