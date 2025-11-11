@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/rtcwake-for-mc-server-service-root@raphael/do-rtcwake-for-mc-server-#gpu-nvidia'
+source = '../../files/of-root/at-raphael/rtcwake-for-mc-server-service/do-rtcwake-for-mc-server-#gpu-nvidia'
 target = '/usr/local/bin/do-rtcwake-for-mc-server-#gpu-nvidia'
 action = 'copy'
 chmod = '744'
@@ -8,7 +8,7 @@ group = 'root'
 profiles = []
 
 [[files]]
-source = '../../files/rtcwake-for-mc-server-service-root@raphael/rtcwake-for-mc-server-\x23gpu-nvidia.timer'
+source = '../../files/of-root/at-raphael/rtcwake-for-mc-server-service/rtcwake-for-mc-server-\x23gpu-nvidia.timer'
 target = '/etc/systemd/user/rtcwake-for-mc-server-\x23gpu-nvidia.timer'
 action = 'copy'
 chmod = '644'
@@ -17,7 +17,7 @@ group = 'root'
 profiles = []
 
 [[files]]
-source = '../../files/rtcwake-for-mc-server-service-root@raphael/rtcwake-for-mc-server-\x23gpu-nvidia.service'
+source = '../../files/of-root/at-raphael/rtcwake-for-mc-server-service/rtcwake-for-mc-server-\x23gpu-nvidia.service'
 target = '/etc/systemd/user/rtcwake-for-mc-server-\x23gpu-nvidia.service'
 action = 'copy'
 chmod = '644'

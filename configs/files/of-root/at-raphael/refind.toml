@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/refind-root@raphael/refind.conf'
+source = '../../files/of-root/at-raphael/refind/refind.conf'
 target = '/boot/EFI/refind/refind.conf'
 action = 'copy'
 chmod = '644'
@@ -8,7 +8,7 @@ group = 'root'
 profiles = ['root@raphael']
 
 [[files]]
-source = '../../files/refind-root@raphael/extra.conf'
+source = '../../files/of-root/at-raphael/refind/extra.conf'
 target = '/boot/EFI/refind/extra.conf'
 action = 'copy'
 chmod = '644'

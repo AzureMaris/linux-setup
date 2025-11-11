@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/networkmanager-root@uriel/wifi-backend.conf'
+source = '../../files/of-root/at-uriel/networkmanager/wifi-backend.conf'
 target = '/etc/NetworkManager/conf.d/wifi-backend.conf'
 action = 'copy'
 chmod = '655'

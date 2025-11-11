@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/psd-root@raphael/frequency.conf'
+source = '../../files/of-root/at-raphael/psd/frequency.conf'
 target = '/etc/systemd/user/psd-resync.timer.d/frequency.conf'
 action = 'copy'
 chmod = '644'

@@ -1,5 +1,5 @@
 [[files]]
-source = '../../files/applications-bluewy@raphael/heroic.desktop'
+source = '../../files/of-bluewy/at-raphael/applications/heroic.desktop'
 target = '/home/bluewy/.local/share/applications/heroic.desktop'
 action = 'link'
 chmod = '644'
@@ -8,7 +8,7 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
 [[files]]
-source = '../../files/applications-bluewy@raphael/obs.desktop'
+source = '../../files/of-bluewy/at-raphael/applications/obs.desktop'
 target = '/home/bluewy/.local/share/applications/obs.desktop'
 action = 'link'
 chmod = '644'
@@ -17,7 +17,7 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
 [[files]]
-source = '../../files/applications-bluewy@raphael/osu-lazer.desktop'
+source = '../../files/of-bluewy/at-raphael/applications/osu-lazer.desktop'
 target = '/home/bluewy/.local/share/applications/osu-lazer.desktop'
 action = 'link'
 chmod = '644'
