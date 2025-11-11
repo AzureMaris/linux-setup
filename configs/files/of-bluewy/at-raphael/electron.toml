@@ -6,3 +6,12 @@ chmod = '644'
 owner = 'bluewy'
 group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
+
+[[files]]
+source = '../../files/of-bluewy/at-raphael/electron/electron-flags.conf'
+target = '/home/kuroka/.config/electron-flags.conf'
+action = 'link'
+chmod = '644'
+owner = 'bluewy'
+group = 'bluewy'
+profiles = ['kuroka@raphael']
