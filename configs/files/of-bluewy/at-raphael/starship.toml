@@ -1,5 +1,5 @@
 [[files]]
-source = '../../../files/of-bluewy/at-raphael/starship/starship.toml'
+source = '../../../../files/of-bluewy/at-raphael/starship/starship.toml'
 target = '/home/bluewy/.config/starship.toml'
 action = 'link'
 chmod = '644'
@@ -8,7 +8,7 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel', 'bluewy@sariel']
 
 [[files]]
-source = '../../../files/of-bluewy/at-raphael/starship/starship.toml'
+source = '../../../../files/of-bluewy/at-raphael/starship/starship.toml'
 target = '/home/yellowy/.config/starship.toml'
 action = 'link'
 chmod = '644'
@@ -17,7 +17,7 @@ group = 'yellowy'
 profiles = ['yellowy@uriel']
 
 [[files]]
-source = '../../../files/of-bluewy/at-raphael/starship/starship.toml'
+source = '../../../../files/of-bluewy/at-raphael/starship/starship.toml'
 target = '/home/kuroka/.config/starship.toml'
 action = 'link'
 chmod = '644'

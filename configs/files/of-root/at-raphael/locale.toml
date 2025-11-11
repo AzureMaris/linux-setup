@@ -1,5 +1,5 @@
 [[files]]
-source = '../../../files/of-root/at-raphael/locale/locale.gen'
+source = '../../../../files/of-root/at-raphael/locale/locale.gen'
 target = '/etc/locale.gen'
 action = 'copy'
 chmod = '655'
@@ -8,7 +8,7 @@ group = 'root'
 profiles = ['root@raphael', 'root@uriel', 'root@sariel', 'root@belphegor']
 
 [[files]]
-source = '../../../files/of-root/at-raphael/locale/locale.conf'
+source = '../../../../files/of-root/at-raphael/locale/locale.conf'
 target = '/etc/locale.conf'
 action = 'copy'
 chmod = '655'
