@@ -319,18 +319,18 @@ spawn-at-startup "runapp" "systemctl" "--user" "start" "xwayland-satellite.servi
 
 // [[ Polkit ]]
 
-spawn-at-startup "runapp" "nu" "-c" "try { pidof io.elementary.desktop.agent-polkit } catch { runapp /usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit }"
+spawn-at-startup "runapp" "nu" "-c" "ps -l | where {|row| $row.name == io.elementary.desktop.agent-polkit and (id -nu ($row.user_id)) == $env.LOGNAME} | if ($in | is-empty) { runapp /usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit }"
 
 // [[ Widget ]]
 
 // noctalia additionally manages cliphist and lockscreen
-spawn-at-startup "runapp" "nu" "-c" "try { pidof qs } catch { runapp -i session-graphical.slice qs -c noctalia-shell }"
+spawn-at-startup "runapp" "nu" "-c" "ps -l | where {|row| $row.name == qs and (id -nu ($row.user_id)) == $env.LOGNAME} | if ($in | is-empty) { runapp qs -c noctalia-shell }"
 
 // [[ Idle Listener ]]
 
-spawn-at-startup "runapp" "nu" "-c" "try { pidof hypridle } catch { runapp hypridle }"
-spawn-at-startup "runapp" "nu" "-c" "try { pidof wayland-pipewire-idle-inhibit } catch { runapp wayland-pipewire-idle-inhibit }"
+spawn-at-startup "runapp" "nu" "-c" "ps -l | where {|row| $row.name == hypridle and (id -nu ($row.user_id)) == $env.LOGNAME} | if ($in | is-empty) { runapp hypridle }"
+spawn-at-startup "runapp" "nu" "-c" "ps -l | where {|row| $row.name == wayland-pipewire-idle-inhibit and (id -nu ($row.user_id)) == $env.LOGNAME} | if ($in | is-empty) { runapp wayland-pipewire-idle-inhibit }"
 
 // [[ Other ]]
 
-spawn-at-startup "runapp" "nu" "-c" "try { pidof keepassxc } catch { runapp keepassxc }"
+spawn-at-startup "runapp" "nu" "-c" "ps -l | where {|row| $row.name == keepassxc and (id -nu ($row.user_id)) == $env.LOGNAME} | if ($in | is-empty) { runapp keepassxc }"

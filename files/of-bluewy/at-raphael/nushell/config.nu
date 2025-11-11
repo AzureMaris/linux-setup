@@ -67,7 +67,7 @@ $env.PATH = $env.PATH | append [
 
 # [[ Other ]]
 
-$env.LS_COLORS = "di=01;34:ln=01;36:ex=01;31:or=01;31"
+$env.LS_COLORS = "di=01;34:ln=01;36:ex=01;35:or=01;31"
 $env.EDITOR = "nvim"
 
 # [ Alias ]
@@ -130,111 +130,23 @@ def ls [
    --du (-d) # Display the apparent directory size ("disk usage") in place of the directory metadata size
    --full-paths (-f) # Display paths as absolute paths
    --group-dir (-g) # Group directories together
-   --hide-hidden (-p) # Hide hidden files.
+   --plain (-p) # Show only plain files.
    --long (-l) # Get all available columns for each entry (slower; columns are platform-dependent)
    --mime-type (-m) # Show mime-type in type column instead of 'file' (based on filenames only; files' contents are not examined)
-   --hide-plain (-H) # Hide plain files.
+   --hidden (-H) # Show only hidden files.
    --short-names (-s) # Only print the file names, and not the path.
    --threads (-t) # Use multiple threads to list contents. Output will be non-deterministic.
    ...patterns: oneof<glob, string> # The glob pattern to use.
 ]: [nothing -> table] {
-   let pattern_types: list<string> = $patterns | par-each {|pattern|
-      let pattern_type = $pattern | describe
-
-      match $pattern_type {
-         glob => {
-            return 'glob'
-         }
-
-         string => {
-            return 'string'
-         }
-
-         _ => {
-            error make {msg: $"expected glob or string, found ($pattern_type)"}
-         }
-      }
-   }
-   | uniq
-
-   let patterns_and_all = match [($patterns | is-empty) $hide_plain $hide_hidden] {
-      [true true true] => [[] false]
-      [true true false] => [[('.*' | into glob)] false]
-      [true false true] => [[.] false]
-      [true false false] => [[.] true]
-
-      [false true true] => [[] false]
-
-      [false true false] => {
-         let patterns = $patterns | each {|pattern|
-            mut pattern = $pattern
-            let pattern_type = $pattern | describe
-
-            mut pattern = if $pattern_type == glob {
-               $pattern | into string
-            } else {
-               $pattern
-            }
-
-            if (
-               ($pattern | str contains '*') and
-               not ($pattern | str contains '.*')
-            ) {
-               error make {
-                  msg: (
-                     "was told to hide plain file" +
-                     $" but pattern says otherwise, ($pattern)"
-                  )
-               }
-            } else if not ($pattern | str contains '.*') {
-               $pattern = $pattern | path join '.*'
-            }
-
-            $pattern | into glob
-         }
-
-         [$patterns false]
-      }
-
-      [false false true] => {
-         let patterns = $patterns | each {|pattern|
-            mut pattern = $pattern
-            let pattern_type = $pattern | describe
-
-            mut pattern = if $pattern_type == glob {
-               $pattern | into string
-            } else {
-               $pattern
-            }
-
-            if ($pattern | str contains '.*') {
-               error make {
-                  msg: (
-                     "was told to hide hidden file"
-                     + $"but pattern says otherwise, ($pattern)"
-                  )
-               }
-            }
-
-            if $pattern_type == glob {
-               $pattern = $pattern | into glob
-            }
-
-            $pattern
-         }
-
-         [$patterns false]
-      }
-
-      [false false false] => [$patterns true]
+   let patterns = if ($patterns | is-not-empty) {
+      $patterns
+   } else {
+      [.]
    }
 
-   let patterns = $patterns_and_all.0
-   let all = $patterns_and_all.1
-
-   mut ls_output = (
+   mut files = (
       nu-ls
-      --all=$all
+      --all=true
       --long=true
       --short-names=$short_names
       --full-paths=$full_paths
@@ -246,49 +158,44 @@ def ls [
    )
 
    if not $long {
-      $ls_output = $ls_output
+      $files = $files
       | select -o name type target mode user group size modified
       | compact column
    }
 
+   $files = $files | par-each {|file|
+      mut file: oneof<record, nothing> = $file
+
+      if $file.name == '' or $file.name == '..' {
+         $file = null
+      }
+
+      if $plain and ($file.name | str starts-with '.') {
+         $file = null
+      }
+
+      if $hidden and not ($file.name | str starts-with '.') {
+         $file = null
+      }
+
+      $file
+   }
+
    if $group_dir {
-      let grouped_ls_output = $ls_output | group-by {|it|
-         if $it.type == dir {
+      let files_grouped = $files | group-by {|file|
+         if $file.type == dir {
             'dir'
          } else {
             'other'
          }
       }
 
-      if $grouped_ls_output.dir? != null and $grouped_ls_output.other? != null {
-         $ls_output = $grouped_ls_output.dir | append $grouped_ls_output.other
+      if $files_grouped.dir? != null and $files_grouped.other? != null {
+         $files = $files_grouped.dir | append $files_grouped.other
       }
    }
 
-   let has_glob = 'glob' in $pattern_types
-
-   $ls_output = $ls_output
-   | par-each {|row|
-      mut row = $row
-
-      if $row.name == '' {
-         $row = $row | upsert name '.'
-      }
-
-      if $has_glob {
-         return $row
-      }
-
-      if $row.name != '.' and $row.name != '..' {
-         return $row
-      }
-   }
-
-   if $has_glob {
-      $ls_output = $ls_output | sort-by name
-   }
-
-   $ls_output | metadata set --datasource-ls
+   $files | metadata set --datasource-ls
 }
 
 def 'git plog' [] {
