@@ -191,7 +191,7 @@
     "general": {
         "animationDisabled": false,
         "animationSpeed": 2,
-        "avatarImage": "/home/bluewy/media/screenshots/2025-10-12_21-21-38.png",
+        "avatarImage": "~/media/screenshots/2025-10-12_21-21-38.png",
         "compactLockScreen": false,
         "dimDesktop": true,
         "enableShadows": false,
@@ -259,7 +259,7 @@
         "audioCodec": "opus",
         "audioSource": "default_output",
         "colorRange": "limited",
-        "directory": "/home/bluewy/Videos",
+        "directory": "~/Videos",
         "frameRate": 60,
         "quality": "very_high",
         "showCursor": true,
@@ -302,21 +302,21 @@
     },
     "wallpaper": {
         "defaultWallpaper": "/etc/xdg/quickshell/noctalia-shell/Assets/Wallpaper/noctalia.png",
-        "directory": "/home/bluewy/media/wallpapers",
+        "directory": "~/media/wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "fillColor": "#000000",
         "fillMode": "crop",
         "monitors": [
             {
-                "directory": "/home/bluewy/media/wallpapers",
+                "directory": "~/media/wallpapers",
                 "name": "HDMI-A-2",
-                "wallpaper": "/home/bluewy/media/wallpapers/w.png"
+                "wallpaper": "~/media/wallpapers/w.png"
             },
             {
-                "directory": "/home/bluewy/media/wallpapers",
+                "directory": "~/media/wallpapers",
                 "name": "",
-                "wallpaper": "/home/bluewy/media/wallpapers/w.png"
+                "wallpaper": "~/media/wallpapers/w.png"
             }
         ],
         "overviewEnabled": false,
