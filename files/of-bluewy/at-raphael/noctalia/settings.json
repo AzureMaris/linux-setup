@@ -80,9 +80,9 @@
                     ],
                     "colorizeIcons": false,
                     "drawerEnabled": false,
-                    "favorites": [
-                    ],
-                    "id": "Tray"
+                    "id": "Tray",
+                    "pinned": [
+                    ]
                 },
                 {
                     "hideWhenZero": true,
@@ -137,7 +137,7 @@
                 "id": "audio-card"
             },
             {
-                "enabled": true,
+                "enabled": false,
                 "id": "weather-card"
             },
             {
@@ -215,7 +215,7 @@
     },
     "location": {
         "analogClockInCalendar": false,
-        "firstDayOfWeek": -1,
+        "firstDayOfWeek": 1,
         "name": "Tokyo",
         "showCalendarEvents": false,
         "showCalendarWeather": true,
@@ -239,6 +239,7 @@
     "notifications": {
         "backgroundOpacity": 1,
         "criticalUrgencyDuration": 15,
+        "enableKeyboardLayoutToast": true,
         "enabled": true,
         "location": "top_right",
         "lowUrgencyDuration": 3,
