@@ -1,152 +1,14 @@
 -- yoinked from https://github.com/theopn/dotfiles
 
 local wezterm = require("wezterm")
-local act = wezterm.action
-
-local shell_command =
-   { "/usr/bin/nu", "-l", "--experimental-options=[reorder-cell-paths pipefail enforce-runtime-annotations]" }
-
 local config = {}
 
 if wezterm.config_builder then
    config = wezterm.config_builder()
 end
 
--- [ Settings ]
---
-config.default_prog = shell_command
-config.font_size = 18
-
-config.font = wezterm.font_with_fallback({
-   { family = "IosevkaTerm Nerd Font Mono", scale = 1.0 },
-})
-
-config.window_decorations = "NONE"
-config.window_close_confirmation = "AlwaysPrompt"
-config.scrollback_lines = 3000
-config.default_workspace = "main"
-
-config.inactive_pane_hsb = {
-   saturation = 0.5,
-   brightness = 0.5,
-}
-
--- [ Keybinds ]
---
-config.disable_default_key_bindings = true
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
-
-config.keys = {
-   { key = "a", mods = "LEADER|CTRL", action = act.SendKey({ key = "a", mods = "CTRL" }) },
-   { key = "c", mods = "LEADER", action = act.ActivateCopyMode }, -- something like vim
-   { key = "phys:Space", mods = "LEADER", action = act.ActivateCommandPalette },
-
-   -- [[ Pane ]]
-   --
-   { key = "h", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-   { key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-   { key = "n", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
-   { key = "e", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
-   { key = "u", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
-   { key = "i", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
-   { key = "x", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
-   { key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
-   { key = "o", mods = "LEADER", action = act.RotatePanes("Clockwise") },
-
-   {
-      key = "r",
-      mods = "LEADER",
-      action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }),
-   },
-
-   -- [[ TAB ]]
-   --
-   { key = "t", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
-   { key = "[", mods = "LEADER", action = act.ActivateTabRelative(-1) },
-   { key = "]", mods = "LEADER", action = act.ActivateTabRelative(1) },
-   { key = "s", mods = "LEADER", action = act.ShowTabNavigator },
-   { key = "m", mods = "LEADER", action = act.ActivateKeyTable({ name = "move_tab", one_shot = false }) },
-
-   {
-      key = "k",
-      mods = "LEADER",
-
-      action = act.PromptInputLine({
-         description = wezterm.format({
-            { Attribute = { Intensity = "Bold" } },
-            { Foreground = { AnsiColor = "Fuchsia" } },
-            { Text = "Renaming Tab Title...:" },
-         }),
-
-         action = wezterm.action_callback(function(window, pane, line)
-            if line then
-               window:active_tab():set_title(line)
-            end
-         end),
-      }),
-   },
-
-   -- [[ Workspace ]]
-   --
-   { key = "w", mods = "LEADER", action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
-
-   -- [[ Other ]]
-   --
-   { key = "c", mods = "CTRL | SHIFT", action = act.CopyTo("Clipboard") },
-   { key = "v", mods = "CTRL | SHIFT", action = act.PasteFrom("Clipboard") },
-}
-
-config.key_tables = {
-   resize_pane = {
-      { key = "n", action = act.AdjustPaneSize({ "Left", 1 }) },
-      { key = "e", action = act.AdjustPaneSize({ "Down", 1 }) },
-      { key = "u", action = act.AdjustPaneSize({ "Up", 1 }) },
-      { key = "i", action = act.AdjustPaneSize({ "Right", 1 }) },
-      { key = "Escape", action = "PopKeyTable" },
-      { key = "Enter", action = "PopKeyTable" },
-   },
-
-   move_tab = {
-      { key = "n", action = act.MoveTabRelative(-1) },
-      { key = "e", action = act.MoveTabRelative(-1) },
-      { key = "u", action = act.MoveTabRelative(1) },
-      { key = "i", action = act.MoveTabRelative(1) },
-      { key = "Escape", action = "PopKeyTable" },
-      { key = "Enter", action = "PopKeyTable" },
-   },
-}
-
--- allows to focus tab
--- using leader + workspace number
-for i = 1, 9 do
-   table.insert(config.keys, {
-      key = tostring(i),
-      mods = "LEADER",
-      action = act.ActivateTab(i - 1),
-   })
-end
-
-config.mouse_bindings = {
-   {
-      event = { Down = { streak = 1, button = { WheelUp = 1 } } },
-      mods = "NONE",
-      action = act.ScrollByLine(-1),
-   },
-   {
-      event = { Down = { streak = 1, button = { WheelDown = 1 } } },
-      mods = "NONE",
-      action = act.ScrollByLine(1),
-   },
-}
-
--- [ Tab ]
---
-config.use_fancy_tab_bar = false
-config.status_update_interval = 1000
-config.tab_bar_at_bottom = true
-
 -- [ Colorscheme ]
---
+
 config.colors = {
    foreground = "#abb2bf",
    background = "#282C34",
@@ -198,8 +60,149 @@ config.colors = {
    },
 }
 
--- [ Other ]
---
+-- [ Settings ]
+
+config.default_prog =
+   { "/usr/bin/nu", "-l", "--experimental-options=[reorder-cell-paths pipefail enforce-runtime-annotations]" }
+
+config.font_size = 18
+
+config.font = wezterm.font_with_fallback({
+   { family = "IosevkaTerm Nerd Font Mono", scale = 1.0 },
+})
+
+config.window_decorations = "NONE"
+config.window_close_confirmation = "AlwaysPrompt"
+config.scrollback_lines = 3000
+config.default_workspace = "main"
+
+config.inactive_pane_hsb = {
+   saturation = 0.5,
+   brightness = 0.5,
+}
+
+config.window_padding = {
+   top = "0.5cell",
+   right = "1cell",
+   left = "1cell",
+   bottom = "0.5cell",
+}
+
+config.warn_about_missing_glyphs = false
+
+-- [ Binds ]
+
+config.disable_default_key_bindings = true
+config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+
+config.keys = {
+   { key = "a", mods = "LEADER|CTRL", action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }) },
+   { key = "phys:Space", mods = "LEADER", action = wezterm.action.ActivateCommandPalette },
+
+   -- [[ Pane ]]
+
+   { key = "h", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
+   { key = "v", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+   { key = "n", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Left") },
+   { key = "e", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Down") },
+   { key = "u", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Up") },
+   { key = "i", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Right") },
+   { key = "x", mods = "LEADER", action = wezterm.action.CloseCurrentPane({ confirm = true }) },
+   { key = "z", mods = "LEADER", action = wezterm.action.TogglePaneZoomState },
+   { key = "o", mods = "LEADER", action = wezterm.action.RotatePanes("Clockwise") },
+
+   {
+      key = "r",
+      mods = "LEADER",
+      action = wezterm.action.ActivateKeyTable({ name = "resize_pane", one_shot = false }),
+   },
+
+   -- [[ TAB ]]
+
+   { key = "t", mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
+   { key = "[", mods = "LEADER", action = wezterm.action.ActivateTabRelative(-1) },
+   { key = "]", mods = "LEADER", action = wezterm.action.ActivateTabRelative(1) },
+   { key = "s", mods = "LEADER", action = wezterm.action.ShowTabNavigator },
+   { key = "m", mods = "LEADER", action = wezterm.action.ActivateKeyTable({ name = "move_tab", one_shot = false }) },
+
+   {
+      key = "k",
+      mods = "LEADER",
+
+      action = wezterm.action.PromptInputLine({
+         description = wezterm.format({
+            { Attribute = { Intensity = "Bold" } },
+            { Foreground = { AnsiColor = "Fuchsia" } },
+            { Text = "Renaming Tab Title...:" },
+         }),
+
+         action = wezterm.action_callback(function(window, pane, line)
+            if line then
+               window:active_tab():set_title(line)
+            end
+         end),
+      }),
+   },
+
+   -- [[ Workspace ]]
+
+   { key = "w", mods = "LEADER", action = wezterm.action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }) },
+
+   -- [[ Clipboard ]]
+
+   { key = "c", mods = "CTRL | SHIFT", action = wezterm.action.CopyTo("Clipboard") },
+   { key = "v", mods = "CTRL | SHIFT", action = wezterm.action.PasteFrom("Clipboard") },
+
+   { key = "c", mods = "LEADER", action = wezterm.action.ActivateCopyMode },
+}
+
+config.key_tables = {
+   resize_pane = {
+      { key = "n", action = wezterm.action.AdjustPaneSize({ "Left", 1 }) },
+      { key = "e", action = wezterm.action.AdjustPaneSize({ "Down", 1 }) },
+      { key = "u", action = wezterm.action.AdjustPaneSize({ "Up", 1 }) },
+      { key = "i", action = wezterm.action.AdjustPaneSize({ "Right", 1 }) },
+      { key = "Escape", action = "PopKeyTable" },
+      { key = "Enter", action = "PopKeyTable" },
+   },
+
+   move_tab = {
+      { key = "n", action = wezterm.action.MoveTabRelative(-1) },
+      { key = "e", action = wezterm.action.MoveTabRelative(-1) },
+      { key = "u", action = wezterm.action.MoveTabRelative(1) },
+      { key = "i", action = wezterm.action.MoveTabRelative(1) },
+      { key = "Escape", action = "PopKeyTable" },
+      { key = "Enter", action = "PopKeyTable" },
+   },
+}
+
+for i = 1, 9 do
+   table.insert(config.keys, {
+      key = tostring(i),
+      mods = "LEADER",
+      action = wezterm.action.ActivateTab(i - 1),
+   })
+end
+
+config.mouse_bindings = {
+   {
+      event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+      mods = "NONE",
+      action = wezterm.action.ScrollByLine(-1),
+   },
+   {
+      event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+      mods = "NONE",
+      action = wezterm.action.ScrollByLine(1),
+   },
+}
+
+-- [ Tab ]
+
+config.use_fancy_tab_bar = false
+config.status_update_interval = 1000
+config.tab_bar_at_bottom = true
+
 wezterm.on("update-status", function(window, pane)
    -- workspace name
    local status = window:active_workspace()
@@ -226,10 +229,8 @@ wezterm.on("update-status", function(window, pane)
 
    if current_working_directory then
       if type(current_working_directory) == "userdata" then
-         -- Wezterm introduced the URL object in 20240127-113634-bbcac864.
          current_working_directory = basename(current_working_directory.file_path)
       else
-         -- 20230712-072601-f4abf8fd or earlier version
          current_working_directory = basename(current_working_directory)
       end
    else
@@ -237,13 +238,8 @@ wezterm.on("update-status", function(window, pane)
    end
 
    local current_command = pane:get_foreground_process_name()
-   -- CWD and CMD could be nil (e.g. viewing log using Ctrl-Alt-l).
    current_command = current_command and basename(current_command) or ""
 
-   -- time
-   local time = wezterm.strftime("%H:%M")
-
-   -- left status (left of the tab line)
    window:set_left_status(wezterm.format({
       { Foreground = { Color = status_color } },
       { Text = "  " },
@@ -252,28 +248,13 @@ wezterm.on("update-status", function(window, pane)
       { Text = " |" },
    }))
 
-   -- right status
    window:set_right_status(wezterm.format({
-      -- Wezterm has a built-in nerd fonts.
-      -- https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html
       { Text = wezterm.nerdfonts.md_folder .. "  " .. current_working_directory },
       { Text = " | " },
       { Foreground = { Color = "#d19a66" } },
       { Text = wezterm.nerdfonts.fa_code .. "  " .. current_command },
-      "ResetAttributes",
-      { Text = " | " },
-      { Text = wezterm.nerdfonts.md_clock .. "  " .. time },
       { Text = "  " },
    }))
 end)
-
-config.window_padding = {
-   top = "0.5cell",
-   right = "1cell",
-   left = "1cell",
-   bottom = "0.5cell",
-}
-
-config.warn_about_missing_glyphs = false
 
 return config
