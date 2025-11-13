@@ -146,6 +146,9 @@ def --wrapped aura [...arguments] {
    run-external ...$command
 }
 
+# nushell currently uses two different implementation for glob
+# the following will force to use the built-in 'glob' implementation
+
 alias nu-ls = ls
 
 # This is a custom 'ls' function.
@@ -171,8 +174,6 @@ def ls [
       $patterns = [.]
    }
 
-   # nushell currently uses two different implementation for glob
-   # this forces to use the built-in 'glob' implementation
    let file_names: list<string> = $patterns | each --flatten {|pattern|
       glob $pattern
    }
