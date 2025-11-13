@@ -224,7 +224,7 @@
         "weatherEnabled": false
     },
     "network": {
-        "wifiEnabled": false
+        "wifiEnabled": true
     },
     "nightLight": {
         "autoSchedule": true,
@@ -333,7 +333,7 @@
     },
     "wallpaper": {
         "defaultWallpaper": "/etc/xdg/quickshell/noctalia-shell/Assets/Wallpaper/noctalia.png",
-        "directory": "~/media/wallpapers",
+        "directory": "/home/elisa/media/wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "fillColor": "#000000",
@@ -343,6 +343,11 @@
             {
                 "directory": "/home/elisa/media/wallpapers",
                 "name": "",
+                "wallpaper": "/home/elisa/media/wallpapers/w.png"
+            },
+            {
+                "directory": "/home/elisa/media/wallpapers",
+                "name": "eDP-1",
                 "wallpaper": "/home/elisa/media/wallpapers/w.png"
             }
         ],
