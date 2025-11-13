@@ -174,9 +174,9 @@ def ls [
       $patterns = [.]
    }
 
-   let file_names: list<string> = $patterns | each --flatten {|pattern|
+   let file_names: list<string> = $patterns | par-each -k {|pattern|
       glob $pattern
-   }
+   } | flatten
 
    mut files = (
       nu-ls
@@ -247,13 +247,14 @@ def mkdir [
    --verbose (-v) # print a message for each created directory.
    ...directories: oneof<glob, directory>
 ] {
-   mut directories = $directories | par-each {|directory|
+   mut directories = $directories | par-each -k {|directory|
       glob $directory
-   }
+   } | flatten
 
    (
       nu-mkdir
       --verbose=$verbose
+      ...$directories
    )
 }
 
@@ -273,9 +274,9 @@ def touch [
    --no-deref (-s) # Affect each symbolic link instead of any referenced file (only for systems that can change the timestamps of a symlink). Ignored if touching stdout
    ...files: oneof<glob, path> # The file(s) to create. '-' is used to represent stdout.
 ] {
-   mut files = $files | par-each {|file|
+   mut files = $files | par-each -k {|file|
       glob $file
-   }
+   } | flatten
 
    (
       nu-touch
@@ -312,9 +313,9 @@ def cp [
    --debug # explain how a file is copied. Implies -v
    ...paths: oneof<glob, string> # Copy SRC file/s to DEST
 ] {
-   mut paths = $paths | par-each {|path|
+   mut paths = $paths | par-each -k {|path|
       glob $path
-   }
+   } | flatten
 
    (
       nu-cp
@@ -346,9 +347,9 @@ def mv [
    --no-clobber (-n) # Do not overwrite an existing file.
    ...paths: oneof<glob, string> # Rename SRC to DST, or move SRC to DIR.
 ] {
-   mut paths = $paths | par-each {|path|
+   mut paths = $paths | par-each -k {|path|
       glob $path
-   }
+   } | flatten
 
    (
       nu-mv
@@ -370,7 +371,7 @@ alias nu-rm = rm
 # Remove files and directories.
 def rm [
    --trash (-t) # move to the platform's trash instead of permanently deleting. not used on android and ios
-   --permament (-p) # delete permanently, ignoring the 'always_trash' config option. always enabled on android and ios
+   --permanent (-p) # delete permanently, ignoring the 'always_trash' config option. always enabled on android and ios
    --recursive (-r) # delete subdirectories recursively
    --force (-f) # suppress error when no file
    --verbose (-v) # print names of deleted files
@@ -378,14 +379,14 @@ def rm [
    --interactive-once (-I) # ask user to confirm action only once
    ...paths: oneof<glob, string> # The file paths to remove.
 ] {
-   mut paths = $paths | par-each {|path|
+   mut paths = $paths | par-each -k {|path|
       glob $path
-   }
+   } | flatten
 
    (
       nu-rm
       --trash=$trash
-      --permanent=$permament
+      --permanent=$permanent
       --recursive=$recursive
       --force=$force
       --interactive=$interactive
