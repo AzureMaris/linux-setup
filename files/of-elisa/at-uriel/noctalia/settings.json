@@ -341,14 +341,9 @@
         "hideWallpaperFilenames": false,
         "monitors": [
             {
-                "directory": "/home/bluewy/media/wallpapers",
-                "name": "HDMI-A-2",
-                "wallpaper": "/home/bluewy/media/wallpapers/w.png"
-            },
-            {
-                "directory": "/home/bluewy/media/wallpapers",
+                "directory": "/home/elisa/media/wallpapers",
                 "name": "",
-                "wallpaper": "/home/bluewy/media/wallpapers/w.png"
+                "wallpaper": "/home/elisa/media/wallpapers/w.png"
             }
         ],
         "overviewEnabled": false,
