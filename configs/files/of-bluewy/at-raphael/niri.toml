@@ -15,3 +15,12 @@ chmod = '755'
 owner = 'kuroka'
 group = 'kuroka'
 profiles = ['kuroka@raphael']
+
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/niri'
+target = '/home/elisa/.config/niri'
+action = 'link'
+chmod = '755'
+owner = 'elisa'
+group = 'elisa'
+profiles = ['elisa@uriel']
