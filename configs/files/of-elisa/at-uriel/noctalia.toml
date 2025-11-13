@@ -1,0 +1,8 @@
+[[files]]
+source = '../../../../files/of-elisa/at-uriel/noctalia'
+target = '/home/elisa/.config/noctalia'
+action = 'link'
+chmod = '755'
+owner = 'elisa'
+group = 'elisa'
+profiles = ['elisa@uriel']
