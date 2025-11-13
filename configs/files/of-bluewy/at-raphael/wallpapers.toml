@@ -1,0 +1,8 @@
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/wallpapers/w.png'
+target = '/home/bluewy/media/wallpapers/w.png'
+action = 'link'
+chmod = '644'
+owner = 'bluewy'
+group = 'bluewy'
+profiles = ['bluewy@raphael', 'bluewy@uriel']
