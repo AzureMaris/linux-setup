@@ -1,3 +1,5 @@
+use std repeat
+
 # [ Fns ]
 
 def 'compact column' [
@@ -28,6 +30,26 @@ def 'compact column' [
    }
 
    $columns | reject ...$column_names_to_drop
+}
+
+export def path-relative-to [to: path]: path -> path {
+   let from = $in | path split
+   let to = $to | path split
+
+   let prefix_match_count = $to | zip $from | enumerate | where $it.item.0 == $it.item.1 | compact | length
+
+   if ($prefix_match_count <= 0) {
+      error make {msg: "Paths have nothing in common."}
+   }
+
+   let should_skip = $prefix_match_count != 1
+   let to_tail = if $should_skip { $to | skip $prefix_match_count } else { $to }
+   let from_tail = if $should_skip { $from | skip $prefix_match_count } else { $from }
+
+   ".."
+   | repeat ($to_tail | length)
+   | append $from_tail
+   | path join
 }
 
 # [ Env ]
@@ -138,10 +160,16 @@ def ls [
    --threads (-t) # Use multiple threads to list contents. Output will be non-deterministic.
    ...patterns: oneof<glob, string> # The glob pattern to use.
 ]: [nothing -> table] {
-   let patterns = if ($patterns | is-not-empty) {
-      $patterns
-   } else {
-      [.]
+   mut patterns = $patterns
+
+   if ($patterns | is-empty) {
+      $patterns = [.]
+   }
+
+   # nushell currently uses two different implementation for glob
+   # this forces to use the built-in 'glob' implementation
+   let file_names: list<string> = $patterns | each --flatten {|pattern|
+      glob $pattern
    }
 
    mut files = (
@@ -154,7 +182,7 @@ def ls [
       --directory=$directory
       --mime-type=$mime_type
       --threads=$threads
-      ...$patterns
+      ...$file_names
    )
 
    if not $long {
@@ -176,6 +204,11 @@ def ls [
 
       if $file != null and $hidden and not ($file.name | str starts-with '.') {
          $file = null
+      }
+
+      # glob shows paths as absolute so we need to make relative again
+      if $file != null and not $short_names {
+         $file = $file | upsert name ($file.name | path-relative-to $env.PWD)
       }
 
       $file
