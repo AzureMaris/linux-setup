@@ -324,7 +324,7 @@ spawn-at-startup "runapp" "nu" "-c" "ps -l | where {|row| $row.name == io.elemen
 // [[ Widget ]]
 
 // noctalia additionally manages cliphist and lockscreen
-spawn-at-startup "runapp" "nu" "-c" "ps -l | where {|row| $row.name == qs and (id -nu ($row.user_id)) == $env.LOGNAME} | if ($in | is-empty) { runapp qs -c noctalia-shell }"
+spawn-at-startup "runapp" "nu" "-c" "ps -l | where {|row| $row.name == qs and (id -nu ($row.user_id)) == $env.LOGNAME} | if ($in | is-empty) { runapp -i session-graphical.slice -- qs -c noctalia-shell }"
 
 // [[ Idle Listener ]]
 
