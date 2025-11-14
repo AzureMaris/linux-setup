@@ -1,6 +1,50 @@
 #!/usr/bin/env nu
 
-def main [] {
+def run-single-instance-per-user [
+   --user: string
+   --detect-systemd = true
+   --systemd-integrator-command: list<string>
+   --process-name: string
+   ...command: string
+] {
+   let process_name = if ($process_name == null) {
+      $command.0
+   } else {
+      $process_name
+   }
+
+   let user = if ($user == null) {
+      $env.LOGNAME
+   } else {
+      $user
+   }
+
+   let use_systemctl = if ($detect_systemd == false) {
+      false
+   } else {
+      if (which systemctl | is-not-empty) {
+         true
+      } else {
+         false
+      }
+   }
+
+   ps -l | where {|process|
+      $process.name == $process_name and (id -nu $process.user_id) == $env.LOGNAME
+   } | if ($in | is-empty) {
+      if $use_systemctl {
+         if ($systemd_integrator_command | is-not-empty) {
+            run-external ...$systemd_integrator_command ...$command
+         } else {
+            runapp ...$command
+         }
+      } else {
+         run-external ...$command
+      }
+   }
+}
+
+do {
    let systemctl_exists = which systemctl | is-not-empty
    let uwsm_exists = which uwsm | is-not-empty
 
@@ -24,7 +68,7 @@ def main [] {
       }
    } else {
       let job_id = job spawn {
-         niri --session e>| take until {|line|
+         niri --session e>| lines | take until {|line|
             let should_detach = $line | str contains 'IPC listening on:'
 
             if not $should_detach {
@@ -75,48 +119,4 @@ def main [] {
 
    run-single-instance-per-user wayland-pipewire-idle-inhibit
    run-single-instance-per-user keepassxc
-}
-
-def run-single-instance-per-user [
-   --user: string
-   --detect-systemd = true
-   --systemd-integrator-command: list<string>
-   --process-name: string
-   ...command: string
-] {
-   let process_name = if ($process_name == null) {
-      $command.0
-   } else {
-      $process_name
-   }
-
-   let user = if ($user == null) {
-      $env.LOGNAME
-   } else {
-      $user
-   }
-
-   let use_systemctl = if ($detect_systemd == false) {
-      false
-   } else {
-      if (which systemctl | is-not-empty) {
-         true
-      } else {
-         false
-      }
-   }
-
-   ps -l | where {|process|
-      $process.name == $process_name and (id -nu $process.user_id) == $env.LOGNAME
-   } | if ($in | is-empty) {
-      if $use_systemctl {
-         if ($systemd_integrator_command | is-not-empty) {
-            run-external ...$systemd_integrator_command ...$command
-         } else {
-            runapp ...$command
-         }
-      } else {
-         run-external ...$command
-      }
-   }
 }
