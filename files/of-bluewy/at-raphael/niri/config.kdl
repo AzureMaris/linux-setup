@@ -150,7 +150,8 @@ binds {
    XF86MonBrightnessUp allow-when-locked=true { spawn "runapp" "brightnessctl" "--class=backlight" "set" "+10%"; }
    XF86MonBrightnessDown allow-when-locked=true { spawn "runapp" "brightnessctl" "--class=backlight" "set" "10%-"; }
 
-   Mod+Shift+Escape { spawn "runapp" "-i" "user.slice" "systemctl" "--user" "stop" "wayland-wm@niri.service"; }
+   Mod+Shift+Escape { spawn "runapp" "-i" "user.slice" "--" "niri-custom" "stop" "--systemd"; }
+   Mod+Alt+Shift+Escape { spawn "runapp" "-i" "user.slice" "--" "niri-custom" "stop"; }
 }
 
 // [ Behaviours & Aesthetics ]
