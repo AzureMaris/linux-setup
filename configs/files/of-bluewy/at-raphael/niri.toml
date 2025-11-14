@@ -8,8 +8,26 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
 [[files]]
+source = '../../../../files/of-bluewy/at-raphael/niri/start'
+target = '/home/bluewy/.local/bin/start-niri'
+action = 'link'
+chmod = '755'
+owner = 'bluewy'
+group = 'bluewy'
+profiles = ['bluewy@raphael', 'bluewy@uriel']
+
+[[files]]
 source = '../../../../files/of-bluewy/at-raphael/niri'
 target = '/home/kuroka/.config/niri'
+action = 'link'
+chmod = '755'
+owner = 'kuroka'
+group = 'kuroka'
+profiles = ['kuroka@raphael']
+
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/niri/start'
+target = '/home/kuroka/.local/bin/start-niri'
 action = 'link'
 chmod = '755'
 owner = 'kuroka'
