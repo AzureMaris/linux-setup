@@ -3,7 +3,7 @@
 def main [] {
    systemctl --user cat wayland-wm@niri.service
    | complete
-   | if ($in.error_code > 0) {
+   | if ($in.exit_code > 0) {
       uwsm start -U=home -o -- niri --session
    } else {
       systemctl --user start wayland-wm@niri.service
