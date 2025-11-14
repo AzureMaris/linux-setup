@@ -1,22 +1,43 @@
 #!/usr/bin/env nu
 
 def main [] {
-   systemctl --user cat wayland-wm@niri.service
-   | complete
-   | if ($in.exit_code > 0) {
-      uwsm start -U=home -o -- niri --session
-   } else {
-      systemctl --user start wayland-wm@niri.service
-   }
+   let systemctl_exists = which systemctl | is-not-empty
+   let uwsm_exists = which uwsm | is-not-empty
 
-   loop {
-      systemctl --user is-active --quiet wayland-wm@niri.service
+   if $systemctl_exists and $uwsm_exists {
+      systemctl --user cat wayland-wm@niri.service
       | complete
-      | if ($in.exit_code == 0) {
-         break
+      | if ($in.exit_code > 0) {
+         uwsm start -U=home -o -- niri --session
+      } else {
+         systemctl --user start wayland-wm@niri.service
       }
 
-      sleep 0.5sec
+      loop {
+         systemctl --user is-active --quiet wayland-wm@niri.service
+         | complete
+         | if ($in.exit_code == 0) {
+            break
+         }
+
+         sleep 0.5sec
+      }
+   } else {
+      let job_id = job spawn {
+         niri --session e>| take until {|line|
+            let should_detach = $line | str contains 'IPC listening on:'
+
+            if not $should_detach {
+               return false
+            }
+
+            # job disown $id # this is not yet implemented upstream
+            $should_detach | job send 0
+            $should_detach
+         }
+      }
+
+      job recv
    }
 
    with-env {
@@ -37,34 +58,65 @@ def main [] {
 
    systemctl --user start xwayland-satellite.service
 
-   run-single-instance-per-user io.elementary.desktop.agent-polkit {
-      runapp /usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit
-   }
+   (
+      run-single-instance-per-user
+      --process-name=io.elementary.desktop.agent-polkit
+      '/usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit'
+   )
 
-   run-single-instance-per-user qs { runapp -i session-graphical.slice -- qs -c noctalia-shell }
-   run-single-instance-per-user hypridle { runapp hypridle }
+   (
+      run-single-instance-per-user
+      --process-name=qs
+      --systemd-integrator-command=['runapp' '-i' 'session-graphical.slice']
+      'qs' '-c' 'noctalia-shell'
+   )
 
-   run-single-instance-per-user wayland-pipewire-idle-inhibit {
-      runapp wayland-pipewire-idle-inhibit
-   }
+   run-single-instance-per-user hypridle
 
-   run-single-instance-per-user keepassxc { runapp keepassxc }
+   run-single-instance-per-user wayland-pipewire-idle-inhibit
+   run-single-instance-per-user keepassxc
 }
 
 def run-single-instance-per-user [
-   --user: string # The name of the user that owns the process.
-   process_name: string # The name of the process it should check with.
-   closure: closure # The closure to run if there is no conflict.
+   --user: string
+   --detect-systemd = true
+   --systemd-integrator-command: list<string>
+   --process-name: string
+   ...command: string
 ] {
-   mut user = $user
+   let process_name = if ($process_name == null) {
+      $command.0
+   } else {
+      $process_name
+   }
 
-   if ($user == null) {
-      $user = $env.LOGNAME
+   let user = if ($user == null) {
+      $env.LOGNAME
+   } else {
+      $user
+   }
+
+   let use_systemctl = if ($detect_systemd == false) {
+      false
+   } else {
+      if (which systemctl | is-not-empty) {
+         true
+      } else {
+         false
+      }
    }
 
    ps -l | where {|process|
       $process.name == $process_name and (id -nu $process.user_id) == $env.LOGNAME
    } | if ($in | is-empty) {
-      do $closure
+      if $use_systemctl {
+         if ($systemd_integrator_command | is-not-empty) {
+            run-external ...$systemd_integrator_command ...$command
+         } else {
+            runapp ...$command
+         }
+      } else {
+         run-external ...$command
+      }
    }
 }
