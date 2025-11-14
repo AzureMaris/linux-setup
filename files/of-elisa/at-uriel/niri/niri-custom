@@ -1,0 +1,200 @@
+#!/usr/bin/env nu
+
+def main [
+]: nothing -> nothing { }
+
+# Start niri in a custom way.
+def 'main start' [
+   --systemd # Whether to use systemd integration.
+]: nothing -> nothing {
+   let wm_env = get-wm-env
+
+   if $systemd {
+      let script_runtime_dir = get-script-runtime-dir
+      mkdir $script_runtime_dir
+
+      let systemd_pre_env = systemctl --user show-environment
+      | lines
+      | split column '=' key value
+
+      let systemd_pre_env_abs_file_path = get-systemd-pre-env-abs-file-path
+      $systemd_pre_env | to json | save -f $systemd_pre_env_abs_file_path
+
+      with-env $wm_env {
+         let wm_env_names = $wm_env | columns
+         systemctl --user import-environment ...$wm_env_names
+         dbus-update-activation-environment ...$wm_env_names
+      }
+
+      let wm_service = get-wm-systemd-service-name
+      systemctl --user start $wm_service
+
+      loop {
+         systemctl --user is-active --quiet $wm_service
+         | complete
+         | if ($in.exit_code == 0) {
+            break
+         }
+
+         sleep 0.5sec
+      }
+   } else {
+      let job_id = job spawn {
+         with-env $wm_env {
+            niri --session e>| lines | take until {|line|
+               let should_detach = $line | str contains 'IPC listening on:'
+
+               if not $should_detach {
+                  return false
+               }
+
+               $should_detach | job send 0
+               $should_detach
+            }
+         }
+      }
+
+      job recv
+   }
+
+   do-wm-autostart --systemd=$systemd
+}
+
+# Stop niri.
+def 'main stop' [
+   --systemd # Whether systemd was used.
+]: nothing -> nothing {
+   if $systemd {
+      systemctl --user stop niri-custom.service
+   } else {
+      niri msg action quit
+   }
+}
+
+# Cleans up the environment as best as possible.
+# This is only needed with systemd.
+def 'main cleanup' []: nothing -> nothing {
+   let systemd_pre_env_abs_file_path = get-systemd-pre-env-abs-file-path
+   let systemd_pre_env = open $systemd_pre_env_abs_file_path
+
+   let systemd_post_env = systemctl --user show-environment
+   | lines
+   | split column '=' key value
+
+   let systemd_env_diff = $systemd_pre_env | join -o $systemd_post_env key
+
+   let env_todos = $systemd_env_diff | par-each {|row|
+      if $row.value == null {
+         return {unset: $row.key}
+      }
+
+      if $row.value_ == null {
+         return
+      }
+
+      if $row.value_ != $row.value {
+         return {update: $row.key}
+      }
+   }
+
+   let systemd_env_to_unset = $env_todos.unset? | compact
+   let systemd_env_to_update = $env_todos.update? | compact
+
+   if $systemd_env_to_unset != null and ($systemd_env_to_unset | is-not-empty) {
+      systemctl --user unset-environment ...$systemd_env_to_unset
+   }
+
+   if $systemd_env_to_update != null and ($systemd_env_to_update | is-not-empty) {
+      systemctl --user import-environment ...$systemd_env_to_update
+   }
+
+   rm $systemd_pre_env_abs_file_path
+}
+
+def do-wm-autostart [
+   --systemd
+] {
+   systemctl --user start xwayland-satellite.service
+
+   (
+      run-single-instance-per-user
+      --systemd=$systemd
+      --process-name=io.elementary.desktop.agent-polkit
+      '/usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit'
+   )
+
+   (
+      run-single-instance-per-user
+      --systemd=$systemd
+      --process-name=qs
+      --systemd-integrator-command=['runapp' '-i' 'session-graphical.slice']
+      'qs' '-c' 'noctalia-shell'
+   )
+
+   run-single-instance-per-user --systemd=$systemd hypridle
+
+   run-single-instance-per-user --systemd=$systemd wayland-pipewire-idle-inhibit
+   run-single-instance-per-user --systemd=$systemd keepassxc
+}
+
+def get-wm-systemd-service-name []: nothing -> string {
+   'niri-custom.service'
+}
+
+def get-wm-env []: nothing -> record {
+   {
+      SDL_VIDEODRIVER: 'wayland,x11'
+      CLUTTER_BACKEND: 'wayland'
+      QT_QPA_PLATFORM: 'wayland;xcb'
+
+      QT_QPA_PLATFORMTHEME: 'qt6ct'
+
+      _JAVA_AWT_WM_NONREPARENTING: '1'
+   }
+}
+
+def get-systemd-pre-env-abs-file-path []: nothing -> string {
+   get-script-runtime-dir | path join 'systemd-pre-env.json'
+}
+
+def get-script-runtime-dir []: nothing -> string {
+   $env.XDG_RUNTIME_DIR | path join 'niri-custom'
+}
+
+def run-single-instance-per-user [
+   --user: string
+   --systemd
+   --systemd-integrator-command: list<string>
+   --process-name: string
+   ...command: string
+]: nothing -> nothing {
+   let process_name = if ($process_name == null) {
+      $command.0
+   } else {
+      $process_name
+   }
+
+   let user = if ($user == null) {
+      $env.LOGNAME
+   } else {
+      $user
+   }
+
+   ps -l | where {|process|
+      $process.name == $process_name and (id -nu $process.user_id) == $env.LOGNAME
+   } | if ($in | is-empty) {
+      try {
+         if $systemd {
+            if ($systemd_integrator_command | is-not-empty) {
+               run-external ...$systemd_integrator_command ...$command
+            } else {
+               runapp ...$command
+            }
+         } else {
+            run-external ...$command
+         }
+      } catch {|error|
+         $error | print
+      }
+   }
+}

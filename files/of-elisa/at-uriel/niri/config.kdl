@@ -1,10 +1,3 @@
-// [ Info ]
-
-// this config requires uwsm and runapp to work properly
-
-// if built with systemd feature then niri will wrap spawn calls in a scope
-// but can be superseded by another wrapper
-
 // [ Inputs & Outputs ]
 
 input {
@@ -28,8 +21,8 @@ input {
    }
 }
 
-output "eDPI-1" {
-   mode "1920x1080@144.002"
+output "HDMI-A-2" {
+   mode "1920x1080@239.964"
    focus-at-startup
    variable-refresh-rate
 }
@@ -157,7 +150,8 @@ binds {
    XF86MonBrightnessUp allow-when-locked=true { spawn "runapp" "brightnessctl" "--class=backlight" "set" "+10%"; }
    XF86MonBrightnessDown allow-when-locked=true { spawn "runapp" "brightnessctl" "--class=backlight" "set" "10%-"; }
 
-   Mod+Shift+Escape { spawn "runapp" "-i" "user.slice" "systemctl" "--user" "stop" "wayland-wm@niri.service"; }
+   Mod+Shift+Escape { spawn "runapp" "-i" "user.slice" "--" "niri-custom" "stop" "--systemd"; }
+   Mod+Alt+Shift+Escape { spawn "runapp" "-i" "user.slice" "--" "niri-custom" "stop"; }
 }
 
 // [ Behaviours & Aesthetics ]
@@ -227,12 +221,10 @@ workspace "zero"
 workspace "scratchpad"
 
 xwayland-satellite {
-   // this is externally managed
    off
 }
 
 debug {
-   // this is wanted by noctalia
    honor-xdg-activation-with-invalid-serial
 }
 
@@ -294,43 +286,3 @@ window-rule {
    match app-id=r#"librewolf$"# title="^Picture-in-Picture$"
    open-floating true
 }
-
-// [ Environment ]
-// managed by uwsm
-
-// [ Autostart ]
-
-// xwayland-satellite needs the env DISPLAY to be set to something
-// and unfortunately any method that sets the env DISPLAY before niri
-// startup will end up getting nuked by niri
-//
-// Workaround 1, is to set DISPLAY env in the config and
-// use spawn-at-startup to import the environment
-//
-// Workaround 2, is to use spawn-at-startup with runapp as
-// runapp allows u to set an env for the command u're running
-//
-// Alternatively, enable xwayland-satellite integration in niri but
-// you won't be able to read the output
-spawn-at-startup "runapp" "-e" "DISPLAY=:0" "systemctl" "--user" "import-environment" "DISPLAY"
-
-// start it before other startups that might rely on this one
-spawn-at-startup "runapp" "systemctl" "--user" "start" "xwayland-satellite.service"
-
-// [[ Polkit ]]
-
-spawn-at-startup "runapp" "nu" "-c" "ps -l | where {|row| $row.name == io.elementary.desktop.agent-polkit and (id -nu ($row.user_id)) == $env.LOGNAME} | if ($in | is-empty) { runapp /usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit }"
-
-// [[ Widget ]]
-
-// noctalia additionally manages cliphist and lockscreen
-spawn-at-startup "runapp" "nu" "-c" "ps -l | where {|row| $row.name == qs and (id -nu ($row.user_id)) == $env.LOGNAME} | if ($in | is-empty) { runapp -i session-graphical.slice -- qs -c noctalia-shell }"
-
-// [[ Idle Listener ]]
-
-spawn-at-startup "runapp" "nu" "-c" "ps -l | where {|row| $row.name == hypridle and (id -nu ($row.user_id)) == $env.LOGNAME} | if ($in | is-empty) { runapp hypridle }"
-spawn-at-startup "runapp" "nu" "-c" "ps -l | where {|row| $row.name == wayland-pipewire-idle-inhibit and (id -nu ($row.user_id)) == $env.LOGNAME} | if ($in | is-empty) { runapp wayland-pipewire-idle-inhibit }"
-
-// [[ Other ]]
-
-spawn-at-startup "runapp" "nu" "-c" "ps -l | where {|row| $row.name == keepassxc and (id -nu ($row.user_id)) == $env.LOGNAME} | if ($in | is-empty) { runapp keepassxc }"
