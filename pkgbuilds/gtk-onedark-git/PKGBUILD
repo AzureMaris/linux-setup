@@ -1,0 +1,28 @@
+pkgname=gkt-onedark-git
+_pkgname=gtk-onedark
+pkgver=r00.0000000
+pkgrel=1
+pkgdesc='Gtk OneDark Theme'
+arch=(any)
+url="https://github.com/BluewyDiamond/one_dark_adwaita"
+depends=(git)
+provides=($_pkgname)
+conflicts=($_pkgname $_pkgname-bin $_pkgname-git)
+source=("git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+   cd "$srcdir/$_pkgname"
+   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+build() {
+   cd "$srcdir/$_pkgname"
+   ./cli.nu build
+}
+
+package() {
+   cd "$srcdir/$_pkgname"
+   install -Dm644 target/debug/main.js -t "$pkgdir/usr/share/$_pkgname"
+   install -Dm755 rsc/mshell -t "$pkgdir/usr/bin"
+}
