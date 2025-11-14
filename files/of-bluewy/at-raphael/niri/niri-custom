@@ -114,7 +114,13 @@ def 'main cleanup' []: nothing -> nothing {
 def do-wm-autostart [
    --systemd
 ] {
-   systemctl --user start xwayland-satellite.service
+   if $systemd {
+      with-env {
+         DISPLAY: 0
+      } { systemctl --user import-environment DISPLAY }
+
+      systemctl --user start xwayland-satellite.service
+   }
 
    (
       run-single-instance-per-user

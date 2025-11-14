@@ -286,3 +286,11 @@ window-rule {
    match app-id=r#"librewolf$"# title="^Picture-in-Picture$"
    open-floating true
 }
+
+// [ Environment ]
+// this is strictly a workaround
+// env management occurs in the wrapper
+
+environment {
+   DISPLAY ":0"
+}
