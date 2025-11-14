@@ -17,7 +17,7 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
 [[files]]
-source = '../../../../files/of-bluewy/at-raphael/niri/niri.service'
+source = '../../../../files/of-bluewy/at-raphael/niri/niri-custom.service'
 target = '/home/bluewy/.config/systemd/user/niri-custom.service'
 action = 'link'
 chmod = '755'
@@ -44,7 +44,7 @@ group = 'kuroka'
 profiles = ['kuroka@raphael']
 
 [[files]]
-source = '../../../../files/of-bluewy/at-raphael/niri/niri.service'
+source = '../../../../files/of-bluewy/at-raphael/niri/niri-custom.service'
 target = '/home/kuroka/.config/systemd/user/niri-custom.service'
 action = 'link'
 chmod = '755'
