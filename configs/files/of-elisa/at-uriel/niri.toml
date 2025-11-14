@@ -1,6 +1,24 @@
 [[files]]
-source = '../../../../files/of-elisa/at-uriel/niri'
+source = '../../../../files/of-elisa/at-raphael/niri'
 target = '/home/elisa/.config/niri'
+action = 'link'
+chmod = '755'
+owner = 'elisa'
+group = 'elisa'
+profiles = ['elisa@uriel']
+
+[[files]]
+source = '../../../../files/of-elisa/at-raphael/niri/niri-custom'
+target = '/home/elisa/.local/bin/niri-custom'
+action = 'link'
+chmod = '755'
+owner = 'elisa'
+group = 'elisa'
+profiles = [ 'elisa@uriel']
+
+[[files]]
+source = '../../../../files/of-elisa/at-raphael/niri/niri-custom.service'
+target = '/home/elisa/.config/systemd/user/niri-custom.service'
 action = 'link'
 chmod = '755'
 owner = 'elisa'
