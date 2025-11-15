@@ -41,7 +41,7 @@ def 'main start' [
    } else {
       let job_id = job spawn {
          with-env $wm_env {
-            niri --session e>| lines | take until {|line|
+            niri --session | lines | take until {|line|
                let should_detach = $line | str contains 'IPC listening on:'
 
                if not $should_detach {
@@ -119,7 +119,7 @@ def do-wm-autostart [
 ] {
    if $systemd {
       with-env {
-         DISPLAY: ':0'
+         ...(get-wm-env).DISPLAY
       } { systemctl --user import-environment DISPLAY }
 
       systemctl --user start xwayland-satellite.service
@@ -136,7 +136,7 @@ def do-wm-autostart [
       run-single-instance-per-user
       --systemd=$systemd
       --process-name=qs
-      --systemd-integrator-command=['runapp' '-i' 'session-graphical.slice']
+      --systemd-wrapper-command=['runapp' '-i' 'session-graphical.slice']
       'qs' '-c' 'noctalia-shell'
    )
 
@@ -152,6 +152,8 @@ def get-wm-systemd-service-name []: nothing -> string {
 
 def get-wm-env []: nothing -> record {
    {
+      DISPLAY: ':0' # also set niri's config
+
       SDL_VIDEODRIVER: 'wayland,x11'
       CLUTTER_BACKEND: 'wayland'
       QT_QPA_PLATFORM: 'wayland;xcb'
@@ -173,7 +175,7 @@ def get-script-runtime-dir []: nothing -> string {
 def run-single-instance-per-user [
    --user: string
    --systemd
-   --systemd-integrator-command: list<string>
+   --systemd-wrapper-command: list<string> = ['runapp']
    --process-name: string
    ...command: string
 ]: nothing -> nothing {
@@ -194,11 +196,7 @@ def run-single-instance-per-user [
    } | if ($in | is-empty) {
       try {
          if $systemd {
-            if ($systemd_integrator_command | is-not-empty) {
-               run-external ...$systemd_integrator_command ...$command
-            } else {
-               runapp ...$command
-            }
+            run-external ...$systemd_wrapper_command ...$command
          } else {
             run-external ...$command
          }
