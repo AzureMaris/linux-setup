@@ -1,14 +1,12 @@
 [Unit]
 Description=A scrollable-tiling Wayland compositor
+
 BindsTo=graphical-session.target
 Before=graphical-session.target
 PropagatesStopTo=graphical-session.target
 
-Wants=graphical-session-pre.target
-After=graphical-session-pre.target
-
-Wants=xdg-desktop-autostart.target
-Before=xdg-desktop-autostart.target
+After=app-graphical.slice background-graphical.slice session-graphical.slice
+PropagatesStopTo=app-graphical.slice background-graphical.slice session-graphical.slice
 
 [Service]
 Slice=session.slice
