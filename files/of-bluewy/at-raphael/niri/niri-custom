@@ -65,7 +65,7 @@ def 'main stop' [
    --systemd # Whether systemd was used.
 ]: nothing -> nothing {
    if $systemd {
-      runapp -i user.slice -- systemctl --user stop app-graphical.slice background-graphical.slice niri-custom.service
+      systemctl --user stop (get-wm-systemd-service-name)
    } else {
       niri msg action quit
    }
