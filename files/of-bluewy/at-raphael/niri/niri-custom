@@ -41,7 +41,7 @@ def 'main start' [
    } else {
       let job_id = job spawn {
          with-env $wm_env {
-            niri --session | lines | take until {|line|
+            niri --session o+e>| lines | take until {|line|
                let should_detach = $line | str contains 'IPC listening on:'
 
                if not $should_detach {
