@@ -118,10 +118,8 @@ def do-wm-autostart [
    --systemd
 ] {
    if $systemd {
-      with-env {
-         ...(get-wm-env).DISPLAY
-      } { systemctl --user import-environment DISPLAY }
-
+      let wm_env = get-wm-env
+      with-env ($wm_env | select DISPLAY) { systemctl --user import-environment DISPLAY }
       systemctl --user start xwayland-satellite.service
    }
 
