@@ -65,6 +65,9 @@ def 'main stop' [
    --systemd # Whether systemd was used.
 ]: nothing -> nothing {
    if $systemd {
+      systemctl --user stop app.slice
+      systemctl --user stop background.slice
+      systemctl --user stop session-graphical.slice
       systemctl --user stop niri-custom.service
    } else {
       niri msg action quit
@@ -116,7 +119,7 @@ def do-wm-autostart [
 ] {
    if $systemd {
       with-env {
-         DISPLAY: 0
+         DISPLAY: ':0'
       } { systemctl --user import-environment DISPLAY }
 
       systemctl --user start xwayland-satellite.service
