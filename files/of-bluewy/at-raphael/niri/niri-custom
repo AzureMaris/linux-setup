@@ -65,10 +65,7 @@ def 'main stop' [
    --systemd # Whether systemd was used.
 ]: nothing -> nothing {
    if $systemd {
-      systemctl --user stop app.slice
-      systemctl --user stop background.slice
-      systemctl --user stop session-graphical.slice
-      systemctl --user stop niri-custom.service
+      runapp -i user.slice -- systemctl --user stop app-graphical.slice background-graphical.slice niri-custom.service
    } else {
       niri msg action quit
    }
@@ -86,29 +83,32 @@ def 'main cleanup' []: nothing -> nothing {
 
    let systemd_env_diff = $systemd_pre_env | join -o $systemd_post_env key
 
-   let env_todos = $systemd_env_diff | par-each {|row|
-      if $row.value == null {
-         return {unset: $row.key}
-      }
-
-      if $row.value_ == null {
-         return
-      }
-
-      if $row.value_ != $row.value {
-         return {update: $row.key}
+   let env_name_todos = $systemd_env_diff | par-each {|row|
+      match [$row.value $row.value_] {
+         [null _] => { {unset: $row.key} }
+         [_ null] => { }
+         [_ _] => { {update: $row.key} }
       }
    }
 
-   let systemd_env_to_unset = $env_todos.unset? | compact
-   let systemd_env_to_update = $env_todos.update? | compact
+   let systemd_env_names_to_unset = $env_name_todos.unset? | compact
+   let systemd_env_names_to_update = $env_name_todos.update? | compact
 
-   if $systemd_env_to_unset != null and ($systemd_env_to_unset | is-not-empty) {
-      systemctl --user unset-environment ...$systemd_env_to_unset
+   if $systemd_env_names_to_unset != null and ($systemd_env_names_to_unset | is-not-empty) {
+      systemctl --user unset-environment ...$systemd_env_names_to_unset
+
+      with-env (
+         $systemd_env_names_to_unset | reduce -f {} {|systemd_env_name_to_unset acc|
+            $acc | merge {$systemd_env_name_to_unset: ''}
+         }
+      ) {
+         dbus-update-activation-environment ...$systemd_env_names_to_unset
+      }
    }
 
-   if $systemd_env_to_update != null and ($systemd_env_to_update | is-not-empty) {
-      systemctl --user import-environment ...$systemd_env_to_update
+   if $systemd_env_names_to_update != null and ($systemd_env_names_to_update | is-not-empty) {
+      systemctl --user import-environment ...$systemd_env_names_to_update
+      dbus-update-activation-environment ...$systemd_env_names_to_update
    }
 
    rm $systemd_pre_env_abs_file_path
