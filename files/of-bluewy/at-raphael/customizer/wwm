@@ -8,6 +8,6 @@ def --wrapped main [...command]: nothing -> nothing {
       | merge $proton_env
       | reject PROTON_ENABLE_WAYLAND
    ) {
-      exec ...$command
+      exec mangohud game-performance ...$command
    }
 }

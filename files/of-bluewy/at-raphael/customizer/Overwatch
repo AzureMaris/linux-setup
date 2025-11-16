@@ -7,6 +7,6 @@ def --wrapped main [...command]: nothing -> nothing {
       $steam_env
       | merge $proton_env
    ) {
-      exec ...$command
+      exec mangohud game-performance ...$command
    }
 }
