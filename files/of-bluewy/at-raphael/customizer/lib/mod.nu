@@ -1,0 +1,51 @@
+#!/usr/bin/env nu
+
+export const steam_env = {
+   LD_PRELOAD: ''
+}
+
+export const proton_env = {
+   PROTON_ENABLE_WAYLAND: 1
+   PROTON_NO_WM_DECORATION: 1
+
+   PROTON_USE_NTSYNC: 1
+
+   PROTON_FSR4_RDNA3_UPGRADE: 1
+   PROTON_FSR4_UPGRADE: 1
+   PROTON_FSR4_INDICATOR: 1
+
+   PROTON_DLSS_UPGRADE: 1
+   PROTON_DLSS_INDICATOR: 1
+
+   PROTON_XESS_UPGRADE: 1
+
+   DXVK_ASYNC: 1
+   DXVK_STATE_CACHE: 1
+
+   __GL_SHADER_DISK_CACHE: 1
+   __GL_SHADER_DISK_CACHE_SKIP_CLEANUP: 1
+
+   RADV_PERFTEST: aco
+   STAGING_SHARED_MEMORY: 1
+}
+
+export const gamescope_parameters = [
+   gamescope
+   --backend
+   wayland
+   -W
+   1920
+   -H
+   1080
+   -w
+   1920
+   -h
+   1080
+   -r
+   240
+   -s
+   0.25
+   --immediate-flips
+   --adaptive-sync
+   --force-grab-cursor
+]

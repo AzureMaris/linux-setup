@@ -1,0 +1,16 @@
+#!/usr/bin/env nu
+
+def --wrapped main [...command: string]: nothing -> nothing {
+   let executable_name = $command | str join | path parse | get stem
+   let command_config_absolute_file_path = get-config-dir-abs-path | path join $executable_name
+
+   if ($command_config_absolute_file_path | path exists) {
+      exec $command_config_absolute_file_path ...$command
+   } else {
+      exec ...$command
+   }
+}
+
+def get-config-dir-abs-path []: nothing -> string {
+   $env.HOME | path join '.config' 'customizer'
+}

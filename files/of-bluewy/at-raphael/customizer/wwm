@@ -1,0 +1,13 @@
+#!/usr/bin/env nu
+
+use ./lib [ steam_env proton_env ]
+
+def --wrapped main [...command]: nothing -> nothing {
+   with-env (
+      $steam_env
+      | merge $proton_env
+      | reject PROTON_ENABLE_WAYLAND
+   ) {
+      exec ...$command
+   }
+}
