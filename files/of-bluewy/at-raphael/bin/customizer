@@ -1,7 +1,15 @@
 #!/usr/bin/env nu
 
 def --wrapped main [...command: string]: nothing -> nothing {
-   let executable_name = $command | str join | path parse | get stem
+   let executable_name = $command
+   | str join ' '
+   | path parse
+   | get stem
+   | split row ' '
+   | get 0
+   | path parse
+   | get stem
+
    let command_config_absolute_file_path = get-config-dir-abs-path | path join $executable_name
 
    if ($command_config_absolute_file_path | path exists) {
