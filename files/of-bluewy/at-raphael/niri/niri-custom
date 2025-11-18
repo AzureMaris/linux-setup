@@ -8,7 +8,6 @@ def main [
 def 'main import-environment' [
 ]: nothing -> nothing {
    let script_runtime_dir = get-script-runtime-dir
-   let wm_env = get-wm-env
 
    let script_runtime_dir = get-script-runtime-dir
    mkdir $script_runtime_dir
@@ -20,6 +19,7 @@ def 'main import-environment' [
    let systemd_pre_env_abs_file_path = get-systemd-pre-env-abs-file-path
    $systemd_pre_env | to json | save -f $systemd_pre_env_abs_file_path
 
+   let wm_env = get-wm-env
    let wm_env_names = $wm_env | columns
 
    if ($wm_env_names | is-empty) {
