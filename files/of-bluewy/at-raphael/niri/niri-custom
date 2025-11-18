@@ -151,32 +151,6 @@ def do-wm-autostart [
    run-single-instance-per-user --systemd=$systemd keepassxc
 }
 
-def get-wm-systemd-service-name []: nothing -> string {
-   'niri-custom.service'
-}
-
-def get-wm-env []: nothing -> record {
-   {
-      DISPLAY: ':0' # also set niri's config
-
-      SDL_VIDEODRIVER: 'wayland,x11'
-      CLUTTER_BACKEND: 'wayland'
-      QT_QPA_PLATFORM: 'wayland;xcb'
-
-      QT_QPA_PLATFORMTHEME: 'qt6ct'
-
-      _JAVA_AWT_WM_NONREPARENTING: '1'
-   }
-}
-
-def get-systemd-pre-env-abs-file-path []: nothing -> string {
-   get-script-runtime-dir | path join 'systemd-pre-env.json'
-}
-
-def get-script-runtime-dir []: nothing -> string {
-   $env.XDG_RUNTIME_DIR | path join 'niri-custom'
-}
-
 def run-single-instance-per-user [
    --user: string
    --systemd
@@ -209,4 +183,30 @@ def run-single-instance-per-user [
          $error | print
       }
    }
+}
+
+def get-wm-systemd-service-name []: nothing -> string {
+   'niri-custom.service'
+}
+
+def get-wm-env []: nothing -> record {
+   {
+      DISPLAY: ':0' # also set niri's config
+
+      SDL_VIDEODRIVER: 'wayland,x11'
+      CLUTTER_BACKEND: 'wayland'
+      QT_QPA_PLATFORM: 'wayland;xcb'
+
+      QT_QPA_PLATFORMTHEME: 'qt6ct'
+
+      _JAVA_AWT_WM_NONREPARENTING: '1'
+   }
+}
+
+def get-systemd-pre-env-abs-file-path []: nothing -> string {
+   get-script-runtime-dir | path join 'systemd-pre-env.json'
+}
+
+def get-script-runtime-dir []: nothing -> string {
+   $env.XDG_RUNTIME_DIR | path join 'niri-custom'
 }
