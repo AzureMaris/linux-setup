@@ -11,5 +11,8 @@ PropagatesStopTo=app-graphical.slice background-graphical.slice session-graphica
 [Service]
 Slice=session.slice
 Type=notify
+TimeoutSec=20s
+ExecStartPre=%h/.local/bin/niri-custom import-environment
 ExecStart=/usr/bin/niri --session
+ExecStartPost=%h/.local/bin/niri-custom autostart --systemd
 ExecStopPost=%h/.local/bin/niri-custom cleanup

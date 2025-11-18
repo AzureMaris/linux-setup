@@ -3,45 +3,45 @@
 def main [
 ]: nothing -> nothing { }
 
+# Imports the environment defined in this script.
+# This part is systemd only.
+def 'main import-environment' [
+]: nothing -> nothing {
+   let script_runtime_dir = get-script-runtime-dir
+   let wm_env = get-wm-env
+
+   let script_runtime_dir = get-script-runtime-dir
+   mkdir $script_runtime_dir
+
+   let systemd_pre_env = systemctl --user show-environment
+   | lines
+   | split column '=' key value
+
+   let systemd_pre_env_abs_file_path = get-systemd-pre-env-abs-file-path
+   $systemd_pre_env | to json | save -f $systemd_pre_env_abs_file_path
+
+   let wm_env_names = $wm_env | columns
+
+   if ($wm_env_names | is-empty) {
+      return
+   }
+
+   with-env $wm_env {
+      systemctl --user import-environment ...$wm_env_names
+      dbus-update-activation-environment ...$wm_env_names
+   }
+}
+
 # Start niri in a custom way.
 def 'main start' [
    --systemd # Whether to use systemd integration.
 ]: nothing -> nothing {
-   let wm_env = get-wm-env
-
    if $systemd {
-      let script_runtime_dir = get-script-runtime-dir
-      mkdir $script_runtime_dir
-
-      let systemd_pre_env = systemctl --user show-environment
-      | lines
-      | split column '=' key value
-
-      let systemd_pre_env_abs_file_path = get-systemd-pre-env-abs-file-path
-      $systemd_pre_env | to json | save -f $systemd_pre_env_abs_file_path
-
-      with-env $wm_env {
-         let wm_env_names = $wm_env | columns
-         systemctl --user import-environment ...$wm_env_names
-         dbus-update-activation-environment ...$wm_env_names
-      }
-
-      let wm_service = get-wm-systemd-service-name
-      systemctl --user start $wm_service
-
-      loop {
-         systemctl --user is-active --quiet $wm_service
-         | complete
-         | if ($in.exit_code == 0) {
-            break
-         }
-
-         sleep 0.5sec
-      }
+      systemctl --user start (get-wm-systemd-service-name)
    } else {
       let job_id = job spawn {
-         with-env $wm_env {
-            niri --session o+e>| lines | take until {|line|
+         with-env (get-wm-env) {
+            niri --session | lines | take until {|line|
                let should_detach = $line | str contains 'IPC listening on:'
 
                if not $should_detach {
@@ -55,9 +55,8 @@ def 'main start' [
       }
 
       job recv
+      do-wm-autostart --systemd=$systemd
    }
-
-   do-wm-autostart --systemd=$systemd
 }
 
 # Stop niri.
@@ -112,6 +111,13 @@ def 'main cleanup' []: nothing -> nothing {
    }
 
    rm $systemd_pre_env_abs_file_path
+}
+
+# Does autostart that is defined in script.
+def 'main autostart' [
+   --systemd
+] {
+   do-wm-autostart --systemd=$systemd
 }
 
 def do-wm-autostart [
