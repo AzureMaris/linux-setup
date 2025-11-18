@@ -7,10 +7,9 @@ def --wrapped main [...command: string]: nothing -> nothing {
    | str join ' '
    | path parse
    | get stem
-   | split row ' '
+   | parse --regex '^(?P<binary>.+?)\s(?P<flags>(?:-.+)*)$'
+   | get binary
    | get 0
-   | path parse
-   | get stem
 
    let wrapper_file_abs_path = get-config-dir-abs-path | path join $executable_name
 
