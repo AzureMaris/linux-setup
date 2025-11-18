@@ -15,37 +15,38 @@ def --wrapped main [...command: string]: nothing -> nothing {
 
    if ($wrapper_file_abs_path | path exists) {
       exec $wrapper_file_abs_path ...$command
-   } else {
-      log info $"wrapper_file_abs_path=($wrapper_file_abs_path) not found"
+      return
+   }
 
-      do {
-         if (which dbus-send | is-empty) {
-            return
-         }
+   log info $"wrapper_file_abs_path=($wrapper_file_abs_path) not found"
 
-         let has_notification_service = (
-            dbus-send
-            --session
-            --type=method_call
-            --print-reply
-            --dest=org.freedesktop.Notifications
-            /org/freedesktop/Notifications
-            org.freedesktop.Notifications.GetServerInformation
-            | complete
-            | get exit_code
-            | $in <= 0
-         )
-
-         if not $has_notification_service {
-            return
-         }
-
-         (
-            notify-send
-            ($env.CURRENT_FILE | path parse | get stem)
-            $"wrapper_file_abs_path=($wrapper_file_abs_path) not found"
-         )
+   do {
+      if (which dbus-send | is-empty) {
+         return
       }
+
+      let has_notification_service = (
+         dbus-send
+         --session
+         --type=method_call
+         --print-reply
+         --dest=org.freedesktop.Notifications
+         /org/freedesktop/Notifications
+         org.freedesktop.Notifications.GetServerInformation
+         | complete
+         | get exit_code
+         | $in <= 0
+      )
+
+      if not $has_notification_service {
+         return
+      }
+
+      (
+         notify-send
+         ($env.CURRENT_FILE | path parse | get stem)
+         $"wrapper_file_abs_path=($wrapper_file_abs_path) not found"
+      )
    }
 }
 
