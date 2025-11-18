@@ -2,16 +2,11 @@
 
 use std log
 
-def --wrapped main [...command: string]: nothing -> nothing {
-   let executable_name = $command
-   | str join ' '
-   | path parse
-   | get stem
-   | parse --regex '^(?P<binary>.+?)\s(?P<flags>(?:-.+)*)$'
-   | get binary
-   | get 0
-
-   let wrapper_file_abs_path = get-config-dir-abs-path | path join $executable_name
+def --wrapped main [
+   wrapper_name: string # The script that it should find.
+   ...command: string # The actual command.
+]: nothing -> nothing {
+   let wrapper_file_abs_path = get-config-dir-abs-path | path join $wrapper_name
 
    if ($wrapper_file_abs_path | path exists) {
       exec $wrapper_file_abs_path ...$command
