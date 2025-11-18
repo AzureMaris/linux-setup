@@ -123,11 +123,12 @@ def 'main autostart' [
 def do-wm-autostart [
    --systemd
 ] {
-   if $systemd {
-      let wm_env = get-wm-env
-      with-env ($wm_env | select DISPLAY) { systemctl --user import-environment DISPLAY }
-      systemctl --user start xwayland-satellite.service
-   }
+   (
+      run-single-instance-per-user
+      --systemd=$systemd
+      --systemd-wrapper-command=['runapp' '-i' 'session-graphical.slice']
+      xwayland-satellite
+   )
 
    (
       run-single-instance-per-user
