@@ -5,263 +5,254 @@
 
    "colors": {
       "source_color": {
-         "dark": "#61afef",
-         "default": "#61afef",
-         "light": "#61afef"
+         "dark": { "hex": "#61afef" },
+         "default": { "hex": "#61afef" },
+         "light": { "hex": "#61afef" }
       },
-
       "primary": {
-         "dark": "#61afef",
-         "default": "#61afef",
-         "light": "#61afef"
+         "dark": { "hex": "#61afef" },
+         "default": { "hex": "#61afef" },
+         "light": { "hex": "#61afef" }
       },
       "on_primary": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
       "primary_container": {
-         "dark": "#61afef",
-         "default": "#61afef",
-         "light": "#61afef"
+         "dark": { "hex": "#61afef" },
+         "default": { "hex": "#61afef" },
+         "light": { "hex": "#61afef" }
       },
       "on_primary_container": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
       "primary_fixed": {
-         "dark": "#61afef",
-         "default": "#61afef",
-         "light": "#61afef"
+         "dark": { "hex": "#61afef" },
+         "default": { "hex": "#61afef" },
+         "light": { "hex": "#61afef" }
       },
       "on_primary_fixed": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
       "primary_fixed_dim": {
-         "dark": "#61afef",
-         "default": "#61afef",
-         "light": "#61afef"
+         "dark": { "hex": "#61afef" },
+         "default": { "hex": "#61afef" },
+         "light": { "hex": "#61afef" }
       },
       "on_primary_fixed_variant": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
-
       "secondary": {
-         "dark": "#c678dd",
-         "default": "#c678dd",
-         "light": "#c678dd"
+         "dark": { "hex": "#c678dd" },
+         "default": { "hex": "#c678dd" },
+         "light": { "hex": "#c678dd" }
       },
       "on_secondary": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
       "secondary_container": {
-         "dark": "#c678dd",
-         "default": "#c678dd",
-         "light": "#c678dd"
+         "dark": { "hex": "#c678dd" },
+         "default": { "hex": "#c678dd" },
+         "light": { "hex": "#c678dd" }
       },
       "on_secondary_container": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
       "secondary_fixed": {
-         "dark": "#c678dd",
-         "default": "#c678dd",
-         "light": "#c678dd"
+         "dark": { "hex": "#c678dd" },
+         "default": { "hex": "#c678dd" },
+         "light": { "hex": "#c678dd" }
       },
       "on_secondary_fixed": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
       "secondary_fixed_dim": {
-         "dark": "#c678dd",
-         "default": "#c678dd",
-         "light": "#c678dd"
+         "dark": { "hex": "#c678dd" },
+         "default": { "hex": "#c678dd" },
+         "light": { "hex": "#c678dd" }
       },
       "on_secondary_fixed_variant": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
-
       "tertiary": {
-         "dark": "#c678dd",
-         "default": "#c678dd",
-         "light": "#c678dd"
+         "dark": { "hex": "#c678dd" },
+         "default": { "hex": "#c678dd" },
+         "light": { "hex": "#c678dd" }
       },
       "on_tertiary": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
       "tertiary_container": {
-         "dark": "#c678dd",
-         "default": "#c678dd",
-         "light": "#c678dd"
+         "dark": { "hex": "#c678dd" },
+         "default": { "hex": "#c678dd" },
+         "light": { "hex": "#c678dd" }
       },
       "on_tertiary_container": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
       "tertiary_fixed": {
-         "dark": "#c678dd",
-         "default": "#c678dd",
-         "light": "#c678dd"
+         "dark": { "hex": "#c678dd" },
+         "default": { "hex": "#c678dd" },
+         "light": { "hex": "#c678dd" }
       },
       "on_tertiary_fixed": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
       "tertiary_fixed_dim": {
-         "dark": "#c678dd",
-         "default": "#c678dd",
-         "light": "#c678dd"
+         "dark": { "hex": "#c678dd" },
+         "default": { "hex": "#c678dd" },
+         "light": { "hex": "#c678dd" }
       },
       "on_tertiary_fixed_variant": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
-
       "error": {
-         "dark": "#e06c75",
-         "default": "#e06c75",
-         "light": "#e06c75"
+         "dark": { "hex": "#e06c75" },
+         "default": { "hex": "#e06c75" },
+         "light": { "hex": "#e06c75" }
       },
       "on_error": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
       "error_container": {
-         "dark": "#e06c75",
-         "default": "#e06c75",
-         "light": "#e06c75"
+         "dark": { "hex": "#e06c75" },
+         "default": { "hex": "#e06c75" },
+         "light": { "hex": "#e06c75" }
       },
       "on_error_container": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
-
       "outline": {
-         "dark": " #4b5362",
-         "default": "#4b5362",
-         "light": "#4b5362"
+         "dark": { "hex": "#4b5362" },
+         "default": { "hex": "#4b5362" },
+         "light": { "hex": "#4b5362" }
       },
       "outline_variant": {
-         "dark": "#3e4452",
-         "default": "#3e4452",
-         "light": "#3e4452"
+         "dark": { "hex": "#3e4452" },
+         "default": { "hex": "#3e4452" },
+         "light": { "hex": "#3e4452" }
       },
-
       "surface": {
-         "dark": "#282c34",
-         "default": "#282c34",
-         "light": "#282c34"
+         "dark": { "hex": "#282c34" },
+         "default": { "hex": "#282c34" },
+         "light": { "hex": "#282c34" }
       },
       "surface_bright": {
-         "dark": "#37393e",
-         "default": "#37393e",
-         "light": "#f9f9ff"
+         "dark": { "hex": "#37393e" },
+         "default": { "hex": "#37393e" },
+         "light": { "hex": "#f9f9ff" }
       },
       "surface_dim": {
-         "dark": "#282c34",
-         "default": "#282c34",
-         "light": "#282c34"
+         "dark": { "hex": "#282c34" },
+         "default": { "hex": "#282c34" },
+         "light": { "hex": "#282c34" }
       },
       "surface_tint": {
-         "dark": "#282c34",
-         "default": "#282c34",
-         "light": "#282c34"
+         "dark": { "hex": "#282c34" },
+         "default": { "hex": "#282c34" },
+         "light": { "hex": "#282c34" }
       },
       "on_surface": {
-         "dark": "#abb2bf",
-         "default": "#abb2bf",
-         "light": "#abb2bf"
+         "dark": { "hex": "#abb2bf" },
+         "default": { "hex": "#abb2bf" },
+         "light": { "hex": "#abb2bf" }
       },
       "surface_variant": {
-         "dark": "#282c34",
-         "default": "#282c34",
-         "light": "#282c34"
+         "dark": { "hex": "#282c34" },
+         "default": { "hex": "#282c34" },
+         "light": { "hex": "#282c34" }
       },
       "on_surface_variant": {
-         "dark": "#abb2bf",
-         "default": "#abb2bf",
-         "light": "#abb2bf"
+         "dark": { "hex": "#abb2bf" },
+         "default": { "hex": "#abb2bf" },
+         "light": { "hex": "#abb2bf" }
       },
       "surface_container": {
-         "dark": "#282c34",
-         "default": "#282c34",
-         "light": "#282c34"
+         "dark": { "hex": "#282c34" },
+         "default": { "hex": "#282c34" },
+         "light": { "hex": "#282c34" }
       },
       "surface_container_high": {
-         "dark": "#282c34",
-         "default": "#282c34",
-         "light": "#282c34"
+         "dark": { "hex": "#282c34" },
+         "default": { "hex": "#282c34" },
+         "light": { "hex": "#282c34" }
       },
       "surface_container_highest": {
-         "dark": "#282c34",
-         "default": "#282c34",
-         "light": "#282c34"
+         "dark": { "hex": "#282c34" },
+         "default": { "hex": "#282c34" },
+         "light": { "hex": "#282c34" }
       },
       "surface_container_low": {
-         "dark": "#282c34",
-         "default": "#282c34",
-         "light": "#282c34"
+         "dark": { "hex": "#282c34" },
+         "default": { "hex": "#282c34" },
+         "light": { "hex": "#282c34" }
       },
       "surface_container_lowest": {
-         "dark": "#282c34",
-         "default": "#282c34",
-         "light": "#282c34"
+         "dark": { "hex": "#282c34" },
+         "default": { "hex": "#282c34" },
+         "light": { "hex": "#282c34" }
       },
-
       "background": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
       "on_background": {
-         "dark": "#abb2bf",
-         "default": "#abb2bf",
-         "light": "#abb2bf"
+         "dark": { "hex": "#abb2bf" },
+         "default": { "hex": "#abb2bf" },
+         "light": { "hex": "#abb2bf" }
       },
-
       "inverse_on_surface": {
-         "dark": "#181a1f",
-         "default": "#181a1f",
-         "light": "#181a1f"
+         "dark": { "hex": "#181a1f" },
+         "default": { "hex": "#181a1f" },
+         "light": { "hex": "#181a1f" }
       },
       "inverse_primary": {
-         "dark": "#61afef",
-         "default": "#61afef",
-         "light": "#61afef"
+         "dark": { "hex": "#61afef" },
+         "default": { "hex": "#61afef" },
+         "light": { "hex": "#61afef" }
       },
       "inverse_surface": {
-         "dark": "#282c34",
-         "default": "#282c34",
-         "light": "#282c34"
+         "dark": { "hex": "#282c34" },
+         "default": { "hex": "#282c34" },
+         "light": { "hex": "#282c34" }
       },
-
       "scrim": {
-         "dark": "#000000",
-         "default": "#000000",
-         "light": "#000000"
+         "dark": { "hex": "#000000" },
+         "default": { "hex": "#000000" },
+         "light": { "hex": "#000000" }
       },
       "shadow": {
-         "dark": "#000000",
-         "default": "#000000",
-         "light": "#000000"
+         "dark": { "hex": "#000000" },
+         "default": { "hex": "#000000" },
+         "light": { "hex": "#000000" }
       }
    },
 
