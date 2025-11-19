@@ -9,6 +9,7 @@
          "default": { "hex": "#61afef" },
          "light": { "hex": "#61afef" }
       },
+
       "primary": {
          "dark": { "hex": "#61afef" },
          "default": { "hex": "#61afef" },
@@ -49,6 +50,7 @@
          "default": { "hex": "#181a1f" },
          "light": { "hex": "#181a1f" }
       },
+
       "secondary": {
          "dark": { "hex": "#c678dd" },
          "default": { "hex": "#c678dd" },
@@ -89,6 +91,7 @@
          "default": { "hex": "#181a1f" },
          "light": { "hex": "#181a1f" }
       },
+
       "tertiary": {
          "dark": { "hex": "#c678dd" },
          "default": { "hex": "#c678dd" },
@@ -129,6 +132,7 @@
          "default": { "hex": "#181a1f" },
          "light": { "hex": "#181a1f" }
       },
+
       "error": {
          "dark": { "hex": "#e06c75" },
          "default": { "hex": "#e06c75" },
@@ -149,6 +153,7 @@
          "default": { "hex": "#181a1f" },
          "light": { "hex": "#181a1f" }
       },
+
       "outline": {
          "dark": { "hex": "#4b5362" },
          "default": { "hex": "#4b5362" },
@@ -159,6 +164,7 @@
          "default": { "hex": "#3e4452" },
          "light": { "hex": "#3e4452" }
       },
+
       "surface": {
          "dark": { "hex": "#282c34" },
          "default": { "hex": "#282c34" },
@@ -219,6 +225,7 @@
          "default": { "hex": "#282c34" },
          "light": { "hex": "#282c34" }
       },
+
       "background": {
          "dark": { "hex": "#181a1f" },
          "default": { "hex": "#181a1f" },
@@ -229,6 +236,7 @@
          "default": { "hex": "#abb2bf" },
          "light": { "hex": "#abb2bf" }
       },
+
       "inverse_on_surface": {
          "dark": { "hex": "#181a1f" },
          "default": { "hex": "#181a1f" },
@@ -244,6 +252,7 @@
          "default": { "hex": "#282c34" },
          "light": { "hex": "#282c34" }
       },
+
       "scrim": {
          "dark": { "hex": "#000000" },
          "default": { "hex": "#000000" },
