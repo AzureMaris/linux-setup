@@ -1,10 +1,10 @@
-pkgname=librewolf-psd
+pkgname=profile-sync-daemon-librewolf
 _pkgname=$pkgname
 pkgver=1
 pkgrel=1
 pkgdesc='Adds librewolf profile for profile sync daemon'
 arch=(any)
-depends=(librewolf profile-sync-daemon)
+depends=(profile-sync-daemon librewolf)
 provides=($_pkgname)
 conflicts=($_pkgname)
 
