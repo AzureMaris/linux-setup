@@ -1,6 +1,6 @@
 [[packages]]
 install = [
-   { from = 'lcl', name = 'librewolf-psd', path = '../../../../pkgbuilds/librewolf-psd' },
+   { from = 'lcl', name = 'profile-sync-daemon-librewolf', path = '../../../../pkgbuilds/profile-sync-daemon-librewolf' },
    { from = 'std', name = 'thunderbird' },
 ]
 profiles = ['root@raphael', 'root@uriel']
