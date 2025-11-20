@@ -17,6 +17,6 @@ install = [
    { from = 'std', name = 'paru' },
    { from = 'std', name = 'downgrade' },
 
-   { from = 'lcl', name = 'salm-git', path = '../../../../pkgbuilds/sam-git' },
+   { from = 'lcl', name = 'salm-git', path = '../../../../pkgbuilds/salm-git' },
 ]
 profiles = ['root@raphael', 'root@uriel', 'root@sariel', 'root@belphegor']
