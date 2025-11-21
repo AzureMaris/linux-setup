@@ -1,6 +1,6 @@
 pkgname=salm-git
 _pkgname=salm
-pkgver=r8.a4526a3
+pkgver=r29.b51f777
 pkgrel=1
 pkgdesc='A way to manage dots'
 arch=(any)
@@ -19,5 +19,8 @@ pkgver() {
 
 package() {
    cd "$srcdir/$_pkgname"
-   install -Dm755 salm -t "$pkgdir/usr/bin"
+   install -d "$pkgdir/usr/share/$_pkgname"
+   cp -r * "$pkgdir/usr/share/$_pkgname"
+   mkdir -p "$pkgdir/usr/bin"
+   ln -s "/usr/share/$_pkgname/rsc/$_pkgname" "$pkgdir/usr/bin/$_pkgname"
 }
