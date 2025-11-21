@@ -1,11 +1,12 @@
 #!/usr/bin/env nu
 
-use ./lib [ steam_env proton_env ]
+use ./lib [ steam_env proton_env get-mangohud-config-env ]
 
 def --wrapped main [...command]: nothing -> nothing {
    with-env {
       ...$steam_env
       ...$proton_env
+      ...(get-mangohud-config-env)
    } {
       exec mangohud game-performance ...$command
    }
