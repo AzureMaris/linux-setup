@@ -115,6 +115,12 @@ export const gamescope_parameters = [
 export def get-mangohud-config-env [
    --upsert-values: list<record<old: oneof<string, nothing>, new: string>>
 ]: nothing -> record {
+   if $upsert_values == null {
+      return {
+         MANGOHUD_CONFIG: ($mangohud_config_values | str join ',')
+      }
+   }
+
    let mangohud_config_values = $mangohud_config_values | each {|mangohud_config_value|
       let mangohud_config_values_to_update = $upsert_values | where {|upsert_value|
          $mangohud_config_value == $upsert_value.old
@@ -127,11 +133,15 @@ export def get-mangohud-config-env [
       $mangohud_config_values_to_update.new
    }
 
-   let mangohud_config_values_to_insert = $upsert_values | where {|upsert_value|
+   let mangohud_config_values = $upsert_values
+   | where {|upsert_value|
       $upsert_value.new not-in $mangohud_config_values
    }
+   | append $mangohud_config_values
 
-   let mangohud_config_values = $mangohud_config_values | append $mangohud_config_values_to_insert
+   if ($mangohud_config_values | is-empty) {
+      return {}
+   }
 
    {
       MANGOHUD_CONFIG: ($mangohud_config_values | str join ',')
