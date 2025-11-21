@@ -4,7 +4,7 @@ use std log
 
 def --wrapped main [
    wrapper_name: string # The script that it should find.
-   ...command: string # The actual command.
+   ...command # The actual command.
 ]: nothing -> nothing {
    let wrapper_file_abs_path = get-config-dir-abs-path | path join $wrapper_name
 
