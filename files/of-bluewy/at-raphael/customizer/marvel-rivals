@@ -3,13 +3,11 @@
 use ./lib [ steam_env proton_env ]
 
 def --wrapped main [...command]: nothing -> nothing {
-   with-env (
-      $steam_env
-      | merge $proton_env
-      | merge {
-         STEAMDECK: 1
-      }
-   ) {
+   with-env {
+      ...$steam_env
+      ...$proton_env
+      STEAMDECK: 1
+   } {
       exec mangohud game-performance ...$command
    }
 }
