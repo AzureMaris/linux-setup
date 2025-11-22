@@ -8,8 +8,10 @@ install = [
    { from = 'std', name = 'gvfs-nfs' },
    { from = 'std', name = 'gvfs-smb' },
    { from = 'std', name = 'gvfs-wsdd' },
+
    { from = 'std', name = 'vlc' },
    { from = 'std', name = 'vlc-plugins-all' },
+
    { from = 'std', name = 'loupe' },
    { from = 'std', name = 'evince' },
 ]

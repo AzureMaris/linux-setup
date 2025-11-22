@@ -1,3 +1,0 @@
-[[packages]]
-install = [{ from = 'aur', name = 'glibc-eac', ignore = true }]
-profiles = []

@@ -5,5 +5,9 @@ install = [
 
    { from = 'std', name = 'wiremix' },
    { from = 'std', name = 'bluetui' },
+
+   { from = 'std', name = 'bottom' },
+   { from = 'std', name = 'bandwhich' },
+   { from = 'std', name = 'nvtop' },
 ]
-profiles = ['root@raphael', 'root@uriel']
+profiles = ['root@raphael', 'root@uriel', 'root@sariel', 'root@belphegor']
