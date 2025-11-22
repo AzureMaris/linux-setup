@@ -12,16 +12,18 @@
     },
     "audio": {
         "cavaFrameRate": 60,
+        "externalMixer": "pwvucontrol || pavucontrol",
         "mprisBlacklist": [
         ],
         "preferredPlayer": "",
         "visualizerQuality": "high",
-        "visualizerType": "linear",
+        "visualizerType": "mirrored",
         "volumeOverdrive": false,
         "volumeStep": 5
     },
     "bar": {
         "backgroundOpacity": 1,
+        "capsuleOpacity": 1,
         "density": "comfortable",
         "exclusive": true,
         "floating": false,
@@ -35,15 +37,10 @@
         "widgets": {
             "center": [
                 {
-                    "hideMode": "visible",
+                    "colorName": "primary",
                     "hideWhenIdle": false,
-                    "id": "MediaMini",
-                    "maxWidth": 145,
-                    "scrollingMode": "hover",
-                    "showAlbumArt": false,
-                    "showVisualizer": true,
-                    "useFixedWidth": true,
-                    "visualizerType": "wave"
+                    "id": "AudioVisualizer",
+                    "width": 50
                 },
                 {
                     "customFont": "",
@@ -103,13 +100,13 @@
             ]
         }
     },
-    "battery": {
-        "chargingMode": 0
-    },
     "brightness": {
         "brightnessStep": 5,
         "enableDdcSupport": true,
         "enforceMinimum": true
+    },
+    "changelog": {
+        "lastSeenVersion": ""
     },
     "colorSchemes": {
         "darkMode": true,
@@ -190,6 +187,7 @@
         "size": 1
     },
     "general": {
+        "allowPanelsOnScreenWithoutBar": true,
         "animationDisabled": false,
         "animationSpeed": 2,
         "avatarImage": "~/media/screenshots/2025-10-12_21-21-38.png",
@@ -221,7 +219,8 @@
         "showWeekNumberInCalendar": false,
         "use12hourFormat": false,
         "useFahrenheit": false,
-        "weatherEnabled": false
+        "weatherEnabled": false,
+        "weatherShowEffects": true
     },
     "network": {
         "wifiEnabled": false
@@ -371,7 +370,7 @@
         ],
         "overviewEnabled": false,
         "panelPosition": "follow_bar",
-        "randomEnabled": true,
+        "randomEnabled": false,
         "randomIntervalSec": 300,
         "recursiveSearch": false,
         "setWallpaperOnAllMonitors": true,
