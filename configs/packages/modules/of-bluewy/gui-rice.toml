@@ -1,5 +1,6 @@
 [[packages]]
 install = [
+   { from = 'std', name = 'matugen' },
    { from = 'aur', name = 'qt6ct-kde' },
    { from = 'aur', name = 'qt5ct-kde' },
    { from = 'aur', name = 'bibata-cursor-theme-bin' },
