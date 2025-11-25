@@ -5,7 +5,7 @@ use ./lib [ steam_env proton_env get-mangohud-config-env ]
 def --wrapped main [...command]: nothing -> nothing {
    with-env {
       ...$steam_env
-      ...(get-mangohud-config-env --upsert-values=[{old: fps_limit=0 new: fps_limit=141}])
+      ...(get-mangohud-config-env --upsert-values=[{old: fps_limit=0 new: fps_limit=157}])
    } {
       exec mangohud game-performance ...$command
    }
