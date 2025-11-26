@@ -1,6 +1,7 @@
 [[packages]]
 install = [
    { from = 'std', name = 'localsend' },
+   { from = 'aur', name = 'kdrive-bin' },
    { from = 'aur', name = 'anydesk-bin', ignore = true },
 ]
 profiles = ['root@raphael', 'root@uriel']
