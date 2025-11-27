@@ -47,10 +47,6 @@ binds {
  
    Mod+Shift+Space { switch-layout "next"; }
 
-   // [[ Screenshot ]]
-
-   Mod+Print { screenshot; }
-
    // [[ Window ]]
 
    Mod+U { focus-window-up; }
@@ -67,12 +63,6 @@ binds {
    Mod+Shift+I { set-column-width "+10%"; }
    Mod+Shift+E { set-window-height "-10%"; }
    Mod+Shift+N { set-column-width "-10%"; }
-
-   Mod+Home { focus-column-first; }
-   Mod+End { focus-column-last; }
-
-   Mod+Ctrl+Home { move-column-to-first; }
-   Mod+Ctrl+End { move-column-to-last; }
 
    Mod+C { center-column; }
    Mod+Shift+C { center-visible-columns; }
