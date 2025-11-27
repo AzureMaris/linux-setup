@@ -9,7 +9,6 @@ def --wrapped main [...command]: nothing -> nothing {
       ...(get-mangohud-config-env)
       STEAMDECK: 1
    } {
-      # exec mangohud game-performance ...$command
-      exec gamescope-on-niri --backend wayland -- game-performance ...$command
+      exec mangohud game-performance ...$command
    }
 }
