@@ -3,9 +3,8 @@
 def main [
 ]: nothing -> nothing { }
 
-# Imports the environment defined in this script.
-# This part is systemd only.
-def 'main import-environment' [
+# Saves previous state and imports evironment to systemd (systemd only).
+def 'main do-environment' [
 ]: nothing -> nothing {
    let script_runtime_dir = get-script-runtime-dir
 
@@ -59,7 +58,7 @@ def 'main start' [
    }
 }
 
-# Stop niri.
+# Stops niri.
 def 'main stop' [
    --systemd # Whether systemd was used.
 ]: nothing -> nothing {
@@ -70,8 +69,7 @@ def 'main stop' [
    }
 }
 
-# Cleans up the environment as best as possible.
-# This is only needed with systemd.
+# Cleans user systemd environment (systemd only).
 def 'main cleanup' []: nothing -> nothing {
    let systemd_pre_env_abs_file_path = get-systemd-pre-env-abs-file-path
    let systemd_pre_env = open $systemd_pre_env_abs_file_path
