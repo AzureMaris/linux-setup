@@ -1,0 +1,61 @@
+prefer-no-csd
+
+xwayland-satellite {
+   off
+}
+
+window-rule {
+   geometry-corner-radius 20
+   clip-to-geometry true
+
+   open-fullscreen false
+   open-maximized true
+   open-focused true
+}
+
+window-rule {
+   match is-floating=true
+   open-maximized false
+}
+
+window-rule {
+   match is-window-cast-target=true
+
+   border {
+      inactive-color "#5a2d32"
+   }
+
+   tab-indicator {
+      inactive-color "#5a2d32"
+   }
+}
+
+window-rule {
+   match is-active=true is-window-cast-target=true
+
+   border {
+      active-color "#E06C75"
+      inactive-color "#5a2d32"
+   }
+
+   tab-indicator {
+      active-color "#E06C75"
+      inactive-color "#5a2d32"
+   }
+}
+
+window-rule {
+   match at-startup=true app-id="org.keepassxc.KeePassXC"
+   open-on-workspace "scratchpad"
+   open-focused true
+}
+
+window-rule {
+   match app-id="org.keepassxc.KeePassXC"
+   block-out-from "screencast"
+}
+
+window-rule {
+   match app-id=r#"librewolf$"# title="^Picture-in-Picture$"
+   open-floating true
+}

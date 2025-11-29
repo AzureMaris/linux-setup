@@ -1,0 +1,120 @@
+hotkey-overlay {
+   skip-at-startup
+}
+
+// Mod is 1st layer
+// Mod + Alt is 2nd layer
+// combined with
+// KEY for the action
+// CTRl for alternative 1 and preferably for move actions
+// Shift for alternative 2
+
+binds {
+   // [[ WM ]]
+
+   Mod+Slash { show-hotkey-overlay; }
+   Mod+O repeat=false { toggle-overview; }
+   Mod+K { toggle-keyboard-shortcuts-inhibit; }
+
+   // [[ Keyboard ]]
+ 
+   Mod+Shift+Space { switch-layout "next"; }
+
+   // [[ Window ]]
+
+   Mod+U { focus-window-up; }
+   Mod+I { focus-column-right; }
+   Mod+E { focus-window-down; }
+   Mod+N { focus-column-left; }
+
+   Mod+Ctrl+U { move-window-up; }
+   Mod+Ctrl+I { consume-or-expel-window-right; }
+   Mod+Ctrl+E { move-window-down; }
+   Mod+Ctrl+N { consume-or-expel-window-left; }
+
+   Mod+Shift+U { set-window-height "+10%"; }
+   Mod+Shift+I { set-column-width "+10%"; }
+   Mod+Shift+E { set-window-height "-10%"; }
+   Mod+Shift+N { set-column-width "-10%"; }
+
+   Mod+C { center-column; }
+   Mod+Shift+C { center-visible-columns; }
+
+   Mod+R { switch-preset-column-width; }
+   Mod+Shift+R { switch-preset-window-height; }
+   Mod+Ctrl+R { reset-window-height; }
+
+   Mod+M { maximize-column; }
+   Mod+Shift+M { maximize-window-to-edges; }
+
+   Mod+F { toggle-windowed-fullscreen; }
+   Mod+Shift+F { fullscreen-window; }
+
+   Mod+V { toggle-window-floating; }
+   Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+
+   Mod+W { toggle-column-tabbed-display; }
+
+   Mod+Q { close-window; }
+
+   // [[ Workspace ]]
+
+   Mod+1 { focus-workspace "one"; }
+   Mod+2 { focus-workspace "two"; }
+   Mod+3 { focus-workspace "three"; }
+   Mod+4 { focus-workspace "four"; }
+   Mod+8 { focus-workspace "eight"; }
+   Mod+9 { focus-workspace "nine"; }
+   Mod+0 { focus-workspace "zero"; }
+
+   Mod+Ctrl+1 { move-window-to-workspace "one"; }
+   Mod+Ctrl+2 { move-window-to-workspace "two"; }
+   Mod+Ctrl+3 { move-window-to-workspace "three"; }
+   Mod+Ctrl+4 { move-window-to-workspace "four"; }
+   Mod+Ctrl+8 { move-window-to-workspace "eight"; }
+   Mod+Ctrl+9 { move-window-to-workspace "nine"; }
+   Mod+Ctrl+0 { move-window-to-workspace "zero"; }
+
+   Mod+Y { focus-workspace-down; }
+   Mod+L { focus-workspace-up; }
+
+   Mod+Shift+Y { move-workspace-down; }
+   Mod+Shift+L { move-workspace-up; }
+
+   Mod+Ctrl+Shift+L { move-window-to-workspace-up; }
+   Mod+Ctrl+Shift+Y { move-window-to-workspace-down; }
+
+   // [[ Monitor Binds ]]
+
+   Mod+Alt+U { focus-monitor-up; }
+   Mod+Alt+I { focus-monitor-right; }
+   Mod+Alt+E { focus-monitor-down; }
+   Mod+Alt+N { focus-monitor-left; }
+
+   Mod+Alt+Ctrl+U { move-window-to-monitor-up; }
+   Mod+Alt+Ctrl+I { move-window-to-monitor-right; }
+   Mod+Alt+Ctrl+E { move-window-to-monitor-down; }
+   Mod+Alt+Ctrl+N { move-window-to-monitor-left; }
+
+   // [[ Other ]]
+
+   Mod+T hotkey-overlay-title="Open a Terminal" { spawn "runapp" "wezterm"; }
+   Mod+D hotkey-overlay-title="Open App Launcher" { spawn "runapp" "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+   Mod+Alt+D hotkey-overlay-title="Open App Launcher (Alternative)" { spawn "runapp" "fuzzel" "--launch-prefix=runapp"; }
+   Mod+B allow-when-locked=true { spawn "runapp" "qs" "-c" "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+
+   Mod+A { spawn "runapp" "/home/bluewy/.config/niri/dmenu/do-dmenu.nu"; }
+   Mod+X { spawn "runapp" "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
+
+   XF86AudioRaiseVolume allow-when-locked=true { spawn "runapp" "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
+   XF86AudioLowerVolume allow-when-locked=true { spawn "runapp" "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+   XF86AudioMute allow-when-locked=true { spawn "runapp" "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+   XF86AudioMicMute allow-when-locked=true { spawn "runapp" "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+   XF86MonBrightnessUp allow-when-locked=true { spawn "runapp" "brightnessctl" "--class=backlight" "set" "+10%"; }
+   XF86MonBrightnessDown allow-when-locked=true { spawn "runapp" "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+   Mod+Shift+Escape { spawn "runapp" "niri-custom" "stop" "--systemd"; }
+   Mod+Alt+Shift+Escape { spawn "runapp" "niri-custom" "stop"; }
+}
+

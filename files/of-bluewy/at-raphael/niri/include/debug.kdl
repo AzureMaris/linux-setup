@@ -1,0 +1,9 @@
+// this is strictly a workaround
+// env management occurs in the wrapper
+environment {
+   DISPLAY ":0"
+}
+
+debug {
+   honor-xdg-activation-with-invalid-serial
+}

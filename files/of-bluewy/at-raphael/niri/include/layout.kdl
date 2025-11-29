@@ -1,0 +1,33 @@
+layout {
+   background-color "#282c34"
+   gaps 11
+   center-focused-column "never"
+
+   preset-column-widths {
+      proportion 0.33333
+      proportion 0.5
+      proportion 0.66667
+   }
+
+   default-column-width { proportion 0.5; }
+
+   focus-ring {
+      off
+   }
+
+   border {
+      on
+      width 2
+      active-color "#61AFEF"
+      inactive-color "#27445a"
+      urgent-color "#E5C07B"
+   }
+
+   tab-indicator {
+      length total-proportion=0.9
+      place-within-column
+      gap 0
+      gaps-between-tabs 11
+      width 11
+   }
+}

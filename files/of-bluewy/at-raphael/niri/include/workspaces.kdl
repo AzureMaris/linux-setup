@@ -1,0 +1,8 @@
+workspace "one"
+workspace "two"
+workspace "three"
+workspace "four"
+workspace "eight"
+workspace "nine"
+workspace "zero"
+workspace "scratchpad"
