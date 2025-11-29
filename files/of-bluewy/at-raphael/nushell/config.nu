@@ -1,5 +1,3 @@
-use std repeat
-
 # [ Fns ]
 
 def 'compact column' [
@@ -30,31 +28,6 @@ def 'compact column' [
    }
 
    $columns | reject ...$column_names_to_drop
-}
-
-def path-relative-to [to: path]: path -> path {
-   let from = $in | path split
-   let to = $to | path split
-
-   let prefix_match_count = $to
-   | zip $from
-   | enumerate
-   | where $it.item.0 == $it.item.1
-   | length
-
-   if ($prefix_match_count <= 0) {
-      error make {msg: "Paths have nothing in common."}
-   }
-
-   let is_same_path = ($prefix_match_count == ($from | length)) and ($prefix_match_count == ($to | length))
-
-   let from_tail = if $is_same_path { $from | last 1 } else { $from | skip $prefix_match_count }
-   let to_tail = if $is_same_path { $to | last 1 } else { $to | skip $prefix_match_count }
-
-   ".."
-   | repeat ($from_tail | length)
-   | append $to_tail
-   | path join
 }
 
 # [ Env ]
