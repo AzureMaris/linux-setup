@@ -1,0 +1,33 @@
+version: 5
+daemon:
+  log_level: info
+  admin_group: wheel
+  disable_clocks_cleanup: false
+apply_settings_timer: 5
+gpus:
+  1002:731F-1DA2:E410-0000:03:00.0:
+    fan_control_enabled: true
+    fan_control_settings:
+      mode: curve
+      static_speed: 0.5
+      temperature_key: junction
+      interval_ms: 500
+      curve:
+        35: 0.0
+        50: 0.0043763677
+        55: 0.12718205
+        65: 0.25187033
+        75: 0.40399003
+        80: 0.50374067
+        85: 0.70074815
+        90: 1.0
+      spindown_delay_ms: 3000
+      change_threshold: 0
+    power_cap: 220.0
+    performance_level: auto
+    max_voltage: 1120
+    gpu_vf_curve:
+      2:
+        clockspeed: 2100
+current_profile: null
+auto_switch_profiles: false

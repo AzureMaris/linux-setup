@@ -59,6 +59,32 @@
             ],
             "left": [
                 {
+                    "icon": "rocket",
+                    "id": "CustomButton",
+                    "leftClickExec": "runapp qs -c noctalia-shell ipc call launcher toggle",
+                    "leftClickUpdateText": false,
+                    "maxTextLength": {
+                        "horizontal": 10,
+                        "vertical": 10
+                    },
+                    "middleClickExec": "runapp qs -c noctalia-shell ipc call launcher toggle",
+                    "middleClickUpdateText": false,
+                    "parseJson": false,
+                    "rightClickExec": "runapp qs -c noctalia-shell ipc call launcher toggle",
+                    "rightClickUpdateText": false,
+                    "textCollapse": "",
+                    "textCommand": "",
+                    "textIntervalMs": 3000,
+                    "textStream": false,
+                    "wheelDownExec": "",
+                    "wheelDownUpdateText": false,
+                    "wheelExec": "",
+                    "wheelMode": "unified",
+                    "wheelUpExec": "",
+                    "wheelUpUpdateText": false,
+                    "wheelUpdateText": false
+                },
+                {
                     "characterCount": 2,
                     "followFocusedScreen": false,
                     "hideUnoccupied": false,
