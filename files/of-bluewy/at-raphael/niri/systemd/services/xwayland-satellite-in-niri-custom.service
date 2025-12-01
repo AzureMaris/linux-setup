@@ -6,7 +6,7 @@ After=niri-custom.service
 Slice=session-graphical.slice
 Type=notify
 NotifyAccess=all
-ExecStart=/usr/bin/xwayland-satellite -listenfd
+ExecStart=/usr/bin/xwayland-satellite
 StandardOutput=journal
 
 Restart=on-failure
