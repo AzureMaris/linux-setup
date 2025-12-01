@@ -1,10 +1,24 @@
 #!/usr/bin/env nu
 
+# Integrates Niri with Systemd.
+
 def main [
 ]: nothing -> nothing { }
 
+# Starts niri in a custom way.
+def 'main start' [
+]: nothing -> nothing {
+   systemctl --user start (get-wm-systemd-service-name)
+}
+
+# Stops niri.
+def 'main stop' [
+]: nothing -> nothing {
+   systemctl --user stop (get-wm-systemd-service-name)
+}
+
 # Saves previous state and imports evironment to systemd (systemd only).
-def 'main do-environment' [
+def 'main set-environment' [
 ]: nothing -> nothing {
    let script_runtime_dir = get-script-runtime-dir
 
@@ -31,46 +45,8 @@ def 'main do-environment' [
    }
 }
 
-# Start niri in a custom way.
-def 'main start' [
-   --systemd # Whether to use systemd integration.
-]: nothing -> nothing {
-   if $systemd {
-      systemctl --user start (get-wm-systemd-service-name)
-   } else {
-      let job_id = job spawn {
-         with-env (get-wm-env) {
-            niri --session | lines | take until {|line|
-               let should_detach = $line | str contains 'IPC listening on:'
-
-               if not $should_detach {
-                  return false
-               }
-
-               $should_detach | job send 0
-               $should_detach
-            }
-         }
-      }
-
-      job recv
-      do-wm-autostart --systemd=$systemd
-   }
-}
-
-# Stops niri.
-def 'main stop' [
-   --systemd # Whether systemd was used.
-]: nothing -> nothing {
-   if $systemd {
-      systemctl --user stop (get-wm-systemd-service-name)
-   } else {
-      niri msg action quit
-   }
-}
-
-# Cleans user systemd environment (systemd only).
-def 'main cleanup' []: nothing -> nothing {
+# Unsets previously setted environment.
+def 'main unset-environment' []: nothing -> nothing {
    let systemd_pre_env_abs_file_path = get-systemd-pre-env-abs-file-path
    let systemd_pre_env = open $systemd_pre_env_abs_file_path
 
@@ -113,45 +89,20 @@ def 'main cleanup' []: nothing -> nothing {
 
 # Does autostart that is defined in script.
 def 'main autostart' [
-   --systemd
 ] {
-   do-wm-autostart --systemd=$systemd
-}
-
-def do-wm-autostart [
-   --systemd
-] {
-   if not $systemd {
-      (
-         run-single-instance-per-user
-         --systemd=false
-         xwayland-satellite
-      )
-   }
-
    (
       run-single-instance-per-user
-      --systemd=$systemd
       --process-name=io.elementary.desktop.agent-polkit
       '/usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit'
    )
 
-   if not $systemd {
-      (
-         run-single-instance-per-user
-         --systemd=false
-         'qs' '-c' 'noctalia-shell'
-      )
-   }
-
-   run-single-instance-per-user --systemd=$systemd hypridle
-   run-single-instance-per-user --systemd=$systemd wayland-pipewire-idle-inhibit
-   run-single-instance-per-user --systemd=$systemd keepassxc
+   run-single-instance-per-user hypridle
+   run-single-instance-per-user wayland-pipewire-idle-inhibit
+   run-single-instance-per-user keepassxc
 }
 
 def run-single-instance-per-user [
    --user: string
-   --systemd
    --systemd-wrapper-command: list<string> = ['runapp']
    --process-name: string
    ...command: string
@@ -168,15 +119,14 @@ def run-single-instance-per-user [
       $user
    }
 
-   ps -l | where {|process|
-      $process.name == $process_name and (id -nu $process.user_id) == $env.LOGNAME
-   } | if ($in | is-empty) {
+   let found_processes = ps -l | where {|process|
+      let user = id -nu $process.user_id
+      $process.name == $process_name and $user == $env.LOGNAME
+   }
+
+  if ($found_processes | is-empty) {
       try {
-         if $systemd {
-            run-external ...$systemd_wrapper_command ...$command
-         } else {
-            run-external ...$command
-         }
+         run-external ...$systemd_wrapper_command ...$command
       } catch {|error|
          $error | print
       }
