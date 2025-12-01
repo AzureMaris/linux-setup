@@ -71,7 +71,7 @@ group = 'kuroka'
 profiles = ['kuroka@raphael']
 
 [[files]]
-source = '../../../../files/of-bluewy/at-raphael/niri/systemd/niri-custom.service'
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/niri-custom.service'
 target = '/home/kuroka/.config/systemd/user/niri-custom.service'
 action = 'link'
 chmod = '755'
@@ -80,7 +80,7 @@ group = 'kuroka'
 profiles = ['kuroka@raphael']
 
 [[files]]
-source = '../../../../files/of-bluewy/at-raphael/niri/systemd/niri-custom-autostart.service'
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/niri-custom-autostart.service'
 target = '/home/kuroka/.config/systemd/user/niri-custom-autostart.service'
 action = 'link'
 chmod = '755'
@@ -89,7 +89,7 @@ group = 'kuroka'
 profiles = ['kuroka@raphael', 'kuroka@uriel']
 
 [[files]]
-source = '../../../../files/of-bluewy/at-raphael/niri/systemd/xwayland-satellite-in-niri-custom.service'
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/xwayland-satellite-in-niri-custom.service'
 target = '/home/kuroka/.config/systemd/user/xwayland-satellite-in-niri-custom.service'
 action = 'link'
 chmod = '755'
