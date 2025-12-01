@@ -3,7 +3,7 @@ Description=Autostart service for `niri-custom.service`.
 After=niri-custom.service
 
 [Service]
-Slice=app.slice
+Slice=app-graphical.slice
 Type=simple
 TimeoutSec=20s
 ExecStart=%h/.local/bin/niri-custom autostart --systemd

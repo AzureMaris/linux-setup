@@ -1,5 +1,5 @@
 [Unit]
-Description=Noctalia Shell Service
+Description=Noctalia Shell Service (in Niri)
 After=niri-custom.service
 
 [Service]
