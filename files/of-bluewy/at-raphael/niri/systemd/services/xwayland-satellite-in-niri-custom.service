@@ -7,7 +7,6 @@ Slice=session-graphical.slice
 Type=notify
 NotifyAccess=all
 ExecStart=/usr/bin/xwayland-satellite
-StandardOutput=journal
 
 Restart=on-failure
 RestartSec=1
