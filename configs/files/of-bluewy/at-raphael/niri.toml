@@ -17,8 +17,35 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
 [[files]]
-source = '../../../../files/of-bluewy/at-raphael/niri/niri-custom.service'
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/niri-custom.service'
 target = '/home/bluewy/.config/systemd/user/niri-custom.service'
+action = 'link'
+chmod = '755'
+owner = 'bluewy'
+group = 'bluewy'
+profiles = ['bluewy@raphael', 'bluewy@uriel']
+
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/niri-custom-autostart.service'
+target = '/home/bluewy/.config/systemd/user/niri-custom-autostart.service'
+action = 'link'
+chmod = '755'
+owner = 'bluewy'
+group = 'bluewy'
+profiles = ['bluewy@raphael', 'bluewy@uriel']
+
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/xwayland-satellite-in-niri-custom.service'
+target = '/home/bluewy/.config/systemd/user/xwayland-satellite-in-niri-custom.service'
+action = 'link'
+chmod = '755'
+owner = 'bluewy'
+group = 'bluewy'
+profiles = ['bluewy@raphael', 'bluewy@uriel']
+
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/noctalia-in-niri-custom.service'
+target = '/home/bluewy/.config/systemd/user/noctalia-in-niri-custom.service'
 action = 'link'
 chmod = '755'
 owner = 'bluewy'
@@ -44,10 +71,37 @@ group = 'kuroka'
 profiles = ['kuroka@raphael']
 
 [[files]]
-source = '../../../../files/of-bluewy/at-raphael/niri/niri-custom.service'
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/niri-custom.service'
 target = '/home/kuroka/.config/systemd/user/niri-custom.service'
 action = 'link'
 chmod = '755'
 owner = 'kuroka'
 group = 'kuroka'
 profiles = ['kuroka@raphael']
+
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/niri-custom-autostart.service'
+target = '/home/kuroka/.config/systemd/user/niri-custom-autostart.service'
+action = 'link'
+chmod = '755'
+owner = 'kuroka'
+group = 'kuroka'
+profiles = ['kuroka@raphael', 'kuroka@uriel']
+
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/xwayland-satellite-in-niri-custom.service'
+target = '/home/kuroka/.config/systemd/user/xwayland-satellite-in-niri-custom.service'
+action = 'link'
+chmod = '755'
+owner = 'kuroka'
+group = 'kuroka'
+profiles = ['kuroka@raphael', 'kuroka@uriel']
+
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/noctalia-in-niri-custom.service'
+target = '/home/kuroka/.config/systemd/user/noctalia-in-niri-custom.service'
+action = 'link'
+chmod = '755'
+owner = 'kuroka'
+group = 'kuroka'
+profiles = ['kuroka@raphael', 'kuroka@uriel']

@@ -1,6 +1,6 @@
 [[files]]
-source = '../../../../files/of-bluewy/at-raphael/bin/gamescope-stuff'
-target = '/home/bluewy/.local/bin/gamescope-stuff'
+source = '../../../../files/of-bluewy/at-raphael/bin/customizer'
+target = '/home/bluewy/.local/bin/customizer'
 action = 'link'
 chmod = '744'
 owner = 'bluewy'
@@ -8,17 +8,8 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
 [[files]]
-source = '../../../../files/of-bluewy/at-raphael/bin/proton-stuff'
-target = '/home/bluewy/.local/bin/proton-stuff'
-action = 'link'
-chmod = '744'
-owner = 'bluewy'
-group = 'bluewy'
-profiles = ['bluewy@raphael', 'bluewy@uriel']
-
-[[files]]
-source = '../../../../files/of-bluewy/at-raphael/bin/steam-stuff'
-target = '/home/bluewy/.local/bin/steam-stuff'
+source = '../../../../files/of-bluewy/at-raphael/customizer'
+target = '/home/bluewy/.config/customizer'
 action = 'link'
 chmod = '744'
 owner = 'bluewy'

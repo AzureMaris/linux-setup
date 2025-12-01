@@ -1,0 +1,12 @@
+[Unit]
+Description=Autostart service for `niri-custom.service`.
+After=niri-custom.service
+
+[Service]
+Slice=app.slice
+Type=simple
+TimeoutSec=20s
+ExecStart=%h/.local/bin/niri-custom autostart --systemd
+
+[Install]
+WantedBy=niri-custom.service

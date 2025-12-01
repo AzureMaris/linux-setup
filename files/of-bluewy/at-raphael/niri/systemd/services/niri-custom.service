@@ -14,5 +14,4 @@ Type=notify
 TimeoutSec=20s
 ExecStartPre=%h/.local/bin/niri-custom do-environment
 ExecStart=/usr/bin/niri --session
-ExecStartPost=%h/.local/bin/niri-custom autostart --systemd
 ExecStopPost=%h/.local/bin/niri-custom cleanup

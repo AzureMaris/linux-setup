@@ -121,12 +121,13 @@ def 'main autostart' [
 def do-wm-autostart [
    --systemd
 ] {
-   (
-      run-single-instance-per-user
-      --systemd=$systemd
-      --systemd-wrapper-command=['runapp' '-i' 'session-graphical.slice']
-      xwayland-satellite
-   )
+   if not $systemd {
+      (
+         run-single-instance-per-user
+         --systemd=false
+         xwayland-satellite
+      )
+   }
 
    (
       run-single-instance-per-user
@@ -135,16 +136,15 @@ def do-wm-autostart [
       '/usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit'
    )
 
-   (
-      run-single-instance-per-user
-      --systemd=$systemd
-      --process-name=qs
-      --systemd-wrapper-command=['runapp' '-i' 'session-graphical.slice']
-      'qs' '-c' 'noctalia-shell'
-   )
+   if not $systemd {
+      (
+         run-single-instance-per-user
+         --systemd=false
+         'qs' '-c' 'noctalia-shell'
+      )
+   }
 
    run-single-instance-per-user --systemd=$systemd hypridle
-
    run-single-instance-per-user --systemd=$systemd wayland-pipewire-idle-inhibit
    run-single-instance-per-user --systemd=$systemd keepassxc
 }
