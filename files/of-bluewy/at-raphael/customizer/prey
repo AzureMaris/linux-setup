@@ -5,9 +5,9 @@ use ./lib [ steam_env proton_env get-mangohud-config-env ]
 def --wrapped main [...command]: nothing -> nothing {
    with-env {
       ...$steam_env
-      ...$proton_env
+      ...($proton_env | reject PROTON_ENABLE_WAYLAND)
       ...(get-mangohud-config-env)
    } {
-      exec mangohud game-performance ...$command
+      exec gamescope-on-niri -s 0.25 --mangoapp -- game-performance ...$command
    }
 }
