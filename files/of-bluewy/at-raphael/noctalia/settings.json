@@ -116,6 +116,10 @@
                 },
                 {
                     "displayMode": "onhover",
+                    "id": "Bluetooth"
+                },
+                {
+                    "displayMode": "onhover",
                     "id": "Battery",
                     "warningThreshold": 30
                 },
