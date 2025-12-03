@@ -128,7 +128,7 @@ export def get-mangohud-config-env [
 }
 
 # Provides values when feature is detected: -W, -H, -w, -h, -r and --adaptive-sync.
-export def get-gamescope-parameters-on-niri []: nothing -> list<list<string>> {
+export def get-gamescope-parameters-for-niri []: nothing -> list<list<string>> {
    let focused_output = niri msg -j focused-output | from json
    let active_config = $focused_output | get modes | get $focused_output.current_mode
    let refresh_rate = $active_config.refresh_rate / 1000

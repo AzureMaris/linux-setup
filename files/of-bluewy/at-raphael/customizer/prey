@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-use ./lib [ steam_env proton_env get-mangohud-config-env get-gamescope-parameters-on-niri ]
+use ./lib [ steam_env proton_env get-mangohud-config-env get-gamescope-parameters-for-niri ]
 
 def --wrapped main [...command]: nothing -> nothing {
    with-env {
@@ -13,7 +13,7 @@ def --wrapped main [...command]: nothing -> nothing {
          (
             gamescope
             ...(
-               get-gamescope-parameters-on-niri | where {|parameter|
+               get-gamescope-parameters-for-niri | where {|parameter|
                   $parameter.0 != r
                }
                | flatten
