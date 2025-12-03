@@ -14,7 +14,7 @@ def --wrapped main [...command]: nothing -> nothing {
             gamescope
             ...(
                get-gamescope-parameters-for-niri | where {|parameter|
-                  $parameter.0 != r
+                  $parameter.0 != -r
                }
                | flatten
             )
