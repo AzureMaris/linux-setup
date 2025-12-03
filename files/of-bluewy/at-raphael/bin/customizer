@@ -46,5 +46,11 @@ def --wrapped main [
 }
 
 def get-config-dir-abs-path []: nothing -> string {
-   $env.HOME | path join '.config' 'customizer'
+   let parent_config_dir_abs_path = if ($env.XDG_CONFIG_HOME | default null | $in != null) {
+      $env.XDG_CONFIG_HOME
+   } else {
+      $env.HOME
+   }
+
+   $parent_config_dir_abs_path | path join 'customizer'
 }
