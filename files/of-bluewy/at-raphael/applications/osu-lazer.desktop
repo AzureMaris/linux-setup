@@ -4,5 +4,5 @@ Name=osu!lazer
 MimeType=application/x-osu-skin-archive;application/x-osu-replay;application/x-osu-beatmap-archive;
 Icon=/usr/share/pixmaps/osu-lazer.png
 Comment=Open source free-to-win rhythm game
-Exec=customizer osu-lazer /usr/bin/osu-lazer
+Exec=customizer native-game /usr/bin/osu-lazer
 Categories=Game;
