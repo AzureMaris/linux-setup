@@ -7,18 +7,13 @@ def --wrapped main [...command]: nothing -> nothing {
       ...$steam_env
       ...$proton_env
       ...(get-mangohud-config-env)
+      DXVK_FRAME_RATE: 144
    } {
       (
          exec
          (
             gamescope
-            ...(
-               get-gamescope-parameters-for-niri | where {|parameter|
-                  $parameter.0 != -r
-               }
-               | flatten
-            )
-            -r 144
+            ...(get-gamescope-parameters-for-niri | flatten)
             -s 0.25
             --force-grab-cursor
             --mangoapp
