@@ -1,24 +1,19 @@
 #!/usr/bin/env nu
 
-use ./lib [ steam_env proton_env get-mangohud-config-env get-gamescope-parameters-for-niri ]
+use ./lib [ steam_env proton_env mangohud_config_values ]
 
 def --wrapped main [...command]: nothing -> nothing {
    with-env {
       ...$steam_env
       ...$proton_env
-      ...(get-mangohud-config-env)
-      DXVK_FRAME_RATE: 144
-   } {
-      (
-         exec
-         (
-            gamescope
-            ...(get-gamescope-parameters-for-niri | flatten)
-            -s 0.25
-            --force-grab-cursor
-            --mangoapp
-            -- game-performance ...$command
-         )
+
+      MANGOHUD_CONFIG: (
+         $mangohud_config_values
+         | where {|value| $value != fps_limit=0 }
+         | append fps_limit=157
+         | str join ','
       )
+   } {
+      exec mangohud game-performance ...$command
    }
 }
