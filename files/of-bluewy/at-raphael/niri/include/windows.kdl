@@ -7,15 +7,6 @@ xwayland-satellite {
 window-rule {
    geometry-corner-radius 20
    clip-to-geometry true
-
-   open-fullscreen false
-   open-maximized true
-   open-focused true
-}
-
-window-rule {
-   match is-floating=true
-   open-maximized false
 }
 
 window-rule {

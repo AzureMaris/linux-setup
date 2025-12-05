@@ -1,5 +1,6 @@
 hotkey-overlay {
    skip-at-startup
+   hide-not-bound
 }
 
 // Mod is 1st layer

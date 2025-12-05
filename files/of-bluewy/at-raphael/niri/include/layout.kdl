@@ -1,7 +1,9 @@
 layout {
+   center-focused-column "never"
+   always-center-single-column
+
    background-color "#282c34"
    gaps 11
-   center-focused-column "never"
 
    preset-column-widths {
       proportion 0.33333
