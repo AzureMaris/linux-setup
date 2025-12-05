@@ -30,4 +30,9 @@ layout {
       gaps-between-tabs 11
       width 11
    }
+   
+   struts {
+      left 11
+      right 11
+   }
 }
