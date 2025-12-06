@@ -14,6 +14,16 @@ def --wrapped main [...command]: nothing -> nothing {
          | str join ','
       )
    } {
-      exec mangohud game-performance ...$command
+      exec (
+         gamescope
+         -W 1920
+         -H 1080
+         -w 2560
+         -h 1440
+         -r 120
+         --force-grab-cursor
+         --mangoapp
+         -- game-performance ...$command
+      )
    }
 }
