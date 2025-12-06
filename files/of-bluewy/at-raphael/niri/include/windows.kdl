@@ -7,6 +7,7 @@ xwayland-satellite {
 window-rule {
    geometry-corner-radius 20
    clip-to-geometry true
+   open-focused true
 }
 
 window-rule {
