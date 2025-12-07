@@ -1,0 +1,26 @@
+#!/usr/bin/env nu
+
+use ./lib [ steam_env proton_env mangohud_config_values get-gamescope-parameters-for-niri ]
+
+def --wrapped main [...command]: nothing -> nothing {
+   with-env {
+      ...$steam_env
+      ...$proton_env
+
+      MANGOHUD_CONFIG: (
+         $mangohud_config_values
+         | str join ','
+      )
+   } {
+      exec (
+         gamescope
+         ...(get-gamescope-parameters-for-niri | flatten)
+         -s 0.125
+         --force-grab-cursor
+         --mangoapp
+         --
+         game-performance
+         ...$command
+      )
+   }
+}
