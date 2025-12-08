@@ -3,8 +3,8 @@
 use std log
 
 def --wrapped main [
-   wrapper_name: string # The script that it should find.
-   ...command # The actual command.
+   wrapper_name: string # The script name it should find.
+   ...command # The command that is being wrapped.
 ]: nothing -> nothing {
    let wrapper_file_path = get-config-dir-path | path join $wrapper_name
 
@@ -12,16 +12,14 @@ def --wrapped main [
       exec $wrapper_file_path ...$command
    }
 
-   log error $"wrapper_file_abs_path=($wrapper_file_path) not found"
+   let error_log = $"not found: wrapper_file_path=($wrapper_file_path)"
+   log error $error_log
+   let notification_title = $env.CURRENT_FILE | path basename
 
    try {
-      (
-         notify-send
-         ($env.CURRENT_FILE | path parse | get stem)
-         $"wrapper_file_abs_path=($wrapper_file_path) not found"
-      )
+      notify-send $notification_title $error_log
    } catch {
-      log error "notify-send failed"
+      log error "command failed: notify-send"
    }
 }
 
@@ -31,7 +29,7 @@ def get-config-dir-path []: nothing -> string {
    let parent_config_dir_path = if $xdg_config_dir_path != null {
       $xdg_config_dir_path
    } else {
-      $env.HOME
+      $env.HOME | path join .config
    }
 
    $parent_config_dir_path | path join 'customizer'
