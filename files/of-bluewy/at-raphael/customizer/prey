@@ -2,7 +2,7 @@
 
 use ./lib [ steam_env proton_env mangohud_config_values ]
 
-def --wrapped main [...command]: nothing -> nothing {
+def --wrapped main [...rest]: nothing -> nothing {
    with-env {
       ...$steam_env
       ...$proton_env
@@ -23,7 +23,7 @@ def --wrapped main [...command]: nothing -> nothing {
          -r 120
          --force-grab-cursor
          --mangoapp
-         -- game-performance ...$command
+         -- game-performance ...$rest
       )
    }
 }

@@ -1,15 +1,11 @@
 #!/usr/bin/env nu
 
-use ./lib [ steam_env proton_env mangohud_config_values ]
+use ./lib [ steam_env mangohud_config_values ]
 
 def --wrapped main [...rest]: nothing -> nothing {
    with-env {
-      ...$steam_env
-
       MANGOHUD_CONFIG: (
          $mangohud_config_values
-         | where {|value| $value != fps_limit=0 }
-         | append fps_limit=157
          | str join ','
       )
    } {

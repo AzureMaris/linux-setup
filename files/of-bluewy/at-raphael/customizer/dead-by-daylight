@@ -2,7 +2,7 @@
 
 use ./lib [ steam_env proton_env mangohud_config_values get-gamescope-parameters-for-niri ]
 
-def --wrapped main [...command]: nothing -> nothing {
+def --wrapped main [...rest]: nothing -> nothing {
    with-env {
       ...$steam_env
       ...$proton_env
@@ -20,7 +20,7 @@ def --wrapped main [...command]: nothing -> nothing {
          --mangoapp
          --
          game-performance
-         ...$command
+         ...$rest
       )
    }
 }

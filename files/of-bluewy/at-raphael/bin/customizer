@@ -4,12 +4,12 @@ use std log
 
 def --wrapped main [
    wrapper_name: string # The script name it should find.
-   ...command # The command that is being wrapped.
+   ...rest # The command that is being wrapped.
 ]: nothing -> nothing {
    let wrapper_file_path = get-config-dir-path | path join $wrapper_name
 
    if ($wrapper_file_path | path exists) {
-      exec $wrapper_file_path ...$command
+      exec $wrapper_file_path ...$rest
    }
 
    let error_log = $"not found: wrapper_file_path=($wrapper_file_path)"
