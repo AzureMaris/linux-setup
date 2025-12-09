@@ -35,8 +35,8 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
 [[files]]
-source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/xwayland-satellite-in-niri-custom.service'
-target = '/home/bluewy/.config/systemd/user/xwayland-satellite-in-niri-custom.service'
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/niri-custom-xwayland-satellite.service'
+target = '/home/bluewy/.config/systemd/user/niri-custom-xwayland-satellite.service'
 action = 'link'
 chmod = '755'
 owner = 'bluewy'
@@ -44,8 +44,8 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
 [[files]]
-source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/noctalia-in-niri-custom.service'
-target = '/home/bluewy/.config/systemd/user/noctalia-in-niri-custom.service'
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/niri-custom-noctalia.service'
+target = '/home/bluewy/.config/systemd/user/niri-custom-noctalia.service'
 action = 'link'
 chmod = '755'
 owner = 'bluewy'
@@ -89,8 +89,8 @@ group = 'kuroka'
 profiles = ['kuroka@raphael', 'kuroka@uriel']
 
 [[files]]
-source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/xwayland-satellite-in-niri-custom.service'
-target = '/home/kuroka/.config/systemd/user/xwayland-satellite-in-niri-custom.service'
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/niri-custom-xwayland-satellite.service'
+target = '/home/kuroka/.config/systemd/user/niri-custom-xwayland-satellite.service'
 action = 'link'
 chmod = '755'
 owner = 'kuroka'
@@ -98,8 +98,8 @@ group = 'kuroka'
 profiles = ['kuroka@raphael', 'kuroka@uriel']
 
 [[files]]
-source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/noctalia-in-niri-custom.service'
-target = '/home/kuroka/.config/systemd/user/noctalia-in-niri-custom.service'
+source = '../../../../files/of-bluewy/at-raphael/niri/systemd/services/niri-custom-noctalia.service'
+target = '/home/kuroka/.config/systemd/user/niri-custom-noctalia.service'
 action = 'link'
 chmod = '755'
 owner = 'kuroka'

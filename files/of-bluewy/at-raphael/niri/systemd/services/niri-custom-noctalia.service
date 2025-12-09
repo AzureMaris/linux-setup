@@ -1,13 +1,10 @@
 [Unit]
-Description=Xwayland outside your Wayland (in Niri)
+Description=Noctalia Shell Service
 After=niri-custom.service
 
 [Service]
 Slice=session-graphical.slice
-Type=notify
-NotifyAccess=all
-ExecStart=/usr/bin/xwayland-satellite
-
+ExecStart=qs -c noctalia-shell
 Restart=on-failure
 RestartSec=1
 
