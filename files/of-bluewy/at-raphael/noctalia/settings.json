@@ -7,6 +7,7 @@
         "pinnedExecs": [
         ],
         "position": "bottom_center",
+        "showCategories": true,
         "sortByMostUsed": true,
         "terminalCommand": "wezterm start --",
         "useApp2Unit": false,
@@ -59,6 +60,7 @@
             ],
             "left": [
                 {
+                    "hideMode": "alwaysExpanded",
                     "icon": "rocket",
                     "id": "CustomButton",
                     "leftClickExec": "runapp qs -c noctalia-shell ipc call launcher toggle",
@@ -72,6 +74,7 @@
                     "parseJson": false,
                     "rightClickExec": "runapp qs -c noctalia-shell ipc call launcher toggle",
                     "rightClickUpdateText": false,
+                    "showIcon": true,
                     "textCollapse": "",
                     "textCommand": "",
                     "textIntervalMs": 3000,
@@ -95,8 +98,13 @@
                     "colorizeIcons": false,
                     "hideMode": "hidden",
                     "id": "Taskbar",
+                    "maxTaskbarWidth": 40,
                     "onlyActiveWorkspaces": true,
-                    "onlySameOutput": true
+                    "onlySameOutput": true,
+                    "showPinnedApps": true,
+                    "showTitle": false,
+                    "smartWidth": true,
+                    "titleWidth": 120
                 }
             ],
             "right": [
@@ -122,6 +130,8 @@
                     "deviceNativePath": "",
                     "displayMode": "onhover",
                     "id": "Battery",
+                    "showNoctaliaPerformance": false,
+                    "showPowerProfiles": false,
                     "warningThreshold": 30
                 },
                 {
@@ -160,9 +170,6 @@
                 "id": "weather-card"
             }
         ]
-    },
-    "changelog": {
-        "lastSeenVersion": ""
     },
     "colorSchemes": {
         "darkMode": true,
@@ -232,14 +239,17 @@
     "dock": {
         "backgroundOpacity": 1,
         "colorizeIcons": false,
+        "deadOpacity": 0.6,
         "displayMode": "auto_hide",
         "enabled": false,
         "floatingRatio": 1,
+        "inactiveIndicators": false,
         "monitors": [
         ],
         "onlySameOutput": true,
         "pinnedApps": [
         ],
+        "pinnedStatic": false,
         "size": 1
     },
     "general": {
@@ -247,10 +257,12 @@
         "animationDisabled": false,
         "animationSpeed": 2,
         "avatarImage": "~/media/screenshots/2025-10-12_21-21-38.png",
+        "boxRadiusRatio": 1,
         "compactLockScreen": false,
         "dimmerOpacity": 0.8,
         "enableShadows": false,
         "forceBlackScreenCorners": true,
+        "iRadiusRatio": 1,
         "language": "",
         "lockOnSuspend": true,
         "radiusRatio": 1,
@@ -260,7 +272,8 @@
         "shadowOffsetX": 2,
         "shadowOffsetY": 3,
         "showHibernateOnLockScreen": false,
-        "showScreenCorners": true
+        "showScreenCorners": true,
+        "showSessionButtonsOnLockScreen": true
     },
     "hooks": {
         "darkModeChange": "",
@@ -302,7 +315,16 @@
         ],
         "normalUrgencyDuration": 8,
         "overlayLayer": true,
-        "respectExpireTimeout": false
+        "respectExpireTimeout": false,
+        "sounds": {
+            "criticalSoundFile": "",
+            "enabled": false,
+            "excludedApps": "discord,firefox,chrome,chromium,edge",
+            "lowSoundFile": "",
+            "normalSoundFile": "",
+            "separateSounds": false,
+            "volume": 0.5
+        }
     },
     "osd": {
         "autoHideMs": 2000,
