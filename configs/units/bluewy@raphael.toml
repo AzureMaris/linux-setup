@@ -1,5 +1,5 @@
 [[units]]
 user = 'bluewy'
 mask = ['xdg-user-dirs.service', 'at-spi-dbus-bus.service']
-enable = ['wireplumber.service', 'pipewire.service', 'psd.service', 'niri-custom-autostart.service', 'xwayland-satellite-in-niri-custom.service', 'noctalia-in-niri-custom.service']
+enable = ['wireplumber.service', 'pipewire.service', 'psd.service', 'niri-custom-autostart.service', 'niri-custom-xwayland-satellite.service', 'niri-custom-noctalia.service']
 profiles = ['bluewy@raphael', 'bluewy@uriel']
