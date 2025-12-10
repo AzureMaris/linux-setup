@@ -1,0 +1,8 @@
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/cgl'
+target = '/home/bluewy/.config/cgl'
+action = 'link'
+chmod = '744'
+owner = 'bluewy'
+group = 'bluewy'
+profiles = ['bluewy@raphael', 'bluewy@uriel']
