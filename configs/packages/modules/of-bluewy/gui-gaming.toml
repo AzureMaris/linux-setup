@@ -17,7 +17,6 @@ install = [
    { from = 'std', name = 'lib32-mangohud' },
 
    { from = 'std', name = 'steam' },
-   { from = 'std', name = 'faugus-launcher' },
    { from = 'std', name = 'heroic-games-launcher-bin' },
 ]
 profiles = ['root@raphael', 'root@uriel', 'root@sariel']
