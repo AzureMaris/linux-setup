@@ -1,10 +1,10 @@
 #!/usr/bin/env nu
 
 with-env {
-   WINEPREFIX: ~/games/faugus-library/compatdata/duet-night-abyss
+   WINEPREFIX: ~/games/cgl-library/prefixes/duet-night-abyss
    GAMEID: umu-3950020
    STORE: none
    PROTONPATH: /usr/share/steam/compatibilitytools.d/proton-cachyos
 } {
-   customizer proton-game umu-run '~/games/faugus-library/compatdata/duet-night-abyss/drive_c/Program Files (x86)/Duet Night Abyss/DNA Game/EM.exe'
+   customizer proton-game umu-run '~/games/cgl-library/prefixes/duet-night-abyss/drive_c/Program Files (x86)/Duet Night Abyss/DNA Game/EM.exe'
 }
