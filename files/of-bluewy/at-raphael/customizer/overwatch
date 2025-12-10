@@ -1,0 +1,19 @@
+#!/usr/bin/env nu
+
+use ./lib [ steam_env proton_env mangohud_config_values ]
+
+def --wrapped main [...rest]: nothing -> nothing {
+   with-env {
+      ...$steam_env
+      ...$proton_env
+
+      MANGOHUD_CONFIG: (
+         $mangohud_config_values
+         | str join ','
+      )
+
+      DXVK_CONFIG: "dxvk.hud = compiler;"
+   } {
+      exec mangohud game-performance ...$rest
+   }
+}
