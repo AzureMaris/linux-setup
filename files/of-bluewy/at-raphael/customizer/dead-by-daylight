@@ -2,7 +2,9 @@
 
 use ./lib [ steam_env proton_env mangohud_config_values get-gamescope-parameters-for-niri ]
 
-def --wrapped main [...rest]: nothing -> nothing {
+def --wrapped main [
+   ...rest: string
+]: nothing -> nothing {
    with-env {
       ...$steam_env
       ...$proton_env

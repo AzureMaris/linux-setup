@@ -2,7 +2,9 @@
 
 use ./lib [ steam_env mangohud_config_values ]
 
-def --wrapped main [...rest]: nothing -> nothing {
+def --wrapped main [
+   ...rest: string
+]: nothing -> nothing {
    with-env {
       MANGOHUD_CONFIG: (
          $mangohud_config_values
