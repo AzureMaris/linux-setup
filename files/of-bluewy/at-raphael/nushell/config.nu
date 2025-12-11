@@ -61,7 +61,7 @@ $env.WINEPREFIX = $env.XDG_DATA_HOME | path join 'wine'
 # [[ Path ]]
 
 $env.PATH = $env.PATH | append [
-   ($env.HOME | path join $env.XDG_DATA_HOME '.cargo' 'bin')
+   ($env.HOME | path join $env.CARGO_HOME 'bin')
    ($env.HOME | path join '.local' 'bin')
 ]
 
