@@ -1,0 +1,106 @@
+#!/usr/bin/env nu
+
+# Integrates Niri with Systemd.
+
+def main [
+]: nothing -> nothing { }
+
+# Saves previous state and imports evironment to systemd (systemd only).
+def 'main set-environment' [
+   name: string # Looks under xdg config or ~/.config for the specified folder name.
+]: nothing -> nothing {
+   let script_runtime_dir = get-script-runtime-dir
+
+   let script_runtime_dir = get-script-runtime-dir
+   mkdir $script_runtime_dir
+
+   let systemd_pre_env = systemctl --user show-environment
+   | lines
+   | split column '=' key value
+
+   let systemd_pre_env_abs_file_path = get-systemd-pre-env-abs-file-path $name
+   $systemd_pre_env | to json | save -f $systemd_pre_env_abs_file_path
+
+   let wm_env = get-wm-env $name
+   let wm_env_names = $wm_env | columns
+
+   if ($wm_env_names | is-empty) {
+      return
+   }
+
+   with-env $wm_env {
+      systemctl --user import-environment ...$wm_env_names
+      dbus-update-activation-environment ...$wm_env_names
+   }
+}
+
+# Unsets previously setted environment.
+def 'main unset-environment' [
+   name: string # Looks under xdg config or ~/.config for the specified folder name.
+]: nothing -> nothing {
+   let systemd_pre_env_abs_file_path = get-systemd-pre-env-abs-file-path $name
+   let systemd_pre_env = open $systemd_pre_env_abs_file_path
+
+   let systemd_post_env = systemctl --user show-environment
+   | lines
+   | split column '=' key value
+
+   let systemd_env_diff = $systemd_pre_env | join -o $systemd_post_env key
+
+   let env_name_todos = $systemd_env_diff | par-each {|row|
+      match [$row.value $row.value_] {
+         [null _] => { {unset: $row.key} }
+         [_ null] => { }
+         [_ _] => { {update: $row.key} }
+      }
+   }
+
+   let systemd_env_names_to_unset = $env_name_todos.unset? | compact
+   let systemd_env_names_to_update = $env_name_todos.update? | compact
+
+   if $systemd_env_names_to_unset != null and ($systemd_env_names_to_unset | is-not-empty) {
+      with-env (
+         $systemd_env_names_to_unset | reduce -f {} {|systemd_env_name_to_unset acc|
+            $acc | merge {$systemd_env_name_to_unset: ''}
+         }
+      ) {
+         dbus-update-activation-environment ...$systemd_env_names_to_unset
+      }
+
+      systemctl --user unset-environment ...$systemd_env_names_to_unset
+   }
+
+   if $systemd_env_names_to_update != null and ($systemd_env_names_to_update | is-not-empty) {
+      systemctl --user import-environment ...$systemd_env_names_to_update
+      dbus-update-activation-environment ...$systemd_env_names_to_update
+   }
+
+   rm $systemd_pre_env_abs_file_path
+}
+
+def get-wm-env [
+   name: string
+]: nothing -> record {
+   let path = get-config-dir-path $name | path join env
+   run-external $path | from json
+}
+
+def get-systemd-pre-env-abs-file-path [
+   name: string
+]: nothing -> string {
+   $env.XDG_RUNTIME_DIR | path join $"($name)-pre-env"
+}
+
+def get-config-dir-path [
+   name: string
+]: nothing -> path {
+   let xdg_config_dir_path = $env.XDG_CONFIG_HOME?
+
+   let parent_config_dir_path = if $xdg_config_dir_path != null {
+      $xdg_config_dir_path
+   } else {
+      $env.HOME | path join .config
+   }
+
+   $parent_config_dir_path | path join $name
+}

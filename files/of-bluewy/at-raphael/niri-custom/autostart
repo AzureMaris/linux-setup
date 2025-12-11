@@ -1,0 +1,43 @@
+#!/usr/bin/env nu
+
+def run-single-instance-per-user [
+   --user: string
+   --systemd-wrapper-command: list<string> = ['runapp']
+   --process-name: string
+   ...command: string
+]: nothing -> nothing {
+   let process_name = if ($process_name == null) {
+      $command.0
+   } else {
+      $process_name
+   }
+
+   let user = if ($user == null) {
+      $env.LOGNAME
+   } else {
+      $user
+   }
+
+   let found_processes = ps -l | where {|process|
+      let user = id -nu $process.user_id
+      $process.name == $process_name and $user == $env.LOGNAME
+   }
+
+   if ($found_processes | is-empty) {
+      try {
+         run-external ...$systemd_wrapper_command ...$command
+      } catch {|error|
+         $error | print
+      }
+   }
+}
+
+(
+   run-single-instance-per-user
+   --process-name=io.elementary.desktop.agent-polkit
+   '/usr/lib/policykit-1-pantheon/io.elementary.desktop.agent-polkit'
+)
+
+run-single-instance-per-user hypridle
+run-single-instance-per-user wayland-pipewire-idle-inhibit
+run-single-instance-per-user keepassxc

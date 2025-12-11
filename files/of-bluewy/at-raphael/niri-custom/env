@@ -1,0 +1,13 @@
+#!/usr/bin/env nu
+
+{
+   DISPLAY: ':0' # also set niri's config
+
+   SDL_VIDEODRIVER: 'wayland,x11'
+   CLUTTER_BACKEND: 'wayland'
+   QT_QPA_PLATFORM: 'wayland;xcb'
+
+   QT_QPA_PLATFORMTHEME: 'qt6ct'
+
+   _JAVA_AWT_WM_NONREPARENTING: '1'
+}

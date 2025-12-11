@@ -6,7 +6,7 @@ After=niri-custom.service
 Slice=app-graphical.slice
 Type=simple
 TimeoutSec=20s
-ExecStart=%h/.local/bin/niri-custom autostart
+ExecStart=%h/.config/niri-custom/autostart
 
 [Install]
 WantedBy=niri-custom.service

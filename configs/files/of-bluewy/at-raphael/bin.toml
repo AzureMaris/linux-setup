@@ -8,8 +8,8 @@ group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
 [[files]]
-source = '../../../../files/of-bluewy/at-raphael/customizer'
-target = '/home/bluewy/.config/customizer'
+source = '../../../../files/of-bluewy/at-raphael/bin/wmd-helper'
+target = '/home/bluewy/.local/bin/wmd-helper'
 action = 'link'
 chmod = '744'
 owner = 'bluewy'

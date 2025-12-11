@@ -1,0 +1,35 @@
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/systemd/niri-custom.service'
+target = '/home/bluewy/.config/systemd/user/niri-custom.service'
+action = 'link'
+chmod = '755'
+owner = 'bluewy'
+group = 'bluewy'
+profiles = ['bluewy@raphael', 'bluewy@uriel']
+
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/systemd/niri-custom-noctalia.service'
+target = '/home/bluewy/.config/systemd/user/niri-custom-noctalia.service'
+action = 'link'
+chmod = '755'
+owner = 'bluewy'
+group = 'bluewy'
+profiles = ['bluewy@raphael', 'bluewy@uriel']
+
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/systemd/niri-custom-xwayland-satellite.service'
+target = '/home/bluewy/.config/systemd/user/niri-custom-xwayland-satellite.service'
+action = 'link'
+chmod = '755'
+owner = 'bluewy'
+group = 'bluewy'
+profiles = ['bluewy@raphael', 'bluewy@uriel']
+
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/systemd/niri-custom-autostart.service'
+target = '/home/bluewy/.config/systemd/user/niri-custom-autostart.service'
+action = 'link'
+chmod = '755'
+owner = 'bluewy'
+group = 'bluewy'
+profiles = ['bluewy@raphael', 'bluewy@uriel']
