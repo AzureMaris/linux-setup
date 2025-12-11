@@ -115,6 +115,6 @@ binds {
    XF86MonBrightnessUp allow-when-locked=true { spawn "runapp" "brightnessctl" "--class=backlight" "set" "+10%"; }
    XF86MonBrightnessDown allow-when-locked=true { spawn "runapp" "brightnessctl" "--class=backlight" "set" "10%-"; }
 
-   Mod+Shift+Escape { spawn "runapp" "niri-custom" "stop"; }
+   Mod+Shift+Escape { spawn "systemctl" "--user" "stop" "niri-custom"; }
 }
 
