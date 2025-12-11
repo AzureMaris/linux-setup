@@ -15,3 +15,12 @@ chmod = '744'
 owner = 'bluewy'
 group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
+
+[[files]]
+source = '../../../../files/of-bluewy/at-raphael/bin/wmd-helper'
+target = '/home/kuroka/.local/bin/wmd-helper'
+action = 'link'
+chmod = '744'
+owner = 'kuroka'
+group = 'kuroka'
+profiles = ['kuroka@raphael']
