@@ -13,8 +13,8 @@ def 'main set-environment' [
    | lines
    | split column '=' key value
 
-   let systemd_pre_env_abs_file_path = get-systemd-pre-env-abs-file-path $name
-   $systemd_pre_env | to json | save -f $systemd_pre_env_abs_file_path
+   let systemd_pre_env_file_path = get-systemd-pre-env-file-path $name
+   $systemd_pre_env | to json | save -f $systemd_pre_env_file_path
 
    let wm_env = get-wm-env $name
    let wm_env_names = $wm_env | columns
@@ -33,8 +33,8 @@ def 'main set-environment' [
 def 'main unset-environment' [
    name: string # Looks under xdg config or ~/.config for the specified folder name.
 ]: nothing -> nothing {
-   let systemd_pre_env_abs_file_path = get-systemd-pre-env-abs-file-path $name
-   let systemd_pre_env = open $systemd_pre_env_abs_file_path
+   let systemd_pre_env_file_path = get-systemd-pre-env-file-path $name
+   let systemd_pre_env = open $systemd_pre_env_file_path
 
    let systemd_post_env = systemctl --user show-environment
    | lines
@@ -70,7 +70,7 @@ def 'main unset-environment' [
       dbus-update-activation-environment ...$systemd_env_names_to_update
    }
 
-   rm $systemd_pre_env_abs_file_path
+   rm $systemd_pre_env_file_path
 }
 
 def get-wm-env [
@@ -80,10 +80,10 @@ def get-wm-env [
    run-external $path | from json
 }
 
-def get-systemd-pre-env-abs-file-path [
+def get-systemd-pre-env-file-path [
    name: string
 ]: nothing -> string {
-   $env.XDG_RUNTIME_DIR | path join $"($name)-pre-env"
+   $env.XDG_RUNTIME_DIR | path join $"($name)-pre-env.json"
 }
 
 def get-config-dir-path [
