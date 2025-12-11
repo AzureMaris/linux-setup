@@ -10,4 +10,4 @@
    QT_QPA_PLATFORMTHEME: 'qt6ct'
 
    _JAVA_AWT_WM_NONREPARENTING: '1'
-}
+} | to json

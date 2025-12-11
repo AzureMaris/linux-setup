@@ -9,11 +9,6 @@ def main [
 def 'main set-environment' [
    name: string # Looks under xdg config or ~/.config for the specified folder name.
 ]: nothing -> nothing {
-   let script_runtime_dir = get-script-runtime-dir
-
-   let script_runtime_dir = get-script-runtime-dir
-   mkdir $script_runtime_dir
-
    let systemd_pre_env = systemctl --user show-environment
    | lines
    | split column '=' key value
