@@ -1,0 +1,39 @@
+#!/usr/bin/env nu
+
+def main [] { }
+
+def 'main list' []: nothing -> list {
+   let config_dir_path = get-config-dir-path
+
+   ls -l $config_dir_path
+   | where {|item|
+      $item.type == file and $item.mode =~ x
+   }
+   | get name
+   | par-each {|item|
+      $item | path parse | get stem
+   }
+}
+
+def 'main launch' [name: string]: nothing -> nothing {
+   let config_dir_path = get-config-dir-path
+
+   let exe = ls $config_dir_path | where {|item|
+      let stem = $item.name | path parse | get stem
+      $stem == $name
+   } | first | $in.name
+
+   exec $exe
+}
+
+def get-config-dir-path []: nothing -> path {
+   let xdg_config_dir_path = $env.XDG_CONFIG_HOME?
+
+   let parent_config_dir_path = if $xdg_config_dir_path != null {
+      $xdg_config_dir_path
+   } else {
+      $env.HOME | path join .config
+   }
+
+   $parent_config_dir_path | path join cgl
+}
