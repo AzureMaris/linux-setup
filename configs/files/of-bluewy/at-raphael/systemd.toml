@@ -68,4 +68,4 @@ action = 'link'
 chmod = '755'
 owner = 'kuroka'
 group = 'kuroka'
-profiles = ['bluewy@raphael']
+profiles = ['kuroka@raphael']
