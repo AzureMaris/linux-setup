@@ -14,6 +14,16 @@ def --wrapped main [
       ...$proton_env
       ...(setup-mangohud-config-file $stem $mangohud_config_values)
    } {
-      exec mangohud game-performance ...$rest
+      exec (
+         gamescope
+         -W 1920
+         -H 1080
+         -w 2560
+         -h 1440
+         -r 239.964
+         --force-grab-cursor
+         --mangoapp
+         -- game-performance ...$rest
+      )
    }
 }

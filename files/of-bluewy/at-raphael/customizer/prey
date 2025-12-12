@@ -10,7 +10,6 @@ def --wrapped main [
    ...rest: string
 ]: nothing -> nothing {
    let stem = $file_path | path parse | get stem
-   let mangohud_config = $mangohud_config_values | str join "\n"
 
    with-env {
       ...$steam_env
