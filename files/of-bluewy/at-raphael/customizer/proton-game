@@ -13,7 +13,7 @@ def --wrapped main [
 
    with-env {
       ...$proton_env
-      ...(setup-mangohud-config-file $stem $mangohud_config)
+      ...(setup-mangohud-config-file $stem $mangohud_config_values)
    } {
       exec mangohud game-performance ...$rest
    }

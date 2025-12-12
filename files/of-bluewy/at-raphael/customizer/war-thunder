@@ -11,16 +11,15 @@ def --wrapped main [
 ]: nothing -> nothing {
    let stem = $file_path | path parse | get stem
 
-   let mangohud_config = $mangohud_config_values
+   let mangohud_config_values = $mangohud_config_values
    | where {|value|
       $value != fps_limit=0
    }
    | append fps_limit=157
-   | str join "\n"
 
    with-env {
       ...$steam_env
-      ...(setup-mangohud-config-file $stem $mangohud_config)
+      ...(setup-mangohud-config-file $stem $mangohud_config_values)
    } {
       exec mangohud game-performance ...$rest
    }

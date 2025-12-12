@@ -15,7 +15,7 @@ def --wrapped main [
    with-env {
       ...$steam_env
       ...$proton_env
-      ...(setup-mangohud-config-file $stem $mangohud_config)
+      ...(setup-mangohud-config-file $stem $mangohud_config_values)
    } {
       exec (
          gamescope
