@@ -1,18 +1,22 @@
 #!/usr/bin/env nu
 
-use ./lib [ steam_env proton_env mangohud_config_values get-gamescope-parameters-for-niri ]
+use ./lib/steam.nu steam_env
+use ./lib/proton.nu proton_env
+use ./lib/gamescope.nu get-gamescope-parameters-for-niri
+use ./lib/mangohud.nu [ mangohud_config_values setup-mangohud-config ]
+
+const file_path = path self
 
 def --wrapped main [
    ...rest: string
 ]: nothing -> nothing {
+   let stem = $file_path | path parse | get stem
+   let mangohud_config = $mangohud_config_values | str join "\n"
+
    with-env {
       ...$steam_env
       ...$proton_env
-
-      MANGOHUD_CONFIG: (
-         $mangohud_config_values
-         | str join ','
-      )
+      ...(setup-mangohud-config $stem $mangohud_config)
    } {
       exec (
          gamescope
