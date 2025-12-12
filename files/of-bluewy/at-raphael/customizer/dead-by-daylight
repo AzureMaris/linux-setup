@@ -17,16 +17,16 @@ def --wrapped main [
       ...$proton_env
       ...(setup-mangohud-config-file $stem $mangohud_config_values)
    } {
-      (
-         exec
+      exec ...[
          gamescope
          ...(get-gamescope-parameters-for-niri | flatten)
-         -s 0.125
+         -s
+         0.125
          --force-grab-cursor
          --mangoapp
          --
          game-performance
          ...$rest
-      )
+      ]
    }
 }
