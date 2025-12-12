@@ -3,7 +3,7 @@
 use ./lib/steam.nu steam_env
 use ./lib/proton.nu proton_env
 use ./lib/gamescope.nu get-gamescope-parameters-for-niri
-use ./lib/mangohud.nu [ mangohud_config_values setup-mangohud-config ]
+use ./lib/mangohud.nu [ mangohud_config_values setup-mangohud-config-file ]
 
 const file_path = path self
 
@@ -16,7 +16,7 @@ def --wrapped main [
    with-env {
       ...$steam_env
       ...$proton_env
-      ...(setup-mangohud-config $stem $mangohud_config)
+      ...(setup-mangohud-config-file $stem $mangohud_config)
    } {
       exec (
          gamescope
