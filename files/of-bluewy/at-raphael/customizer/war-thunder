@@ -2,7 +2,7 @@
 
 use ./lib/steam.nu steam_env
 use ./lib/proton.nu proton_env
-use ./lib/mangohud.nu [ mangohud_config_values setup-mangohud-config-file ]
+use ./lib/mangohud.nu [ mangohud_config_values setup-mangohud-config-env ]
 
 const file_path = path self
 
@@ -19,7 +19,7 @@ def --wrapped main [
 
    with-env {
       ...$steam_env
-      ...(setup-mangohud-config-file $stem $mangohud_config_values)
+      ...(setup-mangohud-config-env $mangohud_config_values)
    } {
       exec mangohud game-performance ...$rest
    }
