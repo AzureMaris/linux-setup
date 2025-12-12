@@ -6,5 +6,5 @@ with-env {
    STORE: none
    PROTONPATH: /usr/share/steam/compatibilitytools.d/proton-cachyos
 } {
-   customizer proton-game umu-run '~/games/cgl-library/prefixes/duet-night-abyss/drive_c/Program Files (x86)/Duet Night Abyss/DNA Game/EM.exe'
+   customizer duet-night-abyss umu-run '~/games/cgl-library/prefixes/duet-night-abyss/drive_c/Program Files (x86)/Duet Night Abyss/DNA Game/EM.exe'
 }
