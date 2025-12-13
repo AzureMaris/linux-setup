@@ -1,0 +1,25 @@
+#!/usr/bin/env nu
+
+use ./lib/proton.nu proton_env
+use ./lib/mangohud.nu [ mangohud_config_values setup-mangohud-config-file ]
+
+const file_path = path self
+
+def --wrapped main [
+   ...rest: string
+]: nothing -> nothing {
+   let stem = $file_path | path parse | get stem
+
+   let mangohud_config_values = $mangohud_config_values
+   | where {|value|
+      $value != fps_limit=0
+   }
+   | append fps_limit=117
+
+   with-env {
+      ...$proton_env
+      ...(setup-mangohud-config-file $stem $mangohud_config_values)
+   } {
+      exec mangohud game-performance ...$rest
+   }
+}
