@@ -4,6 +4,8 @@ cursor {
 }
 
 input {
+   disable-power-key-handling
+
    keyboard {
       xkb {
          layout "bluewy,bluewy"
