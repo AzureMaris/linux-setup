@@ -12,11 +12,9 @@ install = [
 
    { from = 'aur', name = 'zenergy-dkms-git' },
 
+   { from = 'std', name = 'btrfs-progs' },
    { from = 'std', name = 'iwd' },
    { from = 'std', name = 'lact' },
-
-   { from = 'std', name = 'btrfs-progs' },
-   { from = 'std', name = 'sbctl' },
 
    # by chwd
    #
