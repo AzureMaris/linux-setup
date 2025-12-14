@@ -7,6 +7,8 @@ owner = 'bluewy'
 group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
+# # #
+
 [[files]]
 source = '../../../../files/of-bluewy/at-raphael/niri'
 target = '/home/kuroka/.config/niri'
