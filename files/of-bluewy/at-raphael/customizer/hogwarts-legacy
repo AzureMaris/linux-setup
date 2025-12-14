@@ -1,7 +1,9 @@
 #!/usr/bin/env nu
 
 use ./lib/proton.nu proton_env
+use ./lib/dxvk.nu setup-dxvk-config-file
 use ./lib/mangohud.nu [ mangohud_config_values setup-mangohud-config-file ]
+use ./lib/gamescope.nu get-gamescope-parameters-for-niri
 
 const file_path = path self
 
@@ -10,16 +12,25 @@ def --wrapped main [
 ]: nothing -> nothing {
    let stem = $file_path | path parse | get stem
 
-   let mangohud_config_values = $mangohud_config_values
-   | where {|value|
-      $value != fps_limit=0
-   }
-   | append fps_limit=117
+   let dxvk_config_values = [
+      'dxgi.maxFrameRate = 117'
+   ]
 
    with-env {
       ...$proton_env
       ...(setup-mangohud-config-file $stem $mangohud_config_values)
+      ...(setup-dxvk-config-file $stem $dxvk_config_values)
    } {
-      exec mangohud game-performance ...$rest
+      exec ...[
+         gamescope
+         ...(get-gamescope-parameters-for-niri | flatten)
+         -s
+         0.125
+         --force-grab-cursor
+         --mangoapp
+         --
+         game-performance
+         ...$rest
+      ]
    }
 }
