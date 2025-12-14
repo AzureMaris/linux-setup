@@ -7,6 +7,8 @@ owner = 'bluewy'
 group = 'bluewy'
 profiles = ['bluewy@raphael', 'bluewy@uriel']
 
+# # #
+
 [[files]]
 source = '../../../../files/of-bluewy/at-raphael/matugen'
 target = '/home/kuroka/.config/matugen'
@@ -15,12 +17,3 @@ chmod = '755'
 owner = 'kuroka'
 group = 'kuroka'
 profiles = ['kuroka@raphael']
-
-[[files]]
-source = '../../../../files/of-bluewy/at-raphael/matugen'
-target = '/home/elisa/.config/matugen'
-action = 'link'
-chmod = '755'
-owner = 'elisa'
-group = 'elisa'
-profiles = ['elisa@uriel']
