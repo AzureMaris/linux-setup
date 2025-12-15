@@ -1,3 +1,0 @@
-[[packages]]
-install = [{ from = 'std', name = 'terminus-font' }]
-profiles = ['root@raphael', 'root@uriel', 'root@sariel', 'root@belphegor']
