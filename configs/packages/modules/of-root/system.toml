@@ -3,21 +3,27 @@ install = [
    { from = 'std', name = 'refind' },
    { from = 'std', name = 'booster' },
 
-   { from = 'std', name = 'base' },
-   { from = 'std', name = 'base-devel' },
-
-   { from = 'std', name = 'wireless-regdb' },
-   { from = 'std', name = 'ufw' },
-
-   # by cachyos
-   #
-   { from = 'std', name = 'cachyos-hooks' },
    { from = 'std', name = 'cachyos-keyring' },
+   { from = 'std', name = 'archlinux-keyring' },
+
    { from = 'std', name = 'cachyos-mirrorlist' },
    { from = 'std', name = 'cachyos-rate-mirrors' },
    { from = 'std', name = 'cachyos-v3-mirrorlist' },
    { from = 'std', name = 'cachyos-v4-mirrorlist' },
-   { from = 'std', name = 'cachyos-settings' },
+
+   { from = 'std', name = 'pacman' },
+
    { from = 'std', name = 'chwd' },
+   { from = 'std', name = 'cachyos-hooks' },
+   { from = 'std', name = 'cachyos-settings' },
+
+   { from = 'std', name = 'bash' },
+   { from = 'std', name = 'coreutils' },
+
+   { from = 'lcl', name = 'nushell-custom', path = '../../../../pkgbuilds/nushell-custom' },
+   { from = 'std', name = 'nushell' },
+
+   { from = 'std', name = 'wireless-regdb' },
+   { from = 'std', name = 'ufw' },
 ]
 profiles = ['root@raphael', 'root@uriel', 'root@sariel', 'root@belphegor']
