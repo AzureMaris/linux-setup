@@ -88,37 +88,6 @@ def clear [
    tput cup (term size | get rows)
 }
 
-# Uses 'paru' under the hood. Makes a stronger distinction between 'std' and 'aur'.
-#
-# Manage system packages.
-#
-# -S for 'std'
-# -A for 'aur'
-# -W for 'std' and 'aur'
-def --wrapped aura [...arguments] {
-   let command = $arguments | reduce --fold ['paru'] {|argument command|
-      if not ($argument =~ '^-[a-zA-Z]+$') {
-         return ($command | append $argument)
-      }
-
-      $argument
-      | split chars
-      | skip 1
-      | reduce --fold $command {|char flag|
-         $flag | append (
-            match $char {
-               'S' => ['-S' '--repo']
-               'A' => ['-S' '--aur']
-               'W' => ['-S']
-               _ => [('-' + $char)]
-            }
-         )
-      }
-   }
-
-   run-external ...$command
-}
-
 alias nu-ls = ls
 
 # This is a custom 'ls' function.

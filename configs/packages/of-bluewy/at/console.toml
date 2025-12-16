@@ -14,7 +14,6 @@ install = [
    { from = 'std', name = 'zellij' },
 
    { from = 'std', name = 'flatpak' },
-   { from = 'std', name = 'paru' },
    { from = 'std', name = 'downgrade' },
 
    { from = 'lcl', name = 'salm-git', path = '../../../../pkgbuilds/salm-git' },

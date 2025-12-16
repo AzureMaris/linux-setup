@@ -12,6 +12,7 @@ install = [
    { from = 'std', name = 'cachyos-v4-mirrorlist' },
 
    { from = 'std', name = 'pacman' },
+   { from = 'std', name = 'yay' },
 
    { from = 'std', name = 'chwd' },
    { from = 'std', name = 'cachyos-hooks' },
