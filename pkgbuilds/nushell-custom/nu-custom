@@ -1,0 +1,7 @@
+#!/usr/bin/env nu
+
+def --wrapped main [
+   ...rest
+]: nothing -> nothing {
+   nu --experimental-options=[reorder-cell-paths pipefail enforce-runtime-annotations] ...$rest
+}

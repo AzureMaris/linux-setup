@@ -11,7 +11,5 @@ install=${_pkgname}.install
 
 package() {
    install -Dm755 /dev/null "$pkgdir/usr/bin/nu-custom"
-   echo '#!/usr/bin/env nu' > "$pkgdir/usr/bin/nu-custom"
-   echo '' >> "$pkgdir/usr/bin/nu-custom"
-   echo 'exec nu --experimental-options=[reorder-cell-paths pipefail enforce-runtime-annotations]' >> "$pkgdir/usr/bin/nu-custom"
+   install -Dm755 "$srcdir/../nu-custom" "$pkgdir/usr/bin/nu-custom"
 }
