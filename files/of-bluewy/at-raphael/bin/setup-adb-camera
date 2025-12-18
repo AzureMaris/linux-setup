@@ -1,0 +1,31 @@
+#!/usr/bin/env nu
+
+use std log
+
+let module_specs = lsmod | detect columns
+
+let is_v4l2loopback_loaded = $module_specs | any {|$module_spec|
+   $module_spec.module == v4l2loopback
+}
+
+if not $is_v4l2loopback_loaded {
+   run0 modprobe v4l2loopback
+}
+
+let video_device_paths = ls /dev/video*
+let video_device_path = $video_device_paths | first | get name
+
+log info $"Using ($video_device_path)"
+
+(
+   scrcpy
+   --v4l2-sink=$"($video_device_path)"
+   --video-source=camera
+   --video-codec=h265
+   --camera-size=1920x1080
+   --camera-fps=30
+   --video-bit-rate=6M
+   --capture-orientation=180
+   --no-audio
+   --no-window
+)
