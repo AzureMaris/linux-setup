@@ -5,7 +5,7 @@ use std log
 let module_specs = lsmod | detect columns
 
 let is_v4l2loopback_loaded = $module_specs | any {|$module_spec|
-   $module_spec.module == v4l2loopback
+   $module_spec.Module == v4l2loopback
 }
 
 if not $is_v4l2loopback_loaded {
