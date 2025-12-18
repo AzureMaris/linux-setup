@@ -1,6 +1,5 @@
 [[units]]
 user = 'root'
-path = '/etc/systemd/system'
 enable = [
    'getty@tty1.service',
 

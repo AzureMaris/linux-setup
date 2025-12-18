@@ -1,6 +1,5 @@
 [[units]]
 user = 'elisa'
-path = '/home/elisa/.config/systemd/user'
 mask = ['xdg-user-dirs.service']
 enable = ['wireplumber.service', 'pipewire.service', 'psd.service']
 profiles = ['elisa@uriel', 'elisa@sariel']
