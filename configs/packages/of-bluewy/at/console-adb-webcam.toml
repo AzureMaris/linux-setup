@@ -1,0 +1,6 @@
+[[packages]]
+install = [
+   { from = 'std', name = 'scrcpy' },
+   { from = 'std', name = 'v4l2loopback-dkms' },
+]
+profiles = ['root@raphael']
