@@ -1,0 +1,6 @@
+{
+  "updateInterval": 2700000,
+  "configuredTerminal": "wezterm start --",
+  "configuredIcon": "world-download",
+  "hideOnZero": false
+}
