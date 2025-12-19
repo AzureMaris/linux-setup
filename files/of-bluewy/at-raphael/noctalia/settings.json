@@ -91,11 +91,12 @@
                 {
                     "blacklist": [
                     ],
-                    "colorizeIcons": true,
-                    "drawerEnabled": false,
+                    "colorizeIcons": false,
+                    "drawerEnabled": true,
                     "hidePassive": false,
                     "id": "Tray",
                     "pinned": [
+                        "Equibop"
                     ]
                 },
                 {
@@ -111,7 +112,7 @@
                 },
                 {
                     "deviceNativePath": "",
-                    "displayMode": "onhover",
+                    "displayMode": "alwaysHide",
                     "id": "Battery",
                     "showNoctaliaPerformance": false,
                     "showPowerProfiles": false,
