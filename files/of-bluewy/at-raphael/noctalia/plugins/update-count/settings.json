@@ -2,5 +2,10 @@
   "updateInterval": 2700000,
   "configuredTerminal": "wezterm start --",
   "configuredIcon": "world-download",
-  "hideOnZero": false
+  "hideOnZero": false,
+  "updateIntervalMinutes": 30,
+  "updateTerminalCommand": "wezterm start --",
+  "currentIconName": "world-download",
+  "customCmdGetNumUpdates": "nu -c 'try {checkupdates | lines | length} catch { -1 }'",
+  "customCmdDoSystemUpdate": ""
 }
