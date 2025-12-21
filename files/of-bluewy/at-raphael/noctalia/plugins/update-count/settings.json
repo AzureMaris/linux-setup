@@ -5,7 +5,7 @@
   "hideOnZero": false,
   "updateIntervalMinutes": 30,
   "updateTerminalCommand": "wezterm start --",
-  "currentIconName": "world-download",
+  "currentIconName": "packages",
   "customCmdGetNumUpdates": "nu -c 'try {checkupdates | lines | length} catch { -1 }'",
   "customCmdDoSystemUpdate": "nu -c 'yay -Syu; systemctl --user restart niri-custom-noctalia'"
 }
