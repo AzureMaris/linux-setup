@@ -1,0 +1,5 @@
+[[packages]]
+install = [
+   { from = 'std', name = 'android-tools' },
+]
+profiles = ['root@raphael']
