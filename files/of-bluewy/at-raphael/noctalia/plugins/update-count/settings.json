@@ -7,5 +7,5 @@
   "updateTerminalCommand": "wezterm start --",
   "currentIconName": "world-download",
   "customCmdGetNumUpdates": "nu -c 'try {checkupdates | lines | length} catch { -1 }'",
-  "customCmdDoSystemUpdate": "nu -c '(yay -Syu) and (systemctl --user restart niri-custom-noctalia)'"
+  "customCmdDoSystemUpdate": "nu -c 'yay -Syu; systemctl --user restart niri-custom-noctalia'"
 }
