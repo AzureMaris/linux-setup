@@ -1,0 +1,3 @@
+[[packages]]
+install = [{ from = 'std', name = 'localsend' }]
+profiles = ['root@raphael', 'root@uriel']
