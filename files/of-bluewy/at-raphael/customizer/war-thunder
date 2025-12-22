@@ -15,7 +15,7 @@ def --wrapped main [
    | where {|value|
       $value != fps_limit=0
    }
-   | append fps_limit=157
+   | append fps_limit=57
 
    with-env {
       ...$steam_env
