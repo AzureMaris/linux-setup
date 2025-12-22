@@ -1,0 +1,19 @@
+[ram]
+expo = 'expo 2'
+memory-context-restore = 'enabled'
+power-down = 'enabled'
+
+[cpu]
+pbo = 'limited'
+curve-optimizer = '-20'
+max-temp = '84C'
+core-voltage = '1.08v'
+
+[boot]
+csm = 'disabled'
+
+[other]
+tpm = 'disabled'
+integrated-graphics = 'disabled'
+smart-resizable-bar = 'enabled'
+download-app = 'disabled'
