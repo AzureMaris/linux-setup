@@ -114,6 +114,7 @@
                 {
                     "deviceNativePath": "",
                     "displayMode": "alwaysHide",
+                    "hideIfNotDetected": true,
                     "id": "Battery",
                     "showNoctaliaPerformance": false,
                     "showPowerProfiles": false,
@@ -389,7 +390,7 @@
         ],
         "showHeader": true
     },
-    "settingsVersion": 31,
+    "settingsVersion": 32,
     "systemMonitor": {
         "cpuCriticalThreshold": 90,
         "cpuPollingInterval": 3000,
@@ -398,7 +399,7 @@
         "diskCriticalThreshold": 90,
         "diskPollingInterval": 3000,
         "diskWarningThreshold": 80,
-        "enableNvidiaGpu": false,
+        "enableDgpuMonitoring": false,
         "gpuCriticalThreshold": 90,
         "gpuPollingInterval": 3000,
         "gpuWarningThreshold": 80,
@@ -423,6 +424,7 @@
         "fuzzel": false,
         "ghostty": false,
         "gtk": false,
+        "helix": false,
         "hyprland": false,
         "kcolorscheme": false,
         "kitty": false,
