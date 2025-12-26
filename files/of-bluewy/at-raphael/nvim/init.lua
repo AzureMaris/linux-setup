@@ -1,1 +1,1 @@
-require("bluewy")
+require("default")

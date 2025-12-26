@@ -1,1 +1,0 @@
-require("bluewy.config.vim")
