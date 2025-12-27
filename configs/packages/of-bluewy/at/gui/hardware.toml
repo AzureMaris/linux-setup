@@ -1,10 +1,7 @@
 [[packages]]
 install = [
    { from = 'std', name = 'mission-center' },
-
-   { from = 'std', name = 'pwvucontrol' },
    { from = 'std', name = 'qpwgraph' },
-
    { from = 'std', name = 'gparted' },
 ]
 profiles = ['root@raphael', 'root@uriel']
